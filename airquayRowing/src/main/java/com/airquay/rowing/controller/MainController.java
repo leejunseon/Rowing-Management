@@ -35,7 +35,7 @@ public class MainController {
 	@Autowired
 	private com.airquay.rowing.service.rowingService rowingService;
 	
-	@RequestMapping(value = "/main", method = RequestMethod.GET)//http://13.209.161.83:8080/airquayRowing/main 접속 시 호출
+	@RequestMapping(value = "/main", method = RequestMethod.GET)//http://localhost:8080/airquayRowing/main 접속 시 호출
 	public String main(Model model, HttpServletRequest request, HttpServletResponse response) {
  		HttpSession session = request.getSession();
  		Boolean loginUser = (Boolean) session.getAttribute("loginUser");
@@ -45,17 +45,6 @@ public class MainController {
 			model.addAttribute("loginCheck", true);
 		}
 		return "main/login"; //main폴더의login.jsp로 ㄱㄱ
-	}
-	
-	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-	public String dashboard(Model model, HttpServletRequest request, HttpServletResponse response) {
-		List<Object> raceList = new ArrayList<Object>();
-		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
-		Date currentTime = new Date ();
-		String mTime = mSimpleDateFormat.format ( currentTime );
-		raceList = rowingService.getRaceList(mTime);
-		model.addAttribute("raceList", raceList);
-		return "main/dashboard";
 	}
 	
 	@RequestMapping(value = "/select", method = RequestMethod.GET)
@@ -165,18 +154,6 @@ public class MainController {
 		return bowInfo;
 	}
 	
-	@RequestMapping(value = "/main/setOnOff", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody Boolean setRaceStart(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		Boolean result = false;
-		String check_onoff = request.getParameter("OnOff");
-		String race_num=request.getParameter("raceNum");
-		main main=new main();
-		main.setCheck_onoff(check_onoff);
-		main.setRace_num(Integer.parseInt(race_num));
-		result = rowingService.setRaceStart(main);
-		return result;
-	}		
-	
 	@RequestMapping(value = "/main/pastTimeSave", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody Boolean pastTimeSave(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		Boolean result = false;
@@ -194,34 +171,6 @@ public class MainController {
 		result = rowingService.pastTimeSave(main);
 		return result;
 	}		
-	
-	@RequestMapping(value = "/main/startTimeSend", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody Boolean startTimeSend(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		Boolean result = false;
-		String start_time=request.getParameter("start_time");
-		String race_num=request.getParameter("race_num");
-		String check_onoff=request.getParameter("OnOff");
-		main main=new main();
-		main.setStart_time(start_time);
-		main.setRace_num(Integer.parseInt(race_num));
-		main.setCheck_onoff(check_onoff);
-		result=rowingService.startTimeSend(main);
-		return result;
-	}
-	
-	@RequestMapping(value = "/main/finishTimeSend", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody Boolean finishTimeSend(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		Boolean result = false;
-		String stop_time=request.getParameter("stop_time");
-		String race_num=request.getParameter("race_num");
-		String check_onoff=request.getParameter("OnOff");
-		main main=new main();
-		main.setStop_time(stop_time);
-		main.setRace_num(Integer.parseInt(race_num));
-		main.setCheck_onoff(check_onoff);
-		result=rowingService.stopTimeSend(main);
-		return result;
-	}
 	
 	@RequestMapping(value = "/main/getStartTime", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody List getStartTime(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -318,48 +267,6 @@ public class MainController {
   		String race_num = request.getParameter("race_num");
   		result = rowingService.five_null(race_num);
   		return result;
-	}
-  	  	
-  	@RequestMapping(value = "/main/updateRaceinfo", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody JSONObject updateRaceinfo(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session){
-		String race_date = request.getParameter("raceDate");
-		String Hut=request.getParameter("Hut");
-		main main=new main();
-		main.setHut(Hut);//Hut 설정
-		main.setRace_date(race_date);//경기 날짜 설정
-		String race_num=rowingService.getCurrentRaceNum(main);//Hut에 따른 현재 경기번호 가져옴
-		main.setRace_num(Integer.parseInt(race_num));//진행중인 경기 번호 설정
-		
-		String check_onoff=rowingService.getCurrentOnoff(main);
-		String start_time=rowingService.getCurrenStarttime(main);
-		String finish_time=rowingService.passTimerString(race_num);
-		String day_race_num=rowingService.dayRacenum(race_num);
-		String five_null=rowingService.five_null(race_num);
-		
-		JSONObject Racenum = new JSONObject();
-		JSONObject Onoff=new JSONObject();
-		JSONObject Starttime=new JSONObject();
-		JSONObject Finishtime=new JSONObject();
-		JSONObject dayRacenum=new JSONObject();
-		JSONObject fiveNull=new JSONObject();
-		JSONArray sArray = new JSONArray();
-		JSONObject sMain = new JSONObject();
-
-		Racenum.put("race_num", race_num);
-		Onoff.put("Onoff", check_onoff);
-		Starttime.put("StartTime", start_time);
-		Finishtime.put("FinishTime", finish_time);
-		dayRacenum.put("day_race_num", day_race_num);
-		fiveNull.put("five_null", five_null);
-		sArray.add(0, Racenum);
-		sArray.add(1,Onoff);
-		sArray.add(2,Starttime);
-		sArray.add(3,Finishtime);
-		sArray.add(4,dayRacenum);
-		sArray.add(5,fiveNull);
-		sMain.put("dataSend", sArray);
-	
-		return sMain;
 	}
   	
 	@RequestMapping(value = "/main/addUser", method = { RequestMethod.GET, RequestMethod.POST })

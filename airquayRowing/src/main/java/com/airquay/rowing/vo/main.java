@@ -14,13 +14,6 @@ public class main {
 	private Integer team_management_yn;
 	private Integer admin_yn;
 	
-	//ison
-	
-	private Integer pastHour;
-	private Integer pastMinute;
-	private Integer pastSecond;
-	private Integer pastMiliSecond;
-	
 	//player_record
 	
 	private Integer pr_num;
@@ -34,7 +27,6 @@ public class main {
 	private String round_type;
 	private String start_time;
 	private String stop_time;
-	private String check_onoff;
 	private String progression;
 	
 	//record
@@ -176,30 +168,6 @@ public class main {
 	public void setAdmin_yn(Integer admin_yn) {
 		this.admin_yn = admin_yn;
 	}
-	public Integer getPastHour() {
-		return pastHour;
-	}
-	public void setPastHour(Integer pastHour) {
-		this.pastHour = pastHour;
-	}
-	public Integer getPastMinute() {
-		return pastMinute;
-	}
-	public void setPastMinute(Integer pastMinute) {
-		this.pastMinute = pastMinute;
-	}
-	public Integer getPastSecond() {
-		return pastSecond;
-	}
-	public void setPastSecond(Integer pastSecond) {
-		this.pastSecond = pastSecond;
-	}
-	public Integer getPastMiliSecond() {
-		return pastMiliSecond;
-	}
-	public void setPastMiliSecond(Integer pastMiliSecond) {
-		this.pastMiliSecond = pastMiliSecond;
-	}
 	public Integer getPr_num() {
 		return pr_num;
 	}
@@ -247,12 +215,6 @@ public class main {
 	}
 	public void setStop_time(String stop_time) {
 		this.stop_time = stop_time;
-	}
-	public String getCheck_onoff() {
-		return check_onoff;
-	}
-	public void setCheck_onoff(String check_onoff) {
-		this.check_onoff = check_onoff;
 	}
 	public String getProgression() {
 		return progression;

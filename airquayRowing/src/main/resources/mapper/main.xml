@@ -3,70 +3,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.main">
-	<select id="raceStartPoling" parameterType="String" resultType="int">
-		select raceinfo.check_onoff 
-		
-		from airquay.raceinfo
-		
-		where raceinfo.race_num = '${value}';
-	</select>
-	
-	<select id="getPassTimer"  resultType="com.airquay.rowing.vo.main">
-		select pastHour, pastMinute, pastSecond, pastMiliSecond 
-		
-		from ison
-		
-		where ison.race_num='${race_num}';
-	</select>
-	
-	<select id="pastHour"  parameterType="String" resultType="String">
-		select pastHour
-		
-		from ison
-		
-		where ison.race_num='${value}';
-	</select>
-	
-	<select id="pastMinute" parameterType="String"  resultType="String">
-		select pastMinute
-		
-		from ison
-		
-		where ison.race_num='${value}';
-	</select>
-	
-	<select id="pastSecond" parameterType="String"  resultType="String">
-		select pastSecond
-		
-		from ison
-		
-		where ison.race_num='${value}';
-	</select>
-	
-	<select id="pastMiliSecond" parameterType="String"  resultType="String">
-		select pastMiliSecond
-		
-		from ison
-		
-		where ison.race_num='${value}';
-	</select>
-	
-	<select id="getRaceInfo" parameterType="String" resultType="com.airquay.rowing.vo.main">
-		select 
-		raceinfo.race_num, 
-		raceinfo.day_race_num, 
-		raceinfo.event_name, 
-		raceinfo.race_date,
-		raceinfo.round_type, 
-		raceinfo.start_time, 
-		raceinfo.stop_time, 
-		raceinfo.check_onoff,
-		raceinfo.progression 
-		
-		from airquay.raceinfo
-		
-		where raceinfo.race_date = '${value}';
-	</select>
 	
 	<select id="getBowInfo" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
 		select 
@@ -118,43 +54,6 @@
 		airquay_user.user_id = '${user_id}' and 
 		airquay_user.user_pw = '${user_pw}'
 	</select>	
-	
-	<update id="setRaceStart" parameterType="com.airquay.rowing.vo.main">
-		update raceinfo set 
-		
-		check_onoff='${check_onoff}'
-		
-		where raceinfo.race_num='${race_num}';
-	</update>
-	
-	<update id="pastTimeSave" parameterType="com.airquay.rowing.vo.main">
-		update ison set 
-		
-		pastHour='${pastHour}', 
-		pastMinute='${pastMinute}', 
-		pastSecond='${pastSecond}', 
-		pastMiliSecond='${pastMiliSecond}'
-		
-		where ison.race_num='${race_num}';
-	</update>
-	
-	<update id="startTimeSend" parameterType="com.airquay.rowing.vo.main">
-		update raceinfo set
-		
-		start_time='${start_time}',
-		check_onoff='${check_onoff}'
-		
-		where raceinfo.race_num='${race_num}';
-	</update>
-	
-	<update id="stopTimeSend" parameterType="com.airquay.rowing.vo.main">
-		update raceinfo set
-		
-		stop_time='${stop_time}',
-		check_onoff='${check_onoff}'
-		
-		where raceinfo.race_num='${race_num}';
-	</update>
 	
 	<select id="getRaceList" parameterType="com.airquay.rowing.vo.main" resultType="Object">
 		select * 
@@ -216,36 +115,6 @@
 		raceinfo.race_date='${race_date}'
 	</select>
 	
-	<update id="updateRaceNum" parameterType="com.airquay.rowing.vo.main">		
-		update current_race set
-		
-		current_race.Start='${race_num}' 
-	</update>
-	
-	<update id="nextRacenum_500" parameterType="com.airquay.rowing.vo.main">		
-		update current_race set
-		
-		current_race.500m='${race_num}' 
-	</update>
-	
-	<update id="nextRacenum_1000" parameterType="com.airquay.rowing.vo.main">		
-		update current_race set
-		
-		current_race.1000m='${race_num}' 
-	</update>
-	
-	<update id="nextRacenum_1500" parameterType="com.airquay.rowing.vo.main">		
-		update current_race set
-		
-		current_race.1500m='${race_num}' 
-	</update>
-	
-	<update id="nextRacenum_Final" parameterType="com.airquay.rowing.vo.main">		
-		update current_race set
-		
-		current_race.Final='${race_num}' 
-	</update>
-	
 	<update id="recordUpload500m" parameterType="com.airquay.rowing.vo.main">		
 		update record set
 		
@@ -289,52 +158,7 @@
 		race_num='${race_num}' and
 		bow_num='${bow_num}'
 	</update>
-	
-	<select id="getCurrentRaceNum_Start" parameterType="com.airquay.rowing.vo.main" resultType="String">
-		select current_race.Start
-		
-		from airquay.current_race
-		
-	</select>
-	
-	<select id="getCurrentRaceNum_500" parameterType="com.airquay.rowing.vo.main" resultType="String">
-		select current_race.500m
-		
-		from airquay.current_race
-		
-	</select>
-	
-	<select id="getCurrentRaceNum_1000" parameterType="com.airquay.rowing.vo.main" resultType="String">
-		select current_race.1000m
-		
-		from airquay.current_race
-		
-	</select>
-	
-	<select id="getCurrentRaceNum_1500" parameterType="com.airquay.rowing.vo.main" resultType="String">
-		select current_race.1500m
-		
-		from airquay.current_race
-		
-	</select>
-	
-	<select id="getCurrentRaceNum_Final" parameterType="com.airquay.rowing.vo.main" resultType="String">
-		select current_race.Final
-		
-		from airquay.current_race
-	</select>
-	
-	
-	<select id="getCurrentOnoff" parameterType="com.airquay.rowing.vo.main" resultType="String">
-		select raceinfo.check_onoff
-		
-		from airquay.raceinfo
-		
-		where 
-		race_date='${race_date}' and
-		race_num='${race_num}'
-	</select>
-	
+
 	<select id="getCurrentStarttime" parameterType="com.airquay.rowing.vo.main" resultType="String">
 		select raceinfo.start_time
 		
@@ -447,11 +271,6 @@
 		select count(raceinfo.race_num)
 		from airquay.raceinfo
 	</select>
-	
-	<insert id="addIson" parameterType="com.airquay.rowing.vo.main">
-		insert into airquay.ison
-		values('${race_num}',0,0,0,0);
-	</insert>
 	
 	<insert id="addRecordOne" parameterType="com.airquay.rowing.vo.main">
 		insert into airquay.record
