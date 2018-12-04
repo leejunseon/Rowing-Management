@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.main">
+	<select id="raceStartPoling" parameterType="String" resultType="int">
+		select raceinfo.check_onoff 
+		
+		from airquay.raceinfo
+		
+		where raceinfo.race_num = '${value}';
+	</select>
+	
+	<select id="getPassTimer"  resultType="com.airquay.rowing.vo.main">
+		select pastHour, pastMinute, pastSecond, pastMiliSecond 
+		
+		from ison
+		
+		where ison.race_num='${race_num}';
+	</select>
+	
+	<select id="pastHour"  parameterType="String" resultType="String">
+		select pastHour
+		
+		from ison
+		
+		where ison.race_num='${value}';
+	</select>
+	
+	<select id="pastMinute" parameterType="String"  resultType="String">
+		select pastMinute
+		
+		from ison
+		
+		where ison.race_num='${value}';
+	</select>
+	
+	<select id="pastSecond" parameterType="String"  resultType="String">
+		select pastSecond
+		
+		from ison
+		
+		where ison.race_num='${value}';
+	</select>
+	
+	<select id="pastMiliSecond" parameterType="String"  resultType="String">
+		select pastMiliSecond
+		
+		from ison
+		
+		where ison.race_num='${value}';
+	</select>
+	
+	<select id="getRaceInfo" parameterType="String" resultType="com.airquay.rowing.vo.main">
+		select 
+		raceinfo.race_num, 
+		raceinfo.day_race_num, 
+		raceinfo.event_name, 
+		raceinfo.race_date,
+		raceinfo.round_type, 
+		raceinfo.start_time, 
+		raceinfo.stop_time, 
+		raceinfo.check_onoff,
+		raceinfo.progression 
+		
+		from airquay.raceinfo
+		
+		where raceinfo.race_date = '${value}';
+	</select>
+	
+	<select id="getBowInfo" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
+		select 
+		rec.record_num, 
+		rec.race_num, 
+		rec.team_num, 
+		rec.bow_num,
+		rec.500_time as fivehundred_time,
+		rec.500_rank as fivehundred_rank,
+		rec.1000_time as thousand_time, 
+		rec.1000_rank as thousand_rank,
+		rec.1500_time as thousandfivehundred_time,
+		rec.1500_rank as thousandfivehundred_rank, 
+		rec.finish_time,
+		rec.finish_rank,
+		ti.team_name, 
+		ti.team_country
+		
+		from airquay.record rec 
+		left join airquay.team_info ti on ti.team_num = rec.team_num
+		
+		where rec.race_num = '${race_num}';
+	</select>
+	
+	<select id="checkUser" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
+		select * 
+		
+		from airquay.airquay_user airquay_user 
+		
+		where airquay_user.user_id = '${user_id}' 
+		and airquay_user.user_pw = '${user_pw}'
+	</select>
+	
+	<select id="getUserInfo" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
+		select
+		airquay_user.user_no, 
+		airquay_user.user_id, 
+		airquay_user.user_name, 
+		airquay_user.sex, 
+		airquay_user.birth, 
+		team_info.team_name, 
+		team_info.team_country, 
+		team_info.team_num
+		
+		from airquay.airquay_user airquay_user 
+		left join airquay.team_info team_info on team_info.team_num = airquay_user.team_num
+		
+		where 
+		airquay_user.user_id = '${user_id}' and 
+		airquay_user.user_pw = '${user_pw}'
+	</select>	
+	
+	<update id="setRaceStart" parameterType="com.airquay.rowing.vo.main">
+		update raceinfo set 
+		
+		check_onoff='${check_onoff}'
+		
+		where raceinfo.race_num='${race_num}';
+	</update>
+	
+	<update id="pastTimeSave" parameterType="com.airquay.rowing.vo.main">
+		update ison set 
+		
+		pastHour='${pastHour}', 
+		pastMinute='${pastMinute}', 
+		pastSecond='${pastSecond}', 
+		pastMiliSecond='${pastMiliSecond}'
+		
+		where ison.race_num='${race_num}';
+	</update>
+	
+	<update id="startTimeSend" parameterType="com.airquay.rowing.vo.main">
+		update raceinfo set
+		
+		start_time='${start_time}',
+		check_onoff='${check_onoff}'
+		
+		where raceinfo.race_num='${race_num}';
+	</update>
+	
+	<update id="stopTimeSend" parameterType="com.airquay.rowing.vo.main">
+		update raceinfo set
+		
+		stop_time='${stop_time}',
+		check_onoff='${check_onoff}'
+		
+		where raceinfo.race_num='${race_num}';
+	</update>
+	
+	<select id="getRaceList" parameterType="com.airquay.rowing.vo.main" resultType="Object">
+		select * 
+		
+		from airquay.raceinfo ri 
+		
+		where ri.race_date = '${value}'
+	</select>
+	
+	<select id="getRecord" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
+		select 	event_name,
+				raceinfo.race_date,
+				500_time as fivehundred_time,
+				1000_time as thousand_time,
+				1500_time as thousandfivehundred_time,
+				finish_time,
+				finish_rank
+				
+		from record 
+		inner join team_info on record.team_num=team_info.team_num
+		inner join raceinfo on record.race_num=raceinfo.race_num
+				
+		where team_info.team_num='${value}' 
+	</select>
+	
+	<select id="getTeamList" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
+		select team_info.team_name,team_info.team_num
+		from airquay.team_info
+		where team_info.team_num in 
+		(
+			select record.team_num
+			from record
+			where record.finish_time is not null
+			group by team_num
+		)
+	</select>
+	
+	<select id="getStartTime" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
+		select raceinfo.start_time
+		
+		from airquay.raceinfo
+		
+		where raceinfo.race_num='${race_num}';
+	</select>
+	
+	<select id="getFinishTime" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
+		select raceinfo.stop_time
+		
+		from airquay.raceinfo
+		
+		where raceinfo.race_num='${race_num}';
+	</select>
+	
+	<select id="getRaceNum" parameterType="com.airquay.rowing.vo.main" resultType="String">
+		select raceinfo.race_date
+		from airquay.raceinfo
+		where 
+		raceinfo.race_num='${race_num}' and
+		raceinfo.race_date='${race_date}'
+	</select>
+	
+	<update id="updateRaceNum" parameterType="com.airquay.rowing.vo.main">		
+		update current_race set
+		
+		current_race.Start='${race_num}' 
+	</update>
+	
+	<update id="nextRacenum_500" parameterType="com.airquay.rowing.vo.main">		
+		update current_race set
+		
+		current_race.500m='${race_num}' 
+	</update>
+	
+	<update id="nextRacenum_1000" parameterType="com.airquay.rowing.vo.main">		
+		update current_race set
+		
+		current_race.1000m='${race_num}' 
+	</update>
+	
+	<update id="nextRacenum_1500" parameterType="com.airquay.rowing.vo.main">		
+		update current_race set
+		
+		current_race.1500m='${race_num}' 
+	</update>
+	
+	<update id="nextRacenum_Final" parameterType="com.airquay.rowing.vo.main">		
+		update current_race set
+		
+		current_race.Final='${race_num}' 
+	</update>
+	
+	<update id="recordUpload500m" parameterType="com.airquay.rowing.vo.main">		
+		update record set
+		
+		500_time='${LabTime}',
+		500_rank='${rank}'
+		
+		where
+		race_num='${race_num}' and
+		bow_num='${bow_num}'
+	</update>
+	
+	<update id="recordUpload1000m" parameterType="com.airquay.rowing.vo.main">		
+		update record set
+		
+		1000_time='${LabTime}',
+		1000_rank='${rank}'
+		
+		where
+		race_num='${race_num}' and
+		bow_num='${bow_num}'
+	</update>
+	
+	<update id="recordUpload1500m" parameterType="com.airquay.rowing.vo.main">		
+		update record set
+		
+		1500_time='${LabTime}',
+		1500_rank='${rank}'
+		
+		where
+		race_num='${race_num}' and
+		bow_num='${bow_num}'
+	</update>
+	
+	<update id="recordUploadFinish" parameterType="com.airquay.rowing.vo.main">		
+		update record set
+		
+		finish_time='${LabTime}',
+		finish_rank='${rank}'
+		
+		where
+		race_num='${race_num}' and
+		bow_num='${bow_num}'
+	</update>
+	
+	<select id="getCurrentRaceNum_Start" parameterType="com.airquay.rowing.vo.main" resultType="String">
+		select current_race.Start
+		
+		from airquay.current_race
+		
+	</select>
+	
+	<select id="getCurrentRaceNum_500" parameterType="com.airquay.rowing.vo.main" resultType="String">
+		select current_race.500m
+		
+		from airquay.current_race
+		
+	</select>
+	
+	<select id="getCurrentRaceNum_1000" parameterType="com.airquay.rowing.vo.main" resultType="String">
+		select current_race.1000m
+		
+		from airquay.current_race
+		
+	</select>
+	
+	<select id="getCurrentRaceNum_1500" parameterType="com.airquay.rowing.vo.main" resultType="String">
+		select current_race.1500m
+		
+		from airquay.current_race
+		
+	</select>
+	
+	<select id="getCurrentRaceNum_Final" parameterType="com.airquay.rowing.vo.main" resultType="String">
+		select current_race.Final
+		
+		from airquay.current_race
+	</select>
+	
+	
+	<select id="getCurrentOnoff" parameterType="com.airquay.rowing.vo.main" resultType="String">
+		select raceinfo.check_onoff
+		
+		from airquay.raceinfo
+		
+		where 
+		race_date='${race_date}' and
+		race_num='${race_num}'
+	</select>
+	
+	<select id="getCurrentStarttime" parameterType="com.airquay.rowing.vo.main" resultType="String">
+		select raceinfo.start_time
+		
+		from airquay.raceinfo
+		
+		where 
+		race_date='${race_date}' and
+		race_num='${race_num}'
+	</select>
+	
+	<select id="dayRacenum" parameterType="String" resultType="String">
+		select raceinfo.day_race_num
+		
+		from airquay.raceinfo
+		
+		where 
+		race_num='${value}';
+	</select>
+	
+	<select id="five_null_one" parameterType="String" resultType="String">
+		select record.500_time
+		
+		from airquay.record
+		
+		where 
+		race_num='${value}' and
+		bow_num='1';
+	</select>
+	
+	<select id="five_null_two" parameterType="String" resultType="String">
+		select record.500_time
+		
+		from airquay.record
+		
+		where 
+		race_num='${value}' and
+		bow_num='2';
+	</select>
+	
+	<select id="five_null_three" parameterType="String" resultType="String">
+		select record.500_time
+		
+		from airquay.record
+		
+		where 
+		race_num='${value}' and
+		bow_num='3';
+	</select>
+	
+	<select id="five_null_four" parameterType="String" resultType="String">
+		select record.500_time
+		
+		from airquay.record
+		
+		where 
+		race_num='${value}' and
+		bow_num='4';
+	</select>
+	
+	<select id="five_null_five" parameterType="String" resultType="String">
+		select record.500_time
+		
+		from airquay.record
+		
+		where 
+		race_num='${value}' and
+		bow_num='5';
+	</select>
+	
+	<select id="five_null_six" parameterType="String" resultType="String">
+		select record.500_time
+		
+		from airquay.record
+		
+		where 
+		race_num='${value}' and
+		bow_num='6';
+	</select>
+
+	<insert id="addUser" parameterType="com.airquay.rowing.vo.main">
+		insert into airquay.airquay_user
+		values(null,'${user_id}','${user_pw}','${user_name}','${sex}','${birth}','${nationality}','${team_num}',null,null);
+	</insert>
+	
+	<select id="getPastrace" parameterType="String" resultType="com.airquay.rowing.vo.main">
+		select race_date
+		
+		from airquay.raceinfo
+		
+		where
+		race_date='${value}';
+	</select>
+	
+	<insert id="addRace" parameterType="com.airquay.rowing.vo.main">
+		insert into airquay.raceinfo
+		values('${race_num}','${day_race_num}','${event_name}','${race_date}','${round_type}',null,null,0,'${progression}');
+	</insert>
+	
+	<select id="raceNum" parameterType="com.airquay.rowing.vo.main" resultType="String">
+		select race_num
+		
+		from airquay.raceinfo
+		
+		where
+		race_date='${race_date}' and
+		day_race_num='${day_race_num}'
+	</select>
+	
+	<select id="getRacenum" parameterType="com.airquay.rowing.vo.main" resultType="String">
+		select count(raceinfo.race_num)
+		from airquay.raceinfo
+	</select>
+	
+	<insert id="addIson" parameterType="com.airquay.rowing.vo.main">
+		insert into airquay.ison
+		values('${race_num}',0,0,0,0);
+	</insert>
+	
+	<insert id="addRecordOne" parameterType="com.airquay.rowing.vo.main">
+		insert into airquay.record
+		values(null,'${race_num}','${LaneOne}','1',null,null,null,null,null,null,null,null);
+	</insert>
+	
+	<insert id="addRecordTwo" parameterType="com.airquay.rowing.vo.main">
+		insert into airquay.record
+		values(null,'${race_num}','${LaneTwo}','2',null,null,null,null,null,null,null,null);
+	</insert>
+	
+	<insert id="addRecordThree" parameterType="com.airquay.rowing.vo.main">
+		insert into airquay.record
+		values(null,'${race_num}','${LaneThree}','3',null,null,null,null,null,null,null,null);
+	</insert>
+	
+	<insert id="addRecordFour" parameterType="com.airquay.rowing.vo.main">
+		insert into airquay.record
+		values(null,'${race_num}','${LaneFour}','4',null,null,null,null,null,null,null,null);
+	</insert>
+	
+	<insert id="addRecordFive" parameterType="com.airquay.rowing.vo.main">
+		insert into airquay.record
+		values(null,'${race_num}','${LaneFive}','5',null,null,null,null,null,null,null,null);
+	</insert>
+	
+	<insert id="addRecordSix" parameterType="com.airquay.rowing.vo.main">
+		insert into airquay.record
+		values(null,'${race_num}','${LaneSix}','6',null,null,null,null,null,null,null,null);
+	</insert>
+</mapper>
