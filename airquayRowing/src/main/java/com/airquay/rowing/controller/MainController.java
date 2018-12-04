@@ -91,39 +91,6 @@ public class MainController {
 		return resultList;
 	}
 	
-	@RequestMapping(value = "/main/raceStartPoling", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody int raceStartPoling(Model model, HttpServletRequest request, HttpServletResponse response) {
-		String race_num = request.getParameter("race_num");
-		Integer startYn = rowingService.raceStartPoling(race_num);
-		return startYn;
-	}
-	
-	@RequestMapping(value = "/main/beforeStartPolling", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody List finish_timePoling(Model model, HttpServletRequest request, HttpServletResponse response) {
-		main main = new main();
-		String race_num = request.getParameter("race_num");
-		main.setRace_num(Integer.parseInt(race_num));
-		List<List> bowInfo = rowingService.getBowInfo(main);
-		return bowInfo;
-	}
-	
-	@RequestMapping(value = "/main/passTimer", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody List passTimer(Model model, HttpServletRequest request, HttpServletResponse response) {
-		main main=new main();
-		String race_num=request.getParameter("race_num");
-		main.setRace_num(Integer.parseInt(race_num));
-		List<List> timeList = rowingService.passTimer(main);
-		return timeList;
-	}
-	
-	@RequestMapping(value = "/main/passTimerString", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody String passTimerString(Model model, HttpServletRequest request, HttpServletResponse response) {
-		main main=new main();
-		String race_num=request.getParameter("race_num");
-		String timeList = rowingService.passTimerString(race_num);
-		return timeList;
-	}
-	
 	@RequestMapping(value = "/main/getRaceInfo", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody List getRaceInfo(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		main main = new main();
@@ -145,42 +112,6 @@ public class MainController {
 		return record;
 	}
 	
-	@RequestMapping(value = "/main/getBowInfo", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody List getBowInfo(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		main main = new main();
-		String race_num = request.getParameter("race_num");
-		main.setRace_num(Integer.parseInt(race_num));
-		List<List> bowInfo = rowingService.getBowInfo(main);
-		return bowInfo;
-	}
-	
-	@RequestMapping(value = "/main/pastTimeSave", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody Boolean pastTimeSave(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		Boolean result = false;
-		String pastHour = request.getParameter("HOUR");
-		String pastMinute = request.getParameter("MINUTE");
-		String pastSecond = request.getParameter("SECOND");
-		String pastMiliSecond = request.getParameter("MILISECOND");
-		String race_num=request.getParameter("raceNum");
-		main main=new main();
-		main.setPastHour(Integer.parseInt(pastHour));
-		main.setPastMinute(Integer.parseInt(pastMinute));
-		main.setPastSecond(Integer.parseInt(pastSecond));
-		main.setPastMiliSecond(Integer.parseInt(pastMiliSecond));
-		main.setRace_num(Integer.parseInt(race_num));
-		result = rowingService.pastTimeSave(main);
-		return result;
-	}		
-	
-	@RequestMapping(value = "/main/getStartTime", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody List getStartTime(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		String race_num=request.getParameter("race_num");
-		main main=new main();
-		main.setRace_num(Integer.parseInt(race_num));
-		List<List> StartTime=rowingService.getStartTime(main);
-		return StartTime;
-	}
-	
 	@RequestMapping(value = "/main/getFinishTime", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody List getFinishTime(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		String race_num=request.getParameter("race_num");
@@ -189,103 +120,18 @@ public class MainController {
 		List<List> FinishTime=rowingService.getFinishTime(main);
 		return FinishTime;
 	}
-		
-  	@RequestMapping(value = "/main/getRaceNum", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody JSONObject getRaceNum(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session){
-		String CurrentDate = request.getParameter("raceDate");
-		String raceNum=request.getParameter("raceNum");
-		main main=new main();
-		main.setRace_date(CurrentDate);
-		main.setRace_num(Integer.parseInt(raceNum));
-		JSONObject sObject = new JSONObject();
-		JSONArray sArray = new JSONArray();
-		JSONObject sMain = new JSONObject();
-		String raceDate=rowingService.getRaceNum(main);
-		if(CurrentDate.equals(raceDate)){
-			 sObject.put("key", "ok");
-			 sArray.add(0, sObject);
-			 sMain.put("dataSend", sArray);
-		}
-		else{
-			 sObject.put("key", "no");
-			 sArray.add(0, sObject);
-			 sMain.put("dataSend", sArray);
-		}
-		return sMain;
-	}
-  	
-  	@RequestMapping(value = "/main/nextRacenum", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody JSONObject nextRacenum(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session){
-		String raceNum=request.getParameter("raceNum");
-		main main=new main();
-		main.setRace_num(Integer.parseInt(raceNum));
-		main.setHut("Start");
-		String startRacenum=rowingService.getCurrentRaceNum(main);
-		String Hut=request.getParameter("Hut");
-		main.setHut(Hut);
-		JSONObject sObject = new JSONObject();
-		JSONArray sArray = new JSONArray();
-		JSONObject sMain = new JSONObject();
-		if(main.getRace_num()<Integer.parseInt(startRacenum)){
-			main.setRace_num(Integer.parseInt(raceNum)+1);
-			 rowingService.nextRacenum(main);
-			 sObject.put("key", "ok");
-			 sArray.add(0, sObject);
-			 sMain.put("dataSend", sArray);
-		}
-		else{
-			 sObject.put("key", "no");
-			 sArray.add(0, sObject);
-			 sMain.put("dataSend", sArray);
-		}
-		return sMain;
-	}
-  	
-  	@RequestMapping(value = "/main/recordUpload", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody void recordUpload(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		String Hut=request.getParameter("HUT");
-		String rank=request.getParameter("RANK");
-		String Hour=request.getParameter("HOUR");
-		String Minute=request.getParameter("MINUTE");
-		String Second=request.getParameter("SECOND");
-		String MiliSecond=request.getParameter("MILISECOND");
-		String BowNum=request.getParameter("BOWNUM");
-		String RaceNum=request.getParameter("RACENUM");
-		String LabTime=Hour+":"+Minute+":"+Second+"."+MiliSecond;
-		main main=new main();
-		main.setHut(Hut);
-		main.setRank(Integer.parseInt(rank));
-		main.setLabTime(LabTime);
-		main.setBow_num(Integer.parseInt(BowNum));
-		main.setRace_num(Integer.parseInt(RaceNum));
-		rowingService.recordUpload(main);
-	}
-  	
-  	@RequestMapping(value = "/main/fiveNull", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody String fiveNull(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-  		String result=null;
-  		String race_num = request.getParameter("race_num");
-  		result = rowingService.five_null(race_num);
-  		return result;
-	}
   	
 	@RequestMapping(value = "/main/addUser", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody void addUser(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
   		String user_id=request.getParameter("user_id");
   		String user_pw=request.getParameter("user_pw");
   		String user_name=request.getParameter("user_name");
-  		String sex=request.getParameter("sex");
-  		String birthday=request.getParameter("birthday");
-  		String nationality=request.getParameter("nationality");
   		String team_num=request.getParameter("team_num");
   		
   		main main=new main();
   		main.setUser_id(user_id);
   		main.setUser_pw(user_pw);
   		main.setUser_name(user_name);
-  		main.setSex(sex);
-  		main.setBirth(birthday);
-  		main.setNationality(nationality);
   		main.setTeam_num(Integer.parseInt(team_num));
   		
   		rowingService.addUser(main);
@@ -295,7 +141,7 @@ public class MainController {
 	public @ResponseBody void addRace(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
   		String event_name=request.getParameter("event_name");
   		String race_date=request.getParameter("year")+"-"+request.getParameter("month")+"-"+request.getParameter("day");
-  		String round_type=request.getParameter("round_type");
+  		String roundtype=request.getParameter("roundtype");
   		String progression=request.getParameter("progression");
   		String LaneOne=request.getParameter("LaneOne");
   		String LaneTwo=request.getParameter("LaneTwo");
@@ -311,7 +157,7 @@ public class MainController {
   		main.setRace_num(race_num);
   		main.setEvent_name(event_name);
   		main.setRace_date(race_date);
-  		main.setRound_type(round_type);
+  		main.setroundtype(roundtype);
   		main.setProgression(progression);
   		main.setLaneOne(LaneOne);
   		main.setLaneTwo(LaneTwo);

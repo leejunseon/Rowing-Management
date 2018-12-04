@@ -2,56 +2,40 @@ package com.airquay.rowing.vo;
 
 public class main {
 	
-	//airquay_user
-	
+	//user_info
 	private Integer user_no;
 	private String user_id;
 	private String user_pw;
 	private String user_name;
-	private String sex;
-	private String birth;
-	private String nationality;
-	private Integer team_management_yn;
-	private Integer admin_yn;
 	
-	//player_record
-	
-	private Integer pr_num;
-	
-	//raceinfo
-	
+	//raceinfo	
 	private Integer race_num;
 	private Integer day_race_num;
 	private String event_name;
 	private String race_date;
-	private String round_type;
-	private String start_time;
-	private String stop_time;
-	private String progression;
 	
-	//record
-	
+	//record	
 	private Integer record_num;
-	private Integer bow_num;
+	private Integer lane;
+	private Integer rank;
 	private String fivehundred_time;
-	private Integer fivehundred_rank;
 	private String thousand_time;
-	private Integer thousand_rank;
 	private String thousandfivehundred_time;
-	private Integer thousandfivehundred_rank;
 	private String finish_time;
-	private Integer finish_rank;
+	private String race_time;
 	
 	//team_info
-	
 	private Integer team_num;
 	private String team_name;
-	private String team_country;
 	
+	//race_kind
+	private Integer roundtype_key;
+	private String roundtype;
 	
-	private String Hut;	
-	private String LabTime;
-	private Integer rank;
+	//race_progression
+	private Integer progression_key;
+	private String progression;
+	
 	private String LaneOne;
 	private String LaneTwo;
 	private String LaneThree;
@@ -59,7 +43,12 @@ public class main {
 	private String LaneFive;
 	private String LaneSix;
 	
-	
+	public Integer getProgression_key() {
+		return progression_key;
+	}
+	public void setProgression_key(Integer progression_key) {
+		this.progression_key = progression_key;
+	}
 	public String getLaneOne() {
 		return LaneOne;
 	}
@@ -102,18 +91,6 @@ public class main {
 	public void setRank(Integer rank) {
 		this.rank = rank;
 	}
-	public String getLabTime() {
-		return LabTime;
-	}
-	public void setLabTime(String labTime) {
-		LabTime = labTime;
-	}
-	public String getHut() {
-		return Hut;
-	}
-	public void setHut(String hut) {
-		Hut = hut;
-	}
 	public Integer getUser_no() {
 		return user_no;
 	}
@@ -137,42 +114,6 @@ public class main {
 	}
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
-	}
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-	public String getBirth() {
-		return birth;
-	}
-	public void setBirth(String birth) {
-		this.birth = birth;
-	}
-	public String getNationality() {
-		return nationality;
-	}
-	public void setNationality(String nationality) {
-		this.nationality = nationality;
-	}
-	public Integer getTeam_management_yn() {
-		return team_management_yn;
-	}
-	public void setTeam_management_yn(Integer team_management_yn) {
-		this.team_management_yn = team_management_yn;
-	}
-	public Integer getAdmin_yn() {
-		return admin_yn;
-	}
-	public void setAdmin_yn(Integer admin_yn) {
-		this.admin_yn = admin_yn;
-	}
-	public Integer getPr_num() {
-		return pr_num;
-	}
-	public void setPr_num(Integer pr_num) {
-		this.pr_num = pr_num;
 	}
 	public Integer getRace_num() {
 		return race_num;
@@ -198,24 +139,6 @@ public class main {
 	public void setRace_date(String race_date) {
 		this.race_date = race_date;
 	}
-	public String getRound_type() {
-		return round_type;
-	}
-	public void setRound_type(String round_type) {
-		this.round_type = round_type;
-	}
-	public String getStart_time() {
-		return start_time;
-	}
-	public void setStart_time(String start_time) {
-		this.start_time = start_time;
-	}
-	public String getStop_time() {
-		return stop_time;
-	}
-	public void setStop_time(String stop_time) {
-		this.stop_time = stop_time;
-	}
 	public String getProgression() {
 		return progression;
 	}
@@ -227,12 +150,6 @@ public class main {
 	}
 	public void setRecord_num(Integer record_num) {
 		this.record_num = record_num;
-	}
-	public Integer getBow_num() {
-		return bow_num;
-	}
-	public void setBow_num(Integer bow_num) {
-		this.bow_num = bow_num;
 	}
 	public String getFivehundred_time() {
 		return fivehundred_time;
@@ -270,34 +187,28 @@ public class main {
 	public void setTeam_name(String team_name) {
 		this.team_name = team_name;
 	}
-	public String getTeam_country() {
-		return team_country;
+	public Integer getLane() {
+		return lane;
 	}
-	public void setTeam_country(String team_country) {
-		this.team_country = team_country;
+	public void setLane(Integer lane) {
+		this.lane = lane;
 	}
-	public Integer getFivehundred_rank() {
-		return fivehundred_rank;
+	public String getRace_time() {
+		return race_time;
 	}
-	public void setFivehundred_rank(Integer fivehundred_rank) {
-		this.fivehundred_rank = fivehundred_rank;
+	public void setRace_time(String race_time) {
+		this.race_time = race_time;
 	}
-	public Integer getThousand_rank() {
-		return thousand_rank;
+	public Integer getRoundtype_key() {
+		return roundtype_key;
 	}
-	public void setThousand_rank(Integer thousand_rank) {
-		this.thousand_rank = thousand_rank;
+	public void setRoundtype_key(Integer roundtype_key) {
+		this.roundtype_key = roundtype_key;
 	}
-	public Integer getThousandfivehundred_rank() {
-		return thousandfivehundred_rank;
+	public String getRoundtype() {
+		return roundtype;
 	}
-	public void setThousandfivehundred_rank(Integer thousandfivehundred_rank) {
-		this.thousandfivehundred_rank = thousandfivehundred_rank;
-	}
-	public Integer getFinish_rank() {
-		return finish_rank;
-	}
-	public void setFinish_rank(Integer finish_rank) {
-		this.finish_rank = finish_rank;
+	public void setRoundtype(String roundtype) {
+		this.roundtype = roundtype;
 	}
 }

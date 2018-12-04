@@ -11,30 +11,13 @@ import com.airquay.rowing.vo.main;
 public class rowingService {
 	@Autowired
 	private com.airquay.rowing.dao.mainDAO mainDAO;
-
-	public Integer raceStartPoling(String race_num) {
-		// TODO Auto-generated method stub
-		Integer startYn = mainDAO.raceStartPoling(race_num);
-		return startYn;
-	}
-
-	public List<List> passTimer(main main) {
-		// TODO Auto-generated method stub
-		List passTimer = mainDAO.passTimer(main);
-		return passTimer;
-	}
-
+	
 	public List<List> getRaceInfo(String toDay) {
 		// TODO Auto-generated method stub
 		List raceInfo = mainDAO.getRaceInfo(toDay);
 		return raceInfo;
 	}
-	public List<List> getBowInfo(main main) {
-		// TODO Auto-generated method stub
-		List bowInfo = mainDAO.getbowInfo(main);
-		return bowInfo;
-	}
-
+	
 	public Boolean checkUser(main main) {
 		// TODO Auto-generated method stub
 		List userCheck = mainDAO.checkUser(main);
@@ -63,53 +46,10 @@ public class rowingService {
 		return result;
 	}
 
-	public Boolean pastTimeSave(main main) {
-		// TODO Auto-generated method stub
-		Boolean result;
-		try {
-			mainDAO.pastTimeSave(main);
-			result=true;
-		}catch(Exception e) {
-			result=false;
-		}
-		return result;
-	}
-
-	public Boolean startTimeSend(main main) {
-		// TODO Auto-generated method stub
-		Boolean result;
-		try {
-			mainDAO.startTimeSend(main);
-			result=true;
-		}catch(Exception e) {
-			result=false;
-		}
-		return result;
-	}
-
-	public Boolean stopTimeSend(main main) {
-		// TODO Auto-generated method stub
-		Boolean result;
-		try {
-			mainDAO.stopTimeSend(main);
-			result=true;
-		}catch(Exception e) {
-			result=false;
-		}
-		return result;
-	}
-
-
 	public List<Object> getRaceList(String mTime) {
 		// TODO Auto-generated method stub
 		List raceList=mainDAO.getRaceList(mTime);
 		return raceList;
-	}
-
-	public List<List> getStartTime(main main) {
-		// TODO Auto-generated method stub
-		List StartTime = mainDAO.getStartTime(main);
-		return StartTime;
 	}
 
 	public List<List> getFinishTime(main main) {
@@ -135,39 +75,15 @@ public class rowingService {
 		return CurrentRaceNum;
 	}
 
-	public String getCurrentOnoff(main main) {
-		// TODO Auto-generated method stub
-		String CurrentOnoff=mainDAO.getCurrentOnoff(main);
-		return CurrentOnoff;
-	}
-
-	public String getCurrenStarttime(main main) {
-		// TODO Auto-generated method stub
-		String CurrentStarttime=mainDAO.getCurrentStarttime(main);
-		return CurrentStarttime;
-	}
-
 	public void nextRacenum(main main) {
 		// TODO Auto-generated method stub
 		mainDAO.nextRacenum(main);
 	}
-
-	public String passTimerString(String race_num) {
-		// TODO Auto-generated method stub
-		String passTimerString = mainDAO.passTimerString(race_num);
-		return passTimerString;
-	}
-
+	
 	public String dayRacenum(String race_num) {
 		// TODO Auto-generated method stub
 		String dayRacenum=mainDAO.dayRacenum(race_num);
 		return dayRacenum;
-	}
-
-	public String five_null(String race_num) {
-		// TODO Auto-generated method stub
-		String result =mainDAO.five_null(race_num);
-		return result;
 	}
 
 	public void addUser(main main) {

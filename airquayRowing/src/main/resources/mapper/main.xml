@@ -4,55 +4,26 @@
 
 <mapper namespace="mapper.main">
 	
-	<select id="getBowInfo" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
-		select 
-		rec.record_num, 
-		rec.race_num, 
-		rec.team_num, 
-		rec.bow_num,
-		rec.500_time as fivehundred_time,
-		rec.500_rank as fivehundred_rank,
-		rec.1000_time as thousand_time, 
-		rec.1000_rank as thousand_rank,
-		rec.1500_time as thousandfivehundred_time,
-		rec.1500_rank as thousandfivehundred_rank, 
-		rec.finish_time,
-		rec.finish_rank,
-		ti.team_name, 
-		ti.team_country
-		
-		from airquay.record rec 
-		left join airquay.team_info ti on ti.team_num = rec.team_num
-		
-		where rec.race_num = '${race_num}';
-	</select>
-	
 	<select id="checkUser" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
 		select * 
 		
-		from airquay.airquay_user airquay_user 
+		from airquay.user_info user_info 
 		
-		where airquay_user.user_id = '${user_id}' 
-		and airquay_user.user_pw = '${user_pw}'
+		where user_info.user_id = '${user_id}' 
+		and user_info.user_pw = '${user_pw}'
 	</select>
 	
 	<select id="getUserInfo" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
 		select
-		airquay_user.user_no, 
-		airquay_user.user_id, 
-		airquay_user.user_name, 
-		airquay_user.sex, 
-		airquay_user.birth, 
-		team_info.team_name, 
-		team_info.team_country, 
-		team_info.team_num
+		user_info.user_no, 
+		user_info.user_id, 
+		user_info.user_name
 		
-		from airquay.airquay_user airquay_user 
-		left join airquay.team_info team_info on team_info.team_num = airquay_user.team_num
+		from airquay.user_info user_info 
 		
 		where 
-		airquay_user.user_id = '${user_id}' and 
-		airquay_user.user_pw = '${user_pw}'
+		user_info.user_id = '${user_id}' and 
+		user_info.user_pw = '${user_pw}'
 	</select>	
 	
 	<select id="getRaceList" parameterType="com.airquay.rowing.vo.main" resultType="Object">
@@ -70,7 +41,7 @@
 				1000_time as thousand_time,
 				1500_time as thousandfivehundred_time,
 				finish_time,
-				finish_rank
+				rank
 				
 		from record 
 		inner join team_info on record.team_num=team_info.team_num
@@ -91,82 +62,12 @@
 		)
 	</select>
 	
-	<select id="getStartTime" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
-		select raceinfo.start_time
-		
-		from airquay.raceinfo
-		
-		where raceinfo.race_num='${race_num}';
-	</select>
-	
-	<select id="getFinishTime" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
-		select raceinfo.stop_time
-		
-		from airquay.raceinfo
-		
-		where raceinfo.race_num='${race_num}';
-	</select>
-	
 	<select id="getRaceNum" parameterType="com.airquay.rowing.vo.main" resultType="String">
 		select raceinfo.race_date
 		from airquay.raceinfo
 		where 
 		raceinfo.race_num='${race_num}' and
 		raceinfo.race_date='${race_date}'
-	</select>
-	
-	<update id="recordUpload500m" parameterType="com.airquay.rowing.vo.main">		
-		update record set
-		
-		500_time='${LabTime}',
-		500_rank='${rank}'
-		
-		where
-		race_num='${race_num}' and
-		bow_num='${bow_num}'
-	</update>
-	
-	<update id="recordUpload1000m" parameterType="com.airquay.rowing.vo.main">		
-		update record set
-		
-		1000_time='${LabTime}',
-		1000_rank='${rank}'
-		
-		where
-		race_num='${race_num}' and
-		bow_num='${bow_num}'
-	</update>
-	
-	<update id="recordUpload1500m" parameterType="com.airquay.rowing.vo.main">		
-		update record set
-		
-		1500_time='${LabTime}',
-		1500_rank='${rank}'
-		
-		where
-		race_num='${race_num}' and
-		bow_num='${bow_num}'
-	</update>
-	
-	<update id="recordUploadFinish" parameterType="com.airquay.rowing.vo.main">		
-		update record set
-		
-		finish_time='${LabTime}',
-		finish_rank='${rank}'
-		
-		where
-		race_num='${race_num}' and
-		bow_num='${bow_num}'
-	</update>
-
-	<select id="getCurrentStarttime" parameterType="com.airquay.rowing.vo.main" resultType="String">
-		select raceinfo.start_time
-		
-		from airquay.raceinfo
-		
-		where 
-		race_date='${race_date}' and
-		race_num='${race_num}'
 	</select>
 	
 	<select id="dayRacenum" parameterType="String" resultType="String">
@@ -177,70 +78,10 @@
 		where 
 		race_num='${value}';
 	</select>
-	
-	<select id="five_null_one" parameterType="String" resultType="String">
-		select record.500_time
-		
-		from airquay.record
-		
-		where 
-		race_num='${value}' and
-		bow_num='1';
-	</select>
-	
-	<select id="five_null_two" parameterType="String" resultType="String">
-		select record.500_time
-		
-		from airquay.record
-		
-		where 
-		race_num='${value}' and
-		bow_num='2';
-	</select>
-	
-	<select id="five_null_three" parameterType="String" resultType="String">
-		select record.500_time
-		
-		from airquay.record
-		
-		where 
-		race_num='${value}' and
-		bow_num='3';
-	</select>
-	
-	<select id="five_null_four" parameterType="String" resultType="String">
-		select record.500_time
-		
-		from airquay.record
-		
-		where 
-		race_num='${value}' and
-		bow_num='4';
-	</select>
-	
-	<select id="five_null_five" parameterType="String" resultType="String">
-		select record.500_time
-		
-		from airquay.record
-		
-		where 
-		race_num='${value}' and
-		bow_num='5';
-	</select>
-	
-	<select id="five_null_six" parameterType="String" resultType="String">
-		select record.500_time
-		
-		from airquay.record
-		
-		where 
-		race_num='${value}' and
-		bow_num='6';
-	</select>
 
 	<insert id="addUser" parameterType="com.airquay.rowing.vo.main">
-		insert into airquay.airquay_user
-		values(null,'${user_id}','${user_pw}','${user_name}','${sex}','${birth}','${nationality}','${team_num}',null,null);
+		insert into airquay.user_info
+		values(null,'${user_id}','${user_pw}','${user_name}','${team_num}',null,null);
 	</insert>
 	
 	<select id="getPastrace" parameterType="String" resultType="com.airquay.rowing.vo.main">
@@ -254,7 +95,7 @@
 	
 	<insert id="addRace" parameterType="com.airquay.rowing.vo.main">
 		insert into airquay.raceinfo
-		values('${race_num}','${day_race_num}','${event_name}','${race_date}','${round_type}',null,null,0,'${progression}');
+		values('${race_num}','${day_race_num}','${event_name}','${race_date}','${roundtype}',null,null,0,'${progression}');
 	</insert>
 	
 	<select id="raceNum" parameterType="com.airquay.rowing.vo.main" resultType="String">

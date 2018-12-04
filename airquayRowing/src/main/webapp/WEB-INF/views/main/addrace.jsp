@@ -34,7 +34,7 @@ function addrace(){
 		json_data += "&year="+($("#year").val());
 		json_data += "&month="+($("#month").val());
 		json_data += "&day="+($("#day").val());
-		json_data += "&round_type="+($("#round_type").val());
+		json_data += "&roundtype="+($("#roundtype").val());
 		json_data += "&progression="+($("#progression").val());
 		json_data += "&LaneOne="+($("#LaneOne").val());
 		json_data += "&LaneTwo="+($("#LaneTwo").val());
@@ -102,7 +102,7 @@ function resultAddrace(data){
 					</div>
 					<div style="float: left; width: 100%; height: 50px;">
 						<div class="raceLabel">Round type</div>
-						<div class="inputText"><input id="round_type" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
+						<div class="inputText"><input id="roundtype" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
 					</div>
 					<div style="float: left; width: 100%; height: 50px;">
 						<div class="raceLabel">Progression</div>
