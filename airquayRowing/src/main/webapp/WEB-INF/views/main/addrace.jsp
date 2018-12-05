@@ -60,15 +60,6 @@ function addrace(){
 	});
 }
 function resultAddrace(data){
-	/* var innerHtml = "";
-	if(data==true){
-		innerHtml = "<iframe src='http://localhost:8080/airquayRowing/afteraddrace' style='width: 100%; height: 100%; border: none;'></iframe>"
-			$("#bodyArea").empty();
-			$("#bodyArea").append(innerHtml)
-			$("#bodyArea").css("display", "block");
-	}else{
-		alert("Fill in all the contents");
-	} */
 	location.href="select";
 }
 </script>

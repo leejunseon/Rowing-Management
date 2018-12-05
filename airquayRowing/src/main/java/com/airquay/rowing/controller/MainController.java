@@ -47,26 +47,6 @@ public class MainController {
 		return "main/login"; //main폴더의login.jsp로 ㄱㄱ
 	}
 	
-	@RequestMapping(value = "/select", method = RequestMethod.GET)
-	public String select(Model model, HttpServletRequest request, HttpServletResponse response) {
-		return "main/select";
-	}
-	
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public String signup(Model model, HttpServletRequest request, HttpServletResponse response) {
-		return "main/signup";
-	}
-	
-	@RequestMapping(value = "/addrace", method = RequestMethod.GET)
-	public String addrace(Model model, HttpServletRequest request, HttpServletResponse response) {
-		return "main/addrace";
-	}
-	
-	@RequestMapping(value = "/recordview", method = RequestMethod.GET)
-	public String recordview(Model model, HttpServletRequest request, HttpServletResponse response) {
-		return "main/recordView";
-	}
-	
 	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })//로그인정보 확인 후 true/false반환
 	public @ResponseBody List login(Model model, HttpServletRequest request, HttpServletResponse response) {
 		main main = new main();
@@ -91,15 +71,7 @@ public class MainController {
 		return resultList;
 	}
 	
-	@RequestMapping(value = "/main/getRaceInfo", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody List getRaceInfo(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		main main = new main();
-		String raceDate = request.getParameter("raceDate");
-		List<List> raceInfo = rowingService.getRaceInfo(raceDate);
-		return raceInfo;
-	}
-	
-	@RequestMapping(value = "/main/getTeamInfo", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/main/getteamList", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody List getTeamInfo(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		List<List> teamInfo = rowingService.getteamList();
 		return teamInfo;
@@ -108,17 +80,8 @@ public class MainController {
 	@RequestMapping(value = "/main/getRecord", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody List displayRecord(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		String teamName=request.getParameter("team_num");
-		List<List> record = rowingService.getRecord(teamName);
-		return record;
-	}
-	
-	@RequestMapping(value = "/main/getFinishTime", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody List getFinishTime(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		String race_num=request.getParameter("race_num");
-		main main=new main();
-		main.setRace_num(Integer.parseInt(race_num));
-		List<List> FinishTime=rowingService.getFinishTime(main);
-		return FinishTime;
+		List<List> record_info = rowingService.getRecord(teamName);
+		return record_info;
 	}
   	
 	@RequestMapping(value = "/main/addUser", method = { RequestMethod.GET, RequestMethod.POST })
@@ -139,33 +102,6 @@ public class MainController {
 	
 	@RequestMapping(value = "/main/addRace", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody void addRace(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-  		String event_name=request.getParameter("event_name");
-  		String race_date=request.getParameter("year")+"-"+request.getParameter("month")+"-"+request.getParameter("day");
-  		String roundtype=request.getParameter("roundtype");
-  		String progression=request.getParameter("progression");
-  		String LaneOne=request.getParameter("LaneOne");
-  		String LaneTwo=request.getParameter("LaneTwo");
-  		String LaneThree=request.getParameter("LaneThree");
-  		String LaneFour=request.getParameter("LaneFour");
-  		String LaneFive=request.getParameter("LaneFive");
-  		String LaneSix=request.getParameter("LaneSix");
-  		int day_race_num=rowingService.getDayracenum(race_date);
-  		int race_num=rowingService.getracenum();
-  		
-  		main main=new main();
-  		main.setDay_race_num(day_race_num);
-  		main.setRace_num(race_num);
-  		main.setEvent_name(event_name);
-  		main.setRace_date(race_date);
-  		main.setroundtype(roundtype);
-  		main.setProgression(progression);
-  		main.setLaneOne(LaneOne);
-  		main.setLaneTwo(LaneTwo);
-  		main.setLaneThree(LaneThree);
-  		main.setLaneFour(LaneFour);
-  		main.setLaneFive(LaneFive);
-  		main.setLaneSix(LaneSix);
-  		
-  		rowingService.addRace(main);
-  	}
+		
+	}
 }

@@ -5,7 +5,7 @@ var common={
 		console.log("getTeamInfo")
 		var json_data = " ";
 		$.ajax({
-			url:'http://localhost:8080/airquayRowing/main/getTeamInfo',
+			url:'http://localhost:8080/airquayRowing/main/getteamList',
 			type : 'GET',
 			cache: false,
 			contentType: false,

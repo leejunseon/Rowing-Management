@@ -60,7 +60,7 @@ function recordView(){
 			<div style="float: left; width: 100%; height: 50px; font-size: 30px; text-indent: 30px; font-weight: bold; margin-top: 20px;">Rowing Management System</div>
 			<div style="float: left; width: 100%;">
 				<div style="float: left;" onclick="javascript:recordView();">
-					<div id="SelectBtn">Record</div>
+					<div id="SelectBtn">record_info</div>
 				</div>
 				<div style="float: left;" onclick="javascript:addRace();">
 					<div id="SelectBtn">Add Race</div>

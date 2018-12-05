@@ -54,7 +54,7 @@ function login(){
 			userInfo=data[0];			
 		},
 		error : function(data){
-		}//data에 controller의 /login의 리턴값 저장됨.
+		}
 	});
 }
 function signup(){
