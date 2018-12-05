@@ -12,6 +12,10 @@ public class main {
 	private Integer roundtype_key;
 	private String roundtype;
 	
+	//racetype_info
+	private Integer racetype_key;
+	private String racetype;
+	
 	//progression_info
 	private Integer progression_key;
 	private String progression;
@@ -30,10 +34,6 @@ public class main {
 	private Integer team_num;
 	private String team_name;
 	
-	//player_info
-	private Integer player_num;
-	private String player_name;
-	
 	//user_info
 	private Integer user_no;
 	private String user_id;
@@ -45,6 +45,18 @@ public class main {
 	private String admin_code;
 	
 	
+	public Integer getRacetype_key() {
+		return racetype_key;
+	}
+	public void setRacetype_key(Integer racetype_key) {
+		this.racetype_key = racetype_key;
+	}
+	public String getRacetype() {
+		return racetype;
+	}
+	public void setRacetype(String racetype) {
+		this.racetype = racetype;
+	}
 	public Integer getRace_num() {
 		return race_num;
 	}
@@ -134,18 +146,6 @@ public class main {
 	}
 	public void setTeam_name(String team_name) {
 		this.team_name = team_name;
-	}
-	public Integer getPlayer_num() {
-		return player_num;
-	}
-	public void setPlayer_num(Integer player_num) {
-		this.player_num = player_num;
-	}
-	public String getPlayer_name() {
-		return player_name;
-	}
-	public void setPlayer_name(String player_name) {
-		this.player_name = player_name;
 	}
 	public Integer getUser_no() {
 		return user_no;
