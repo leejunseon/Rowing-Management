@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.main">
+	
+	<select id="checkUser" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
+		select * 
+		
+		from airquay.user_info user_info 
+		
+		where user_info.user_id = '${user_id}' 
+		and user_info.user_pw = '${user_pw}'
+	</select>
+	
+	<select id="getUserInfo" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
+		select
+		user_info.user_no, 
+		user_info.user_id, 
+		user_info.user_name
+		
+		from airquay.user_info user_info 
+		
+		where 
+		user_info.user_id = '${user_id}' and 
+		user_info.user_pw = '${user_pw}'
+	</select>	
+	
+	<select id="getRecord" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
+		select 	event_name,
+				race_info.race_date,
+				500_time as fivehundred_time,
+				1000_time as thousand_time,
+				1500_time as thousandfivehundred_time,
+				finish_time,
+				rank
+				
+		from record_info 
+		inner join team_info on record_info.team_num=team_info.team_num
+		inner join race_info on record_info.race_num=race_info.race_num
+				
+		where team_info.team_num='${value}' 
+	</select>
+	
+	<select id="getTeamList" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
+		select team_info.team_name,team_info.team_num
+		from airquay.team_info
+		where team_info.team_num in 
+		(
+			select record_info.team_num
+			from record_info
+			where record_info.finish_time is not null
+			group by team_num
+		)
+	</select>
+	
+	<insert id="addUser" parameterType="com.airquay.rowing.vo.main">
+		insert into airquay.user_info
+		values(null,'${user_id}','${user_pw}','${user_name}','${team_num}',null,null);
+	</insert>
+
+</mapper>

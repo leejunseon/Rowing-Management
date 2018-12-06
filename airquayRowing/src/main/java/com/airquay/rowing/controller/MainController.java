@@ -44,9 +44,29 @@ public class MainController {
 		}else{
 			model.addAttribute("loginCheck", true);
 		}
-		return "main/login"; //main폴더의login.jsp로 ㄱㄱ
+		return "main/login";
 	}
 	
+	@RequestMapping(value = "/select", method = RequestMethod.GET)
+	public String select(Model model, HttpServletRequest request, HttpServletResponse response) {
+		return "main/select";
+	}
+	
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public String signup(Model model, HttpServletRequest request, HttpServletResponse response) {
+		return "main/signup";
+	}
+	
+	@RequestMapping(value = "/addRecord", method = RequestMethod.GET)
+	public String addRecord(Model model, HttpServletRequest request, HttpServletResponse response) {
+		return "main/addRecord";
+	}
+	
+	@RequestMapping(value = "/recordview", method = RequestMethod.GET)
+	public String recordview(Model model, HttpServletRequest request, HttpServletResponse response) {
+		return "main/recordView";
+	}
+
 	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })//로그인정보 확인 후 true/false반환
 	public @ResponseBody List login(Model model, HttpServletRequest request, HttpServletResponse response) {
 		main main = new main();
@@ -72,13 +92,13 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/main/getteamList", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody List getTeamInfo(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public @ResponseBody List getteamList(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		List<List> teamInfo = rowingService.getteamList();
 		return teamInfo;
 	}
 	
 	@RequestMapping(value = "/main/getRecord", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody List displayRecord(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public @ResponseBody List getRecord(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		String teamName=request.getParameter("team_num");
 		List<List> record_info = rowingService.getRecord(teamName);
 		return record_info;
@@ -98,10 +118,5 @@ public class MainController {
   		main.setTeam_num(Integer.parseInt(team_num));
   		
   		rowingService.addUser(main);
-	}
-	
-	@RequestMapping(value = "/main/addRace", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody void addRace(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		
 	}
 }

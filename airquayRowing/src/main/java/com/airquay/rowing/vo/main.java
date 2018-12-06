@@ -23,11 +23,6 @@ public class main {
 	//record_info
 	private Integer record_num;
 	private Integer rank;
-	private Integer lane;
-	private String 500_time;
-	private String 1000_time;
-	private String 1500_time;
-	private String finish_time;
 	private String race_time;
 	
 	//team_info
@@ -116,18 +111,6 @@ public class main {
 	}
 	public void setRank(Integer rank) {
 		this.rank = rank;
-	}
-	public Integer getLane() {
-		return lane;
-	}
-	public void setLane(Integer lane) {
-		this.lane = lane;
-	}
-	public String getFinish_time() {
-		return finish_time;
-	}
-	public void setFinish_time(String finish_time) {
-		this.finish_time = finish_time;
 	}
 	public String getRace_time() {
 		return race_time;

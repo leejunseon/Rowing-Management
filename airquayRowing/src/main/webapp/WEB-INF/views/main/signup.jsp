@@ -5,13 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Airquay rowing management system</title>
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingCommon.css?ver=2">
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingSignup.css?ver=2">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?ver=2">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingCommon.css?ver=1">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingSignup.css?ver=1">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?ver=1">
 
-<script src="http://localhost:8080/airquayRowing/resources/js/rowingCommon.js?ver=2"></script>
-<script src="https://code.jquery.com/jquery-3.0.0.min.js?ver=2"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=2"></script>
+<script src="http://localhost:8080/airquayRowing/resources/js/rowingCommon.js?ver=1"></script>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js?ver=1"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=1"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -32,6 +32,9 @@ function adduser(){
 	var json_data = "user_id="+($("#user_id").val());
 		json_data += "&user_pw="+($("#user_pw").val());
 		json_data += "&user_name="+($("#user_name").val());
+		json_data += "&sex="+($("#sex").val());
+		json_data += "&birthday="+($("#birthday").val());
+		json_data += "&nationality="+($("#nationality").val());
 		json_data += "&team_num="+($("#team_num").val());
 	var url = 'http://localhost:8080/airquayRowing/main/addUser';
 	console.log("addUser")
@@ -87,6 +90,18 @@ function resultSignup(data){
 					<div style="float: left; width: 100%; height: 50px;">
 						<div class="loginLabel">Name</div>
 						<div class="inputText"><input id="user_name" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
+					</div>
+					<div style="float: left; width: 100%; height: 50px;">
+						<div class="loginLabel">sex</div>
+						<div class="inputText"><input id="sex" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
+					</div>
+					<div style="float: left; width: 100%; height: 50px;">
+						<div class="loginLabel">Birthday</div>
+						<div class="inputText"><input id="birthday" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
+					</div>
+					<div style="float: left; width: 100%; height: 50px;">
+						<div class="loginLabel">Nationality</div>
+						<div class="inputText"><input id="nationality" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
 					</div>
 					<div style="float: left; width: 100%; height: 50px;">
 						<div class="loginLabel">TeamNum</div>

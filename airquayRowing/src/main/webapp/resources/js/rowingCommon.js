@@ -1,8 +1,7 @@
 var common={
 		
 	//팀 정보 가져옴
-	getTeamInfo : function(){
-		console.log("getTeamInfo")
+	getteamList : function(){
 		var json_data = " ";
 		$.ajax({
 			url:'http://localhost:8080/airquayRowing/main/getteamList',
@@ -13,7 +12,6 @@ var common={
 			data : json_data,
 			dataType : 'json',
 			success : function(data){
-				console.log("getTeamInfo Success")
 				if(data.length>0){
 					teamInfo = data;
 					var innerHtml = "";
@@ -24,7 +22,6 @@ var common={
 				}
 			},
 			error : function(data){
-				console.log("getTeamInfo error")
 			}
 		});
 	},

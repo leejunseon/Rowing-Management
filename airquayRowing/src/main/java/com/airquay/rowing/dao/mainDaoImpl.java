@@ -14,7 +14,7 @@ public class mainDaoImpl  implements mainDAO{
 	private SqlSession sqlSession;
 	
 	private String mapper = "mapper.main.";
-
+	
 	@Override
 	public List checkUser(main main) {
 		// TODO Auto-generated method stub
@@ -48,5 +48,4 @@ public class mainDaoImpl  implements mainDAO{
 		List record_info=sqlSession.selectList(mapper+"getRecord",teamName);
 		return record_info;
 	}
-
 }

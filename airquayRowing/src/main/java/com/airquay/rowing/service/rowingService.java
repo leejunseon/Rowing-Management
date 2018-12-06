@@ -11,7 +11,7 @@ import com.airquay.rowing.vo.main;
 public class rowingService {
 	@Autowired
 	private com.airquay.rowing.dao.mainDAO mainDAO;
-	
+
 	public Boolean checkUser(main main) {
 		// TODO Auto-generated method stub
 		List userCheck = mainDAO.checkUser(main);
@@ -44,6 +44,5 @@ public class rowingService {
 		List<List> record_info=mainDAO.getRecord(teamName);
 		return record_info;
 	}
-
 
 }
