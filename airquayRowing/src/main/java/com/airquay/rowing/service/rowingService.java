@@ -44,5 +44,9 @@ public class rowingService {
 		List<List> record_info=mainDAO.getRecord(teamName);
 		return record_info;
 	}
+	
+	public void addData(main main) {
+		mainDAO.addData(main);
+	}
 
 }

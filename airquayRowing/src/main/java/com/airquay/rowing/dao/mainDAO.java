@@ -15,4 +15,6 @@ public interface mainDAO {
 	List getTeamList();
 
 	List getRecord(String teamName);
+	
+	void addData(main main);
 }

@@ -58,5 +58,134 @@
 		insert into airquay.user_info
 		values(null,'${user_id}','${user_pw}','${user_name}','${team_num}',null,null);
 	</insert>
-
+	
+	<insert id="addRacetype" parameterType="com.airquay.rowing.vo.main">
+		insert into racetype_info (racetype)
+		select '${racetype}' from dual 
+		where not exists (select * from racetype_info where racetype='${racetype}')
+	</insert>
+	
+	<insert id="addRoundtype" parameterType="com.airquay.rowing.vo.main">
+		insert into roundtype_info (roundtype)
+		select '${roundtype}' from dual
+		where not exists (select * from roundtype_info where roundtype='${roundtype}')
+	</insert>
+	
+	<insert id="addProgression" parameterType="com.airquay.rowing.vo.main">
+		insert into progression_info (progression)
+		select '${progression}' from dual 
+		where not exists (select * from progression_info where progression='${progression}')
+	</insert>
+	
+	<insert id="addRankOneteam" parameterType="com.airquay.rowing.vo.main">
+		insert into team_info (team_name)
+		select '${RankOne}' from dual 
+		where not exists (select * from team_info where team_name='${RankOne}')
+	</insert>
+	
+	<insert id="addRankTwoteam" parameterType="com.airquay.rowing.vo.main">
+		insert into team_info (team_name)
+		select '${RankTwo}' from dual 
+		where not exists (select * from team_info where team_name='${RankTwo}')
+	</insert>
+	
+	<insert id="addRankThreeteam" parameterType="com.airquay.rowing.vo.main">
+		insert into team_info (team_name)
+		select '${RankThree}' from dual 
+		where not exists (select * from team_info where team_name='${RankThree}')
+	</insert>
+	
+	<insert id="addRankFourteam" parameterType="com.airquay.rowing.vo.main">
+		insert into team_info (team_name)
+		select '${RankFour}' from dual 
+		where not exists (select * from team_info where team_name='${RankFour}')
+	</insert>
+	
+	<insert id="addRankFiveteam" parameterType="com.airquay.rowing.vo.main">
+		insert into team_info (team_name)
+		select '${RankFive}' from dual 
+		where not exists (select * from team_info where team_name='${RankFive}')
+	</insert>
+	
+	<insert id="addRankSixteam" parameterType="com.airquay.rowing.vo.main">
+		insert into team_info (team_name)
+		select '${RankSix}' from dual 
+		where not exists (select * from team_info where team_name='${RankSix}')
+	</insert>
+	
+	<select id="getRankoneKey" parameterType="com.airquay.rowing.vo.main" resultType="Integer">
+		select team_info.team_num
+		from team_info
+		where team_name='${RankOne}' 
+	</select>
+	
+	<select id="getRanktwoKey" parameterType="com.airquay.rowing.vo.main" resultType="Integer">
+		select team_info.team_num
+		from team_info
+		where team_name='${RankTwo}' 
+	</select>
+	
+	<select id="getRankthreeKey" parameterType="com.airquay.rowing.vo.main" resultType="Integer">
+		select team_info.team_num
+		from team_info
+		where team_name='${RankThree}' 
+	</select>
+	
+	<select id="getRankfourKey" parameterType="com.airquay.rowing.vo.main" resultType="Integer">
+		select team_info.team_num
+		from team_info
+		where team_name='${RankFour}' 
+	</select>
+	
+	<select id="getRankfiveKey" parameterType="com.airquay.rowing.vo.main" resultType="Integer">
+		select team_info.team_num
+		from team_info
+		where team_name='${RankFive}' 
+	</select>
+	
+	<select id="getRanksixKey" parameterType="com.airquay.rowing.vo.main" resultType="Integer">
+		select team_info.team_num
+		from team_info
+		where team_name='${RankSix}' 
+	</select>
+	
+	<select id="getRacetypeKey" parameterType="com.airquay.rowing.vo.main" resultType="Integer">
+		select racetype_info.racetype_key
+		from racetype_info
+		where racetype='${racetype}' 
+	</select>
+	
+	<select id="getRoundtypeKey" parameterType="com.airquay.rowing.vo.main" resultType="Integer">
+		select roundtype_info.roundtype_key
+		from roundtype_info
+		where roundtype='${roundtype}' 
+	</select>
+	
+	<select id="getProgressionKey" parameterType="com.airquay.rowing.vo.main" resultType="Integer">
+		select progression_info.progression_key
+		from progression_info
+		where progression='${progression}' 
+	</select>
+	
+	<insert id="addRaceinfo" parameterType="com.airquay.rowing.vo.main">
+		insert into race_info
+		values (null,'${event_name}','${race_date}',${roundtype_key},${progression_key},${racetype_key})
+	</insert>
+	
+	<select id="getRacenum" resultType="Integer">
+		select race_num 
+		from race_info
+		where race_num=(select max(race_num) from race_info)
+	</select>
+	
+	<insert id="addRecordinfo" parameterType="com.airquay.rowing.vo.main">
+		insert into record_info
+		values (null,'${race_num}',	${RankOneTeam},'${RankOneRacetime}',
+									${RankTwoTeam},'${RankTwoRacetime}',
+									${RankThreeTeam},'${RankThreeRacetime}',
+									${RankFourTeam},'${RankFourRacetime}',
+									${RankFiveTeam},'${RankFiveRacetime}',
+									${RankSixTeam},'${RankSixRacetime}')
+	</insert>
+	
 </mapper>

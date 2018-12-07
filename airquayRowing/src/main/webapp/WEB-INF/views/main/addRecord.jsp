@@ -29,21 +29,27 @@ function doResize(){
 function dispSignupPage(){
 	$("#bodyArea").css("display", "block");
 }
-function addrace(){
+function addData(){
 	var json_data = "event_name="+($("#event_name").val());
 		json_data += "&year="+($("#year").val());
 		json_data += "&month="+($("#month").val());
 		json_data += "&day="+($("#day").val());
+		json_data += "&race_type="+($("#race_type").val());
 		json_data += "&round_type="+($("#round_type").val());
 		json_data += "&progression="+($("#progression").val());
-		json_data += "&LaneOne="+($("#LaneOne").val());
-		json_data += "&LaneTwo="+($("#LaneTwo").val());
-		json_data += "&LaneThree="+($("#LaneThree").val());
-		json_data += "&LaneFour="+($("#LaneFour").val());
-		json_data += "&LaneFive="+($("#LaneFive").val());
-		json_data += "&LaneSix="+($("#LaneSix").val());
-	var url = 'http://localhost:8080/airquayRowing/main/addRace';
-	console.log("addUser")
+		json_data += "&RankOneTeam="+($("#RankOneTeam").val());
+		json_data += "&RankOneRacetime="+($("#RankOneRacetime").val());
+		json_data += "&RankTwoTeam="+($("#RankTwoTeam").val());
+		json_data += "&RankTwoRacetime="+($("#RankTwoRacetime").val());
+		json_data += "&RankThreeTeam="+($("#RankThreeTeam").val());
+		json_data += "&RankThreeRacetime="+($("#RankThreeRacetime").val());
+		json_data += "&RankFourTeam="+($("#RankFourTeam").val());
+		json_data += "&RankFourRacetime="+($("#RankFourRacetime").val());
+		json_data += "&RankFiveTeam="+($("#RankFiveTeam").val());
+		json_data += "&RankFiveRacetime="+($("#RankFiveRacetime").val());
+		json_data += "&RankSixTeam="+($("#RankSixTeam").val());
+		json_data += "&RankSixRacetime="+($("#RankSixRacetime").val());
+	var url = 'http://localhost:8080/airquayRowing/main/addData';
 	$.ajax({
 		url:url,
 		type : 'GET',
@@ -52,23 +58,14 @@ function addrace(){
 		processData: false,
 		data : json_data,
 		success : function(data){		
-			resultAddrace(true);
+			resultAddData(true);
 		},
 		error : function(data){
-			resultAddrace(false);
+			resultAddData(false);
 		}
 	});
 }
-function resultAddrace(data){
-	/* var innerHtml = "";
-	if(data==true){
-		innerHtml = "<iframe src='http://localhost:8080/airquayRowing/afteraddrace' style='width: 100%; height: 100%; border: none;'></iframe>"
-			$("#bodyArea").empty();
-			$("#bodyArea").append(innerHtml)
-			$("#bodyArea").css("display", "block");
-	}else{
-		alert("Fill in all the contents");
-	} */
+function resultAddData(data){
 	location.href="select";
 }
 </script>
@@ -117,7 +114,7 @@ function resultAddrace(data){
 					</div>
 				</div>
 				<div style="float: left; width: 27%;">
-					<div style="float: center; width: 100%; height: 50px;">
+					<div style="margin-left:25%; width: 100%; height: 50px;">
 						<div class="raceLabel">-- Rank 1 --</div>
 					</div>
 					<div style="float: left; width: 100%; height: 50px;">
@@ -128,7 +125,7 @@ function resultAddrace(data){
 						<div class="raceLabel">RaceTime</div>
 						<div class="inputText"><input id="RankOneRacetime" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
 					</div>
-					<div style="float: center; width: 100%; height: 50px;">
+					<div style="margin-left:25%; width: 100%; height: 50px;">
 						<div class="raceLabel">-- Rank 2 --</div>
 					</div>
 					<div style="float: left; width: 100%; height: 50px;">
@@ -137,56 +134,56 @@ function resultAddrace(data){
 					</div>
 					<div style="float: left; width: 100%; height: 50px;">
 						<div class="raceLabel">RaceTime</div>
-						<div class="inputText"><input id="Rank" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
+						<div class="inputText"><input id="RankTwoRacetime" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
 					</div>
-					<div style="float: center; width: 100%; height: 50px;">
+					<div style="margin-left:25%; width: 100%; height: 50px;">
 						<div class="raceLabel">-- Rank 3 --</div>
 					</div>
 					<div style="float: left; width: 100%; height: 50px;">
 						<div class="raceLabel">Team</div>
-						<div class="inputText"><input id="RankOneTeam" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
+						<div class="inputText"><input id="RankThreeTeam" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
 					</div>
 					<div style="float: left; width: 100%; height: 50px;">
 						<div class="raceLabel">RaceTime</div>
-						<div class="inputText"><input id="RankOneRacetime" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
+						<div class="inputText"><input id="RankThreeRacetime" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
 					</div>
 				</div>
 				<div style="float: left; width: 27%;">
-					<div style="float: center; width: 100%; height: 50px;">
+					<div style="margin-left:25%; width: 100%; height: 50px;">
 						<div class="raceLabel">-- Rank 4 --</div>
 					</div>
 					<div style="float: left; width: 100%; height: 50px;">
 						<div class="raceLabel">Team</div>
-						<div class="inputText"><input id="RankOneTeam" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
+						<div class="inputText"><input id="RankFourTeam" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
 					</div>
 					<div style="float: left; width: 100%; height: 50px;">
 						<div class="raceLabel">RaceTime</div>
-						<div class="inputText"><input id="RankOneRacetime" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
+						<div class="inputText"><input id="RankFourRacetime" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
 					</div>
-					<div style="float: center; width: 100%; height: 50px;">
+					<div style="margin-left:25%; width: 100%; height: 50px;">
 						<div class="raceLabel">-- Rank 5 --</div>
 					</div>
 					<div style="float: left; width: 100%; height: 50px;">
 						<div class="raceLabel">Team</div>
-						<div class="inputText"><input id="RankOneTeam" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
+						<div class="inputText"><input id="RankFiveTeam" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
 					</div>
 					<div style="float: left; width: 100%; height: 50px;">
 						<div class="raceLabel">RaceTime</div>
-						<div class="inputText"><input id="RankOneRacetime" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
+						<div class="inputText"><input id="RankFiveRacetime" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
 					</div>
-					<div style="float: center; width: 100%; height: 50px;">
+					<div style="margin-left:25%; width: 100%; height: 50px;">
 						<div class="raceLabel">-- Rank 6 --</div>
 					</div>
 					<div style="float: left; width: 100%; height: 50px;">
 						<div class="raceLabel">Team</div>
-						<div class="inputText"><input id="RankOneTeam" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
+						<div class="inputText"><input id="RankSixTeam" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
 					</div>
 					<div style="float: left; width: 100%; height: 50px;">
 						<div class="raceLabel">RaceTime</div>
-						<div class="inputText"><input id="RankOneRacetime" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
+						<div class="inputText"><input id="RankSixRacetime" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
 					</div>
 				</div>
-				<div style="float: right; margin-right:40px; margin-top:350px;"onclick="javascript:addrace();">
+				<div style="float: right; margin-right:40px; margin-top:350px;"onclick="javascript:addData();">
 					<div id="SignupBtn">Submit</div>
 				</div>
 			</div>

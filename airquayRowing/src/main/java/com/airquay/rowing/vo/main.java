@@ -4,7 +4,6 @@ public class main {
 	
 	//race_info
 	private Integer race_num;
-	private Integer day_race_num;
 	private String event_name;
 	private String race_date;
 	
@@ -22,8 +21,25 @@ public class main {
 	
 	//record_info
 	private Integer record_num;
-	private Integer rank;
-	private String race_time;
+	private Integer RankOneTeam;
+	private String RankOneRacetime;
+	private Integer RankTwoTeam;
+	private String RankTwoRacetime;
+	private Integer RankThreeTeam;
+	private String RankThreeRacetime;
+	private Integer RankFourTeam;
+	private String RankFourRacetime;
+	private Integer RankFiveTeam;
+	private String RankFiveRacetime;
+	private Integer RankSixTeam;
+	private String RankSixRacetime;
+	
+	private String RankOne;
+	private String RankTwo;
+	private String RankThree;
+	private String RankFour;
+	private String RankFive;
+	private String RankSix;
 	
 	//team_info
 	private Integer team_num;
@@ -38,7 +54,7 @@ public class main {
 	//admin_info
 	private Integer admin_key;
 	private String admin_code;
-	
+		
 	
 	public Integer getRacetype_key() {
 		return racetype_key;
@@ -57,12 +73,6 @@ public class main {
 	}
 	public void setRace_num(Integer race_num) {
 		this.race_num = race_num;
-	}
-	public Integer getDay_race_num() {
-		return day_race_num;
-	}
-	public void setDay_race_num(Integer day_race_num) {
-		this.day_race_num = day_race_num;
 	}
 	public String getEvent_name() {
 		return event_name;
@@ -106,17 +116,77 @@ public class main {
 	public void setRecord_num(Integer record_num) {
 		this.record_num = record_num;
 	}
-	public Integer getRank() {
-		return rank;
+	public Integer getRankOneTeam() {
+		return RankOneTeam;
 	}
-	public void setRank(Integer rank) {
-		this.rank = rank;
+	public void setRankOneTeam(Integer rankOneTeam) {
+		RankOneTeam = rankOneTeam;
 	}
-	public String getRace_time() {
-		return race_time;
+	public String getRankOneRacetime() {
+		return RankOneRacetime;
 	}
-	public void setRace_time(String race_time) {
-		this.race_time = race_time;
+	public void setRankOneRacetime(String rankOneRacetime) {
+		RankOneRacetime = rankOneRacetime;
+	}
+	public Integer getRankTwoTeam() {
+		return RankTwoTeam;
+	}
+	public void setRankTwoTeam(Integer rankTwoTeam) {
+		RankTwoTeam = rankTwoTeam;
+	}
+	public String getRankTwoRacetime() {
+		return RankTwoRacetime;
+	}
+	public void setRankTwoRacetime(String rankTwoRacetime) {
+		RankTwoRacetime = rankTwoRacetime;
+	}
+	public Integer getRankThreeTeam() {
+		return RankThreeTeam;
+	}
+	public void setRankThreeTeam(Integer rankThreeTeam) {
+		RankThreeTeam = rankThreeTeam;
+	}
+	public String getRankThreeRacetime() {
+		return RankThreeRacetime;
+	}
+	public void setRankThreeRacetime(String rankThreeRacetime) {
+		RankThreeRacetime = rankThreeRacetime;
+	}
+	public Integer getRankFourTeam() {
+		return RankFourTeam;
+	}
+	public void setRankFourTeam(Integer rankFourTeam) {
+		RankFourTeam = rankFourTeam;
+	}
+	public String getRankFourRacetime() {
+		return RankFourRacetime;
+	}
+	public void setRankFourRacetime(String rankFourRacetime) {
+		RankFourRacetime = rankFourRacetime;
+	}
+	public Integer getRankFiveTeam() {
+		return RankFiveTeam;
+	}
+	public void setRankFiveTeam(Integer rankFiveTeam) {
+		RankFiveTeam = rankFiveTeam;
+	}
+	public String getRankFiveRacetime() {
+		return RankFiveRacetime;
+	}
+	public void setRankFiveRacetime(String rankFiveRacetime) {
+		RankFiveRacetime = rankFiveRacetime;
+	}
+	public Integer getRankSixTeam() {
+		return RankSixTeam;
+	}
+	public void setRankSixTeam(Integer rankSixTeam) {
+		RankSixTeam = rankSixTeam;
+	}
+	public String getRankSixRacetime() {
+		return RankSixRacetime;
+	}
+	public void setRankSixRacetime(String rankSixRacetime) {
+		RankSixRacetime = rankSixRacetime;
 	}
 	public Integer getTeam_num() {
 		return team_num;
@@ -165,5 +235,41 @@ public class main {
 	}
 	public void setAdmin_code(String admin_code) {
 		this.admin_code = admin_code;
+	}
+	public String getRankOne() {
+		return RankOne;
+	}
+	public void setRankOne(String rankOne) {
+		RankOne = rankOne;
+	}
+	public String getRankTwo() {
+		return RankTwo;
+	}
+	public void setRankTwo(String rankTwo) {
+		RankTwo = rankTwo;
+	}
+	public String getRankThree() {
+		return RankThree;
+	}
+	public void setRankThree(String rankThree) {
+		RankThree = rankThree;
+	}
+	public String getRankFour() {
+		return RankFour;
+	}
+	public void setRankFour(String rankFour) {
+		RankFour = rankFour;
+	}
+	public String getRankFive() {
+		return RankFive;
+	}
+	public void setRankFive(String rankFive) {
+		RankFive = rankFive;
+	}
+	public String getRankSix() {
+		return RankSix;
+	}
+	public void setRankSix(String rankSix) {
+		RankSix = rankSix;
 	}
 }

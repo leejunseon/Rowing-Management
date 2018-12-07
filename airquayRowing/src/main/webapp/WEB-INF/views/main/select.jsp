@@ -30,12 +30,7 @@ function doResize(){
 function dispSelectPage(){
 	$("#bodyArea").css("display", "block");
 }
-function addRace(){
-	/* var innerHtml = "";
-	innerHtml = "<iframe src='http://localhost:8080/airquayRowing/addrace' style='width: 100%; height: 100%; border: none;'></iframe>"
-	$("#bodyArea").empty();
-	$("#bodyArea").append(innerHtml)
-	$("#bodyArea").css("display", "block"); */
+function addRecord(){
 	location.href="addRecord";
 }
 function recordView(){
@@ -61,7 +56,7 @@ function recordView(){
 				<div style="float: left;" onclick="javascript:recordView();">
 					<div id="SelectBtn">Record</div>
 				</div>
-				<div style="float: left;" onclick="javascript:addRace();">
+				<div style="float: left;" onclick="javascript:addRecord();">
 					<div id="SelectBtn">Add Race</div>
 				</div>
 			</div>

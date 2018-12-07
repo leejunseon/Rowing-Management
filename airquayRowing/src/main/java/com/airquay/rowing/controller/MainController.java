@@ -119,4 +119,50 @@ public class MainController {
   		
   		rowingService.addUser(main);
 	}
+	
+	@RequestMapping(value = "/main/addData", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody void addData(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+  		String event_name=request.getParameter("event_name");
+  		String year=request.getParameter("year");
+  		String month=request.getParameter("month");
+  		String day=request.getParameter("day");
+  		String race_date=year+"-"+month+"-"+day;
+  		String racetype=request.getParameter("race_type");
+  		String progression=request.getParameter("progression");
+  		String roundtype=request.getParameter("round_type");
+  		String RankOne=request.getParameter("RankOneTeam");
+  		String RankOneRacetime=request.getParameter("RankOneRacetime");
+  		String RankTwo=request.getParameter("RankTwoTeam");
+  		String RankTwoRacetime=request.getParameter("RankTwoRacetime");
+  		String RankThree=request.getParameter("RankThreeTeam");
+  		String RankThreeRacetime=request.getParameter("RankThreeRacetime");
+  		String RankFour=request.getParameter("RankFourTeam");
+  		String RankFourRacetime=request.getParameter("RankFourRacetime");
+  		String RankFive=request.getParameter("RankFiveTeam");
+  		String RankFiveRacetime=request.getParameter("RankFiveRacetime");
+  		String RankSix=request.getParameter("RankSixTeam");
+  		String RankSixRacetime=request.getParameter("RankSixRacetime");		
+  		
+  		main main=new main();
+  		main.setEvent_name(event_name);
+  		main.setRace_date(race_date);
+  		main.setRacetype(racetype);
+  		main.setProgression(progression);
+  		main.setRoundtype(roundtype);
+  		main.setRankOne(RankOne);
+  		main.setRankOneRacetime(RankOneRacetime);
+  		main.setRankTwo(RankTwo);
+  		main.setRankTwoRacetime(RankTwoRacetime);
+  		main.setRankThree(RankThree);
+  		main.setRankThreeRacetime(RankThreeRacetime);
+  		main.setRankFour(RankFour);
+  		main.setRankFourRacetime(RankFourRacetime);
+  		main.setRankFive(RankFive);
+  		main.setRankFiveRacetime(RankFiveRacetime);
+  		main.setRankSix(RankSix);
+  		main.setRankSixRacetime(RankSixRacetime);
+  		
+  		rowingService.addData(main);
+	}
+	
 }
