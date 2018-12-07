@@ -38,10 +38,22 @@ public class rowingService {
 		List teamList=mainDAO.getTeamList();
 		return teamList;
 	}
-
-	public List<List> getRecord(String teamName) {
+	
+	public List<List> getRoundtypeList() {
 		// TODO Auto-generated method stub
-		List<List> record_info=mainDAO.getRecord(teamName);
+		List RoundtypeInfo=mainDAO.getRoundtypeList();
+		return RoundtypeInfo;
+	}
+	
+	public List<List> getStartYear() {
+		// TODO Auto-generated method stub
+		List startYear=mainDAO.getStartYear();
+		return startYear;
+	}
+	
+	public List<List> getRecord(main main) {
+		// TODO Auto-generated method stub
+		List<List> record_info=mainDAO.getRecord(main);
 		return record_info;
 	}
 	

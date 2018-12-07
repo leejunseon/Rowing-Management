@@ -13,8 +13,12 @@ public interface mainDAO {
 	void addUser(main main);
 
 	List getTeamList();
+	
+	List getRoundtypeList();
+	
+	List getStartYear();
 
-	List getRecord(String teamName);
+	List getRecord(main main);
 	
 	void addData(main main);
 }

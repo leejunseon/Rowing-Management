@@ -1,5 +1,6 @@
 package com.airquay.rowing.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -36,36 +37,22 @@ public class mainDaoImpl  implements mainDAO{
 	}
 
 	@Override
-	public List getTeamList() {
-		// TODO Auto-generated method stub
-		List teamList=sqlSession.selectList(mapper+"getTeamList");
-		return teamList;
-	}
-
-	@Override
-	public List getRecord(String teamName) {
-		// TODO Auto-generated method stub
-		List record_info=sqlSession.selectList(mapper+"getRecord",teamName);
-		return record_info;
-	}
-
-	@Override
 	public void addData(main main) {
 		// TODO Auto-generated method stub
-		sqlSession.insert(mapper+"addRankOneteam",main);
-		sqlSession.insert(mapper+"addRankTwoteam",main);
-		sqlSession.insert(mapper+"addRankThreeteam",main);
-		sqlSession.insert(mapper+"addRankFourteam",main);
-		sqlSession.insert(mapper+"addRankFiveteam",main);
-		sqlSession.insert(mapper+"addRankSixteam",main);
 		
-		main.setRankOneTeam(sqlSession.selectOne(mapper+"getRankoneKey",main));
-		main.setRankTwoTeam(sqlSession.selectOne(mapper+"getRanktwoKey",main));
-		main.setRankThreeTeam(sqlSession.selectOne(mapper+"getRankthreeKey",main));
-		main.setRankFourTeam(sqlSession.selectOne(mapper+"getRankfourKey",main));
-		main.setRankFiveTeam(sqlSession.selectOne(mapper+"getRankfiveKey",main));
-		main.setRankSixTeam(sqlSession.selectOne(mapper+"getRanksixKey",main));
+		String[] RankTeams=new String[6];
+		RankTeams[0]=main.getRankOneTeam();
+		RankTeams[1]=main.getRankTwoTeam();
+		RankTeams[2]=main.getRankThreeTeam();
+		RankTeams[3]=main.getRankFourTeam();
+		RankTeams[4]=main.getRankFiveTeam();
+		RankTeams[5]=main.getRankSixTeam();
 		
+		for(int i=0;i<6;i++) {
+			if(RankTeams[i]!="")
+				sqlSession.insert(mapper+"addRankteams",RankTeams[i]);
+		}
+	
 		sqlSession.insert(mapper+"addRacetype",main);
 		sqlSession.insert(mapper+"addRoundtype",main);
 		sqlSession.insert(mapper+"addProgression",main);
@@ -74,10 +61,48 @@ public class mainDaoImpl  implements mainDAO{
 		main.setRoundtype_key(sqlSession.selectOne(mapper+"getRoundtypeKey",main));
 		main.setProgression_key(sqlSession.selectOne(mapper+"getProgressionKey",main));
 		
-		sqlSession.insert(mapper+"addRaceinfo",main);//에러
+		sqlSession.insert(mapper+"addRaceinfo",main);
 		
 		main.setRace_num(sqlSession.selectOne(mapper+"getRacenum"));
 		
-		sqlSession.insert(mapper+"addRecordinfo",main);	
+		for(int i=1;i<=6;i++) {
+			if(RankTeams[i-1]!="") {
+				String I=Integer.toString(i);
+				sqlSession.insert(mapper+"addRecordinfo"+I,main);	
+			}
+		}
+	}
+	
+	@Override
+	public List getTeamList() {
+		// TODO Auto-generated method stub
+		List teamList=sqlSession.selectList(mapper+"getTeamList");
+		return teamList;
+	}
+
+	@Override
+	public List getRecord(main main) {
+		// TODO Auto-generated method stub
+		List<main> record_info=new ArrayList<main>();
+		List<Integer> race_numList=sqlSession.selectList(mapper+"getRecordRacenum",main);
+		
+		for(int i=0;i<race_numList.size();i++) {
+			record_info.add((main)sqlSession.selectList(mapper+"getRecord",race_numList.get(i)));
+		}//에러
+		return record_info;
+	}
+
+	@Override
+	public List getRoundtypeList() {
+		// TODO Auto-generated method stub
+		List RoundtypeList=sqlSession.selectList(mapper+"getRoundtypeList");
+		return RoundtypeList;
+	}
+
+	@Override
+	public List getStartYear() {
+		// TODO Auto-generated method stub
+		List startYear=sqlSession.selectList(mapper+"getStartYear");
+		return startYear;
 	}
 }

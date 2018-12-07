@@ -14,7 +14,7 @@ var common={
 			success : function(data){
 				if(data.length>0){
 					teamInfo = data;
-					var innerHtml = "";
+					var innerHtml = "<option value='' selected disabled hidden>team</option>";
 					for(var i=0; i<teamInfo.length; i++){
 						innerHtml += "<option value="+(teamInfo[i].team_num)+">"+teamInfo[i].team_name+"</option>"
 					}
@@ -26,9 +26,69 @@ var common={
 		});
 	},
 	
+	//경기 종류 가져옴
+	getRoundtypeList : function(){
+		var json_data = " ";
+		$.ajax({
+			url:'http://localhost:8080/airquayRowing/main/getRoundtypeList',
+			type : 'GET',
+			cache: false,
+			contentType: false,
+			processData: false,
+			data : json_data,
+			dataType : 'json',
+			success : function(data){
+				if(data.length>0){
+					roundtypeInfo = data;
+					var innerHtml = "<option value='' selected disabled hidden>roundtype</option>";
+					for(var i=0; i<roundtypeInfo.length; i++){
+						innerHtml += "<option value="+(roundtypeInfo[i].roundtype_key)+">"+roundtypeInfo[i].roundtype+"</option>"
+					}
+					$("#roundtypes").empty().append(innerHtml);
+				}
+			},
+			error : function(data){
+			}
+		});
+	},
+	
+	//시작 년도 가져옴
+	getStartYear : function(){
+		var json_data = " ";
+		$.ajax({
+			url:'http://localhost:8080/airquayRowing/main/getStartYear',
+			type : 'GET',
+			cache: false,
+			contentType: false,
+			processData: false,
+			data : json_data,
+			dataType : 'json',
+			success : function(data){
+				if(data.length>0){
+					startYear = data;
+					var innerHtml = "<option value='' selected disabled hidden>year</option>";
+					for(var i=0; i<startYear.length; i++){
+						innerHtml += "<option value="+(startYear[i])+">"+startYear[i]+"</option>"
+					}
+					$("#startYear").empty().append(innerHtml);
+					
+					innerHtml="<option value='' selected disabled hidden>year</option>";
+					for(var i=startYear[startYear.length-1]; i<=startYear[startYear.length-1]+5; i++){
+						innerHtml += "<option value='"+i+"''>"+i+"</option>"
+					}
+					$("#endYear").empty().append(innerHtml);
+				}
+			},
+			error : function(data){
+			}
+		});
+	},
+	
 	displayRecord : function(){
-		console.log("displayRecord")
-		var json_data = "team_num="+($("#teams").val());
+		var json_data = "startDate="+($("#startYear").val())+"-"+($("#startMonth").val())+"-"+($("#startDay").val())+
+						"&endDate="+($("#endYear").val())+"-"+($("#endMonth").val())+"-"+($("#endDay").val())+
+						"&team_num="+($("#teams").val())+
+						"&roundtype_key="+($("#roundtypes").val());
 		$.ajax({
 			url:'http://localhost:8080/airquayRowing/main/getRecord',
 			type : 'GET',

@@ -70,7 +70,7 @@ public class MainController {
 	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })//로그인정보 확인 후 true/false반환
 	public @ResponseBody List login(Model model, HttpServletRequest request, HttpServletResponse response) {
 		main main = new main();
-		List<Object> resultList = new ArrayList();
+		List<Object> resultList = new ArrayList<Object>();
 		HttpSession session = request.getSession(false);
 		String user_id = request.getParameter("user_id");
 		String user_pw = request.getParameter("user_pw");
@@ -89,19 +89,6 @@ public class MainController {
 			resultList.add(1, userCheck);
 		}
 		return resultList;
-	}
-	
-	@RequestMapping(value = "/main/getteamList", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody List getteamList(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		List<List> teamInfo = rowingService.getteamList();
-		return teamInfo;
-	}
-	
-	@RequestMapping(value = "/main/getRecord", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody List getRecord(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		String teamName=request.getParameter("team_num");
-		List<List> record_info = rowingService.getRecord(teamName);
-		return record_info;
 	}
   	
 	@RequestMapping(value = "/main/addUser", method = { RequestMethod.GET, RequestMethod.POST })
@@ -130,17 +117,17 @@ public class MainController {
   		String racetype=request.getParameter("race_type");
   		String progression=request.getParameter("progression");
   		String roundtype=request.getParameter("round_type");
-  		String RankOne=request.getParameter("RankOneTeam");
+  		String RankOneTeam=request.getParameter("RankOneTeam");
   		String RankOneRacetime=request.getParameter("RankOneRacetime");
-  		String RankTwo=request.getParameter("RankTwoTeam");
+  		String RankTwoTeam=request.getParameter("RankTwoTeam");
   		String RankTwoRacetime=request.getParameter("RankTwoRacetime");
-  		String RankThree=request.getParameter("RankThreeTeam");
+  		String RankThreeTeam=request.getParameter("RankThreeTeam");
   		String RankThreeRacetime=request.getParameter("RankThreeRacetime");
-  		String RankFour=request.getParameter("RankFourTeam");
+  		String RankFourTeam=request.getParameter("RankFourTeam");
   		String RankFourRacetime=request.getParameter("RankFourRacetime");
-  		String RankFive=request.getParameter("RankFiveTeam");
+  		String RankFiveTeam=request.getParameter("RankFiveTeam");
   		String RankFiveRacetime=request.getParameter("RankFiveRacetime");
-  		String RankSix=request.getParameter("RankSixTeam");
+  		String RankSixTeam=request.getParameter("RankSixTeam");
   		String RankSixRacetime=request.getParameter("RankSixRacetime");		
   		
   		main main=new main();
@@ -149,20 +136,51 @@ public class MainController {
   		main.setRacetype(racetype);
   		main.setProgression(progression);
   		main.setRoundtype(roundtype);
-  		main.setRankOne(RankOne);
+  		main.setRankOneTeam(RankOneTeam);
   		main.setRankOneRacetime(RankOneRacetime);
-  		main.setRankTwo(RankTwo);
+  		main.setRankTwoTeam(RankTwoTeam);
   		main.setRankTwoRacetime(RankTwoRacetime);
-  		main.setRankThree(RankThree);
+  		main.setRankThreeTeam(RankThreeTeam);
   		main.setRankThreeRacetime(RankThreeRacetime);
-  		main.setRankFour(RankFour);
+  		main.setRankFourTeam(RankFourTeam);
   		main.setRankFourRacetime(RankFourRacetime);
-  		main.setRankFive(RankFive);
+  		main.setRankFiveTeam(RankFiveTeam);
   		main.setRankFiveRacetime(RankFiveRacetime);
-  		main.setRankSix(RankSix);
+  		main.setRankSixTeam(RankSixTeam);
   		main.setRankSixRacetime(RankSixRacetime);
   		
   		rowingService.addData(main);
+	}
+	
+	@RequestMapping(value = "/main/getteamList", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody List getteamList(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		List<List> teamInfo = rowingService.getteamList();
+		return teamInfo;
+	}
+	
+	@RequestMapping(value = "/main/getRoundtypeList", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody List getRoundtypeList(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		List<List> RoundtypeInfo = rowingService.getRoundtypeList();
+		return RoundtypeInfo;
+	}
+	
+	@RequestMapping(value = "/main/getStartYear", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody List getStartYear(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		List<List> startYear = rowingService.getStartYear();
+		return startYear;
+	}
+	
+	@RequestMapping(value = "/main/getRecord", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody List getRecord(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		main main=new main();
+		
+		main.setStart_date(request.getParameter("startDate"));
+		main.setEnd_date(request.getParameter("endDate"));
+		main.setTeam_num(Integer.parseInt(request.getParameter("team_num")));
+		main.setRoundtype_key(Integer.parseInt(request.getParameter("roundtype_key")));
+		
+		List<List> record_info = rowingService.getRecord(main);
+		return record_info;
 	}
 	
 }
