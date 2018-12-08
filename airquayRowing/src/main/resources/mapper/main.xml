@@ -139,7 +139,9 @@
 	<select id="getRecordRacenum" parameterType="com.airquay.rowing.vo.main" resultType="Integer">
 		select race_info.race_num 
 		from race_info 
-		where race_info.race_date between '${start_date}' and '${end_date}'
+		where	(race_info.race_date between '${start_date}' and '${end_date}') and
+				(race_info.roundtype_key in (${roundtype_key})) and
+				(race_num in (select race_num from record_info where team_num=${team_num})) 
 	</select>
 	
 	<select id="getRecord" parameterType="Integer" resultType="com.airquay.rowing.vo.main">
@@ -149,39 +151,36 @@
 			where roundtype_key=
 				(select roundtype_key
 				from race_info
-				where race_num='${value}')) as roundtype,
+				where race_num='${race_num}')) as roundtype,
 				
 			(select progression
 			from progression_info
 			where progression_key=
 				(select progression_key
 				from race_info
-				where race_num='${value}')) as progression,
+				where race_num='${race_num}')) as progression,
 				
 			(select racetype 
 			from racetype_info
 			where racetype_key=
 				(select racetype_key
 				from race_info
-				where race_num='${value}')) as racetype,
+				where race_num='${race_num}')) as racetype,
 				
 			(select team_name
 			from team_info
-			where team_num=
-				(select team_num
-				from record_info
-				where race_num='${value}')) as team_name,
+			where team_num=${team_num}) as team_name,
 			
-			(select rank
+				(select rank
 			from record_info
-			where race_num='${value}')as rank,
+			where team_num=${team_num} and race_num=${race_num}) as rank,
 			
 			(select race_time
 			from record_info
-			where race_num='${value}')as race_time
+			where team_num=${team_num} and race_num=${race_num}) as race_time
 		
 		from race_info
-		where race_num='${value}'
+		where (race_num='${race_num}')
 	</select>
 	
 </mapper>

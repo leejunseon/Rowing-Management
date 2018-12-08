@@ -83,12 +83,16 @@ public class mainDaoImpl  implements mainDAO{
 	@Override
 	public List getRecord(main main) {
 		// TODO Auto-generated method stub
-		List<main> record_info=new ArrayList<main>();
-		List<Integer> race_numList=sqlSession.selectList(mapper+"getRecordRacenum",main);
+		List record;
+		List<List> record_info=new ArrayList<List>();
 		
+		List<Integer> race_numList=sqlSession.selectList(mapper+"getRecordRacenum",main);
+
 		for(int i=0;i<race_numList.size();i++) {
-			record_info.add((main)sqlSession.selectList(mapper+"getRecord",race_numList.get(i)));
-		}//¿¡·¯
+			main.setRace_num(race_numList.get(i));
+			record=sqlSession.selectList(mapper+"getRecord",main);
+			record_info.add(record);
+		}
 		return record_info;
 	}
 

@@ -5,12 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Rowing Airquay</title>
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingCommon.css?ver=1">
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingRecordview.css?ver=1">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?ver=1">
-<script src="http://localhost:8080/airquayRowing/resources/js/rowingCommon.js?ver=1"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js?ver=1"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=1"></script>
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingCommon.css?ver=3">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingRecordview.css?ver=3">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?ver=3">
+<script src="http://localhost:8080/airquayRowing/resources/js/rowingCommon.js?ver=3"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js?ver=3"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=3"></script>
 <script type="text/javascript">
 var teamInfo;
 var Records;
@@ -99,9 +99,9 @@ function setDateOption(){
     	</div>
     	<input type="button"value="조회"style="font-size:20px;float: right; margin-right:80px;width:100px;height: 50px;"onclick="javascript:common.displayRecord();"/>
     </div>
-    <div id="records"style="font-size:25px; color:white;float: left; border: 1px solid white; margin-top: 20px; width: 1675px;">
-   		<div style="margin-bottom: 30px; margin-top:30px;">
-   			<div style="margin-left:67px; float: left; width: 380px; text-align: center;">-- Info --</div>
+    <div style="font-size:25px; color:white;float: left; border: 1px solid white; margin-top: 20px; width: 1675px;">
+   		<div id="records"style="margin-left:30px;margin-bottom: 30px; margin-top:30px;">
+   			<!-- <div style="margin-left:67px; float: left; width: 380px; text-align: center;">-- Info --</div>
    			<div style="margin-left:43px; float: left; width: 200px; text-align: center;">-- 500m --</div>
    			<div style="margin-left:43px; float: left; width: 200px; text-align: center;">-- 1000m --</div>
    			<div style="margin-left:43px; float: left; width: 200px; text-align: center;">-- 1500m --</div>
@@ -121,7 +121,7 @@ function setDateOption(){
 	     	    </div>
 	     	     <div id="rank" style="padding:20px;float: left;text-align:center; width: 150px;border:white 1px solid">
 	     	    </div>
-	        </div>
+	        </div> -->
     	</div>
     </div>
 </body>

@@ -5,13 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Airquay rowing management system</title>
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingCommon.css?ver=1">
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingLogin.css?ver=1">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?ver=1">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingCommon.css?ver=3">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingLogin.css?ver=3">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?ver=3">
 
-<script src="http://localhost:8080/airquayRowing/resources/js/rowingCommon.js?ver=1"></script>
-<script src="https://code.jquery.com/jquery-3.0.0.min.js?ver=1"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=1"></script>
+<script src="http://localhost:8080/airquayRowing/resources/js/rowingCommon.js?ver=3"></script>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js?ver=3"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=3"></script>
 <script type="text/javascript">
 var loginCheck;
 var Height;
@@ -70,7 +70,7 @@ function resultLogin(data){
 </script>
 </head>
 
-<body style="margin: 0px; background-color: #3e6699; overflow: hidden;">
+<body style="margin: 0px; background-color: #3e6699; overflow: auto;">
 	<div id="headerArea">
 		<div id="titleArea">Rowing Management System</div>
 	</div>
