@@ -17,11 +17,7 @@ var Records;
 
 $(document).ready(function() {
 	doResize();
-	setDateOption();
 	common.getteamList();
-	common.getRoundtypeList();
-	common.getStartYear();
-
 });
 	
 function doResize(){
@@ -29,32 +25,6 @@ function doResize(){
 	if(windowWidth>1680){
 		$("#bodyArea").css("margin-left", (windowWidth-1676)/2)
 	}
-}
-
-function setDateOption(){
-	var innerHtml="<option value='' selected disabled hidden>month</option>";
-	for(var i=1; i<=12; i++){
-		innerHtml += "<option value='"+i+"''>"+i+"</option>"
-	}
-	$("#startMonth").empty().append(innerHtml);
-	
-	innerHtml="<option value='' selected disabled hidden>date</option>";
-	for(var i=1; i<=31; i++){
-		innerHtml += "<option value='"+i+"''>"+i+"</option>"
-	}
-	$("#startDay").empty().append(innerHtml);
-	
-	innerHtml="<option value='' selected disabled hidden>month</option>";
-	for(var i=1; i<=12; i++){
-		innerHtml += "<option value='"+i+"''>"+i+"</option>"
-	}
-	$("#endMonth").empty().append(innerHtml);
-	
-	innerHtml="<option value='' selected disabled hidden>date</option>";
-	for(var i=1; i<=31; i++){
-		innerHtml += "<option value='"+i+"''>"+i+"</option>"
-	}
-	$("#endDay").empty().append(innerHtml);
 }
 
 </script>
@@ -66,41 +36,14 @@ function setDateOption(){
 	</div>
     <div class="container" style="width: 100%; height: 35px; line-height: 35px; font-size: 25px; margin-top: 10px; float: left;">
     	<div style="float: left; height: 35px; background-color: white; border: 1px solid;">
-    		<select id="startYear" style="font-size: 25px; background-color: white; color: black; margin-top: 3px; border: 0px;">
-    			<option value="-">No data</option>
-    		</select>
-    		<select id="startMonth" style="font-size: 25px; background-color: white; color: black; margin-top: 3px; border: 0px;">
-    			<option value="-">No data</option>
-    		</select>
-    		<select id="startDay" style="font-size: 25px; background-color: white; color: black; margin-top: 3px; border: 0px;">
-    			<option value="-">No data</option>
-    		</select>
-    	</div>
-    	<div style="margin-left:50px;float: left; height: 35px; background-color: white; border: 1px solid;">
-    		<select id="endYear" style="font-size: 25px; background-color: white; color: black; margin-top: 3px; border: 0px;">
-    			<option value="-">No data</option>
-    		</select>
-    		<select id="endMonth" style="font-size: 25px; background-color: white; color: black; margin-top: 3px; border: 0px;">
-    			<option value="-">No data</option>
-    		</select>
-    		<select id="endDay" style="font-size: 25px; background-color: white; color: black; margin-top: 3px; border: 0px;">
-    			<option value="-">No data</option>
-    		</select>
-    	</div>
-    	<div style="margin-left:50px;float: left; height: 35px; background-color: white; border: 1px solid;">
     		<select id="teams" style="font-size: 25px; background-color: white; color: black; margin-top: 3px; border: 0px;">
     			<option value="-">No data</option>
     		</select>
     	</div>
-    	<div style="margin-left:50px;float: left; height: 35px; background-color: white; border: 1px solid;">
-    		<select id="roundtypes" style="font-size: 25px; background-color: white; color: black; margin-top: 3px; border: 0px;">
-    			<option value="-">No data</option>
-    		</select>
-    	</div>
-    	<input type="button"value="조회"style="font-size:20px;float: right; margin-right:80px;width:100px;height: 50px;"onclick="javascript:common.displayRecord();"/>
+    	<input type="button"value="조회"style="font-size:20px;float: right; margin-right:80px;width:100px;height: 50px;"onclick="javascript:common.teamData();"/>
     </div>
     <div style="font-size:25px; color:white;float: left; border: 1px solid white; margin-top: 20px; width: 1675px;">
-   		<div id="records"style="margin-left:30px;margin-bottom: 30px; margin-top:30px;">
+   		<div id="teamData"style="margin-left:30px;margin-bottom: 30px; margin-top:30px;">
    			<!-- <div style="margin-left:67px; float: left; width: 380px; text-align: center;">-- Info --</div>
    			<div style="margin-left:43px; float: left; width: 200px; text-align: center;">-- 500m --</div>
    			<div style="margin-left:43px; float: left; width: 200px; text-align: center;">-- 1000m --</div>

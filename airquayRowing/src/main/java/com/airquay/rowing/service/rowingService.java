@@ -1,6 +1,7 @@
 package com.airquay.rowing.service;
 
 import java.util.List;
+import java.util.Vector;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,4 +62,8 @@ public class rowingService {
 		mainDAO.addData(main);
 	}
 
+	public Vector teamInfo(String team_num) {
+		Vector teamInfo=mainDAO.teamInfo(team_num);
+		return teamInfo;
+	}
 }

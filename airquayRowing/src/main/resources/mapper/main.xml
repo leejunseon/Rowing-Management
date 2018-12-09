@@ -183,4 +183,64 @@
 		where (race_num='${race_num}')
 	</select>
 	
+	<select id="getRecordsInfo" parameterType="Integer" resultType="com.airquay.rowing.vo.main">
+		select event_name,roundtype,racetype,progression,rank
+		from race_info
+		join record_info
+		on race_info.race_num=record_info.race_num
+		join roundtype_info
+		on race_info.roundtype_key=roundtype_info.roundtype_key
+		join racetype_info
+		on race_info.racetype_key=racetype_info.racetype_key
+		join progression_info
+		on race_info.progression_key=progression_info.progression_key
+		where 
+		race_info.race_num in (
+			select race_num
+			from record_info
+			where team_num=${value}) and
+			record_info.team_num=${value}
+	</select>
+	
+	<select id="getChampionNum" parameterType="Integer" resultType="Integer">
+		select count(*)
+		from record_info
+		join race_info 
+		on record_info.race_num=race_info.race_num
+		join progression_info
+		on race_info.progression_key=progression_info.progression_key
+		where team_num=${value} 
+			and rank=1
+			and race_info.progression_key=
+				(select progression_key
+				from progression_info
+				where progression='결승')
+	</select>
+	
+	<select id="getAvgRank" parameterType="Integer" resultType="Double">
+		select avg(rank)
+		from record_info
+		where team_num=${value}
+	</select>
+	
+	<select id="getAvgRaceTime" parameterType="Integer" resultType="String">
+		select  sec_to_time(avg(time_to_sec(race_time)))
+		from record_info
+		where team_num=${value}
+	</select>
+	
+	<select id="getAbstention" parameterType="Integer" resultType="Integer">
+		select count(*)
+		from record_info
+		where 	team_num=${value}
+				and race_time='기권'
+	</select>
+	
+	<select id="getDisqualification" parameterType="Integer" resultType="Integer">
+		select count(*)
+		from record_info
+		where 	team_num=${value}
+				and race_time='실격'
+	</select>
+	
 </mapper>

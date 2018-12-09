@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -65,6 +66,16 @@ public class MainController {
 	@RequestMapping(value = "/recordview", method = RequestMethod.GET)
 	public String recordview(Model model, HttpServletRequest request, HttpServletResponse response) {
 		return "main/recordView";
+	}
+	
+	@RequestMapping(value = "/selectAdmin", method = RequestMethod.GET)
+	public String selectAdmin(Model model, HttpServletRequest request, HttpServletResponse response) {
+		return "main/selectAdmin";
+	}
+	
+	@RequestMapping(value = "/teamInfo", method = RequestMethod.GET)
+	public String teamInfo(Model model, HttpServletRequest request, HttpServletResponse response) {
+		return "main/teamInfo";
 	}
 
 	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })//로그인정보 확인 후 true/false반환
@@ -183,4 +194,10 @@ public class MainController {
 		return record_info;
 	}
 	
+	@RequestMapping(value = "/main/teamData", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody Vector teamData(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		String team_num=request.getParameter("team_num");		
+		Vector teamInfo = rowingService.teamInfo(team_num);
+		return teamInfo;
+	}
 }

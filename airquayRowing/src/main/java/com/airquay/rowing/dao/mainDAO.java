@@ -1,6 +1,7 @@
 package com.airquay.rowing.dao;
 
 import java.util.List;
+import java.util.Vector;
 
 import com.airquay.rowing.vo.main;
 
@@ -21,4 +22,6 @@ public interface mainDAO {
 	List getRecord(main main);
 	
 	void addData(main main);
+	
+	Vector teamInfo(String team_num);
 }

@@ -2,6 +2,7 @@ package com.airquay.rowing.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,5 +109,27 @@ public class mainDaoImpl  implements mainDAO{
 		// TODO Auto-generated method stub
 		List startYear=sqlSession.selectList(mapper+"getStartYear");
 		return startYear;
+	}
+
+	@Override
+	public Vector teamInfo(String team_num) {
+		// TODO Auto-generated method stub
+		Vector teamInfo=new Vector(6);
+	
+		List records = sqlSession.selectList(mapper+"getRecordsInfo",Integer.parseInt(team_num));
+		Integer ChampionNum=sqlSession.selectOne(mapper+"getChampionNum",Integer.parseInt(team_num));
+		Double AvgRank=sqlSession.selectOne(mapper+"getAvgRank",Integer.parseInt(team_num));
+		String AvgRaceTime=sqlSession.selectOne(mapper+"getAvgRaceTime",Integer.parseInt(team_num));
+		Integer Abstention=sqlSession.selectOne(mapper+"getAbstention",Integer.parseInt(team_num));
+		Integer Disqualification=sqlSession.selectOne(mapper+"getDisqualification",Integer.parseInt(team_num));
+
+		teamInfo.add(records);
+		teamInfo.add(ChampionNum);
+		teamInfo.add(AvgRank);
+		teamInfo.add(AvgRaceTime);
+		teamInfo.add(Abstention);
+		teamInfo.add(Disqualification);
+		
+		return teamInfo;
 	}
 }

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Airquay rowing management system</title>
 <link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingCommon.css?ver=2">
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingSelect.css?ver=2">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingSelectAdmin.css?ver=2">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?ver=2">
 
 <script src="http://localhost:8080/airquayRowing/resources/js/rowingCommon.js?ver=2"></script>
@@ -28,14 +28,8 @@ function doResize(){
 function dispSelectPage(){
 	$("#bodyArea").css("display", "block");
 }
-function recordView(){
-	location.href="recordview";
-}
-function selectAdmin(){
-	location.href="selectAdmin";
-}
-function teamInfo(){
-	location.href="teamInfo";
+function addRecord(){
+	location.href="addRecord";
 }
 </script>
 </head>
@@ -47,19 +41,16 @@ function teamInfo(){
 	<div id="bodyArea" style="display: none;">
 		<img alt="" id="LoginImage" src="http://localhost:8080/airquayRowing/resources/img/main_visual_01.jpg" style="width:100%;">
 		<div id="SelectArea">
-			<div style="float: left; width: 100%; height: 50px; font-size: 30px; text-indent: 30px; font-weight: bold; margin-top: 20px;">Rowing Management System</div>
+			<div style="float: left; width: 100%; height: 50px; font-size: 30px; text-indent: 30px; font-weight: bold; margin-top: 20px;">Adminstrator Menu</div>
 			<div style="float: left; width: 100%;">
-				<div style="float: left;" onclick="javascript:recordView();">
-					<div id="SelectBtn">Record</div>
+				<div style="float: left;" onclick="javascript:addRecord();">
+					<div id="SelectBtn">Add Records</div>
 				</div>
-				<div style="float: left;" onclick="javascript:teamInfo();">
-					<div id="SelectBtn">Team Info</div>
+				<div style="float: left;" onclick="javascript:addRecord();">
+					<div id="SelectBtn">Add Race</div>
 				</div>
-				<div style="float: left;" onclick="javascript:recordView();">
-					<div id="SelectBtn">Race Schedule</div>
-				</div>
-				<div style="float: left;" onclick="javascript:selectAdmin();">
-					<div id="SelectBtn">Admin</div>
+				<div style="float: left;" onclick="javascript:addRecord();">
+					<div id="SelectBtn">Member Management</div>
 				</div>
 			</div>
 		</div>
