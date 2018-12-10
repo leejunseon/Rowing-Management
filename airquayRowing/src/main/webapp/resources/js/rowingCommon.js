@@ -5,7 +5,7 @@ var common={
 		var json_data = " ";
 		var innerHtml = "<option value='' selected disabled hidden>team</option>";
 		$.ajax({
-			url:'http://localhost:8080/airquayRowing/main/getteamList',
+			url:'http://13.209.161.83:8080/airquayRowing/main/getteamList',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -30,7 +30,7 @@ var common={
 		var json_data = "team_num="+($("#teams").val());
 		var innerHtml ="";
 		$.ajax({
-			url:'http://localhost:8080/airquayRowing/main/teamData',
+			url:'http://13.209.161.83:8080/airquayRowing/main/teamData',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -66,7 +66,7 @@ var common={
 		var json_data = " ";
 		var innerHtml = "<option value='' selected disabled hidden>roundtype</option>";
 		$.ajax({
-			url:'http://localhost:8080/airquayRowing/main/getRoundtypeList',
+			url:'http://13.209.161.83:8080/airquayRowing/main/getRoundtypeList',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -92,7 +92,7 @@ var common={
 		var json_data = " ";
 		var innerHtml = "<option value='' selected disabled hidden>year</option>";
 		$.ajax({
-			url:'http://localhost:8080/airquayRowing/main/getStartYear',
+			url:'http://13.209.161.83:8080/airquayRowing/main/getStartYear',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -126,7 +126,7 @@ var common={
 						"&team_num="+($("#teams").val())+
 						"&roundtype_key="+($("#roundtypes").val());
 		$.ajax({
-			url:'http://localhost:8080/airquayRowing/main/getRecord',
+			url:'http://13.209.161.83:8080/airquayRowing/main/getRecord',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -157,5 +157,97 @@ var common={
 			}
 		});
 	},
+	
+	getUserList : function(){
+		var innerHtml="";
+		var json_data = "";
+		var select="";
+		$.ajax({
+			url:'http://13.209.161.83:8080/airquayRowing/main/getUserList',
+			type : 'GET',
+			cache: false,
+			contentType: false,
+			processData: false,
+			data : json_data,
+			dataType : 'json',
+			success : function(data){
+				userList=data;
+				for(var i=0;i<userList.length;i++){
+					if(userList[i].adminLevel==1){
+						select="Admin <input type='checkbox' id='user' name='"+userList[i].user_no+"'value='' checked='checked'style='width:20px;height:20px;'>"
+					}else{
+						select="Admin <input type='checkbox' id='user' name='"+userList[i].user_no+"'value='' style='width:20px;height:20px;'>"
+					}
+					innerHtml += "userID: "+userList[i].user_id
+								+" userName: "+userList[i].user_name+" "
+								+select+"<br>"
+				}
+				$("#userList").empty().append(innerHtml);
+			},
+			error : function(data){
+				console.log("getUserList error")
+			}
+		});
+	},
+	
+	setUserInfo : function(){
+		var innerHtml="";
+		var user_num = [];
+		var length=$('input[id=user]:checked').length;
+		for(var i=0;i<length;i++){
+			user_num[i]=($('input[id=user]:checked')[i].name)
+		}
+		jQuery.ajaxSettings.traditional = true;
+		$.ajax({
+			url:'http://13.209.161.83:8080/airquayRowing/main/setUserInfo',
+			type : 'GET',
+			data :{'user_num' : user_num},
+			dataType : 'json',
+			success : function(){
+			
+			},
+			error : function(){
+				console.log("setUserInfo error")
+			}
+		});
+		location.href="selectAdmin";
+	},
+	
+	deletelaterSchedule:function(){
+		$.ajax({
+			url:'http://13.209.161.83:8080/airquayRowing/main/deletelaterSchedule',
+			type : 'GET',
+			success : function(){
 				
+			},
+			error : function(){
+				console.log("getUserList error")
+			}
+		});
+	},
+	
+	raceSchedule : function(){
+		var innerHtml="";
+		$.ajax({
+			url:'http://13.209.161.83:8080/airquayRowing/main/raceSchedule',
+			type : 'GET',
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType : 'json',
+			success : function(data){
+				raceSchedule=data;
+				for(var i=0;i<raceSchedule.length;i++){
+					innerHtml+=  raceSchedule[i].race_calendar+" "
+								+raceSchedule[i].race_name+" "
+								+raceSchedule[i].race_location+"<br>"
+				}
+				$("#raceSchedule").empty().append(innerHtml);
+			},
+			error : function(data){
+				console.log("getUserList error")
+			}
+		});
+	},
+					
 }

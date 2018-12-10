@@ -86,27 +86,27 @@
 	
 	<insert id="addRecordinfo1" parameterType="com.airquay.rowing.vo.main">
 		insert into record_info
-		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankOneTeam}'),1,'${RankOneRacetime}')
+		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankOneTeam}'),1,concat('00:','${RankOneRacetime}'))
 	</insert>
 	<insert id="addRecordinfo2" parameterType="com.airquay.rowing.vo.main">
 		insert into record_info
-		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankTwoTeam}'),2,'${RankTwoRacetime}')
+		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankTwoTeam}'),2,concat('00:','${RankTwoRacetime}'))
 	</insert>
 	<insert id="addRecordinfo3" parameterType="com.airquay.rowing.vo.main">
 		insert into record_info
-		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankThreeTeam}'),3,'${RankThreeRacetime}')
+		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankThreeTeam}'),3,concat('00:','${RankThreeRacetime}'))
 	</insert>
 	<insert id="addRecordinfo4" parameterType="com.airquay.rowing.vo.main">
 		insert into record_info
-		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankFourTeam}'),4,'${RankFourRacetime}')
+		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankFourTeam}'),4,concat('00:','${RankFourRacetime}'))
 	</insert>
 	<insert id="addRecordinfo5" parameterType="com.airquay.rowing.vo.main">
 		insert into record_info
-		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankFiveTeam}'),5,'${RankFiveRacetime}')
+		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankFiveTeam}'),5,concat('00:','${RankFiveRacetime}'))
 	</insert>
 	<insert id="addRecordinfo6" parameterType="com.airquay.rowing.vo.main">
 		insert into record_info
-		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankSixTeam}'),6,'${RankSixRacetime}')
+		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankSixTeam}'),6,concat('00:','${RankSixRacetime}'))
 	</insert>
 	
 	<select id="getTeamList" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
@@ -241,6 +241,41 @@
 		from record_info
 		where 	team_num=${value}
 				and race_time='실격'
+	</select>
+	
+	<insert id="addRace" parameterType="com.airquay.rowing.vo.main">
+		insert into race_schedule
+		values ('${race_name}','${race_location}','${race_calendar}')
+	</insert>
+	
+	<select id="getUserList" resultType="com.airquay.rowing.vo.main">
+		select user_id,user_name,adminLevel,user_no
+		from user_info
+		where adminLevel not in(2)
+	</select>
+	
+	<update id="setUserAdmin">
+		update user_info
+		set adminLevel=0
+		where adminLevel not in(2)
+	</update>
+	
+	<update id="setUserInfo"  parameterType="Integer">
+		update user_info
+		set adminLevel=1
+		where user_no=${value}
+	</update>
+	
+	<delete id="deletelaterSchedule">
+		delete 
+		from race_schedule
+		<![CDATA[ where date(race_calendar) < date(now())]]>
+	</delete>
+	
+	<select id="getRaceSchedule" resultType="com.airquay.rowing.vo.main">
+		select * 
+		from race_schedule
+		order by race_calendar asc
 	</select>
 	
 </mapper>

@@ -1,6 +1,7 @@
 package com.airquay.rowing.dao;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Vector;
 
@@ -131,5 +132,40 @@ public class mainDaoImpl  implements mainDAO{
 		teamInfo.add(Disqualification);
 		
 		return teamInfo;
+	}
+
+	@Override
+	public void addRace(main main) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(mapper+"addRace",main);
+	}
+
+	@Override
+	public List getUserList() {
+		// TODO Auto-generated method stub
+		List UserInfo=sqlSession.selectList(mapper+"getUserList");
+		return UserInfo;
+	}
+
+	@Override
+	public void setUserInfo(String[] user_num) {
+		// TODO Auto-generated method stub
+		sqlSession.update(mapper+"setUserAdmin");
+		for(int i=0;i<user_num.length;i++) {
+			sqlSession.update(mapper+"setUserInfo",Integer.parseInt(user_num[i]));
+		}
+	}
+
+	@Override
+	public List getRaceSchedule() {
+		// TODO Auto-generated method stub
+		List raceSchedule=sqlSession.selectList(mapper+"getRaceSchedule");
+		return raceSchedule;
+	}
+
+	@Override
+	public void deletelaterSchedule() {
+		// TODO Auto-generated method stub
+		sqlSession.delete(mapper+"deletelaterSchedule");
 	}
 }

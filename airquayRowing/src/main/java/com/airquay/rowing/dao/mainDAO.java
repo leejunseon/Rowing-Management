@@ -24,4 +24,15 @@ public interface mainDAO {
 	void addData(main main);
 	
 	Vector teamInfo(String team_num);
+	
+	void addRace(main main);
+
+	List getUserList();
+
+	void setUserInfo(String[] user_num);
+
+	List getRaceSchedule();
+
+	void deletelaterSchedule();
+
 }

@@ -5,13 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Airquay rowing management system</title>
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingCommon.css?ver=2">
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingSelect.css?ver=2">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?ver=2">
+<link type="text/css" rel="stylesheet" href="http://13.209.161.83:8080/airquayRowing/resources/css/rowingCommon.css?ver=8">
+<link type="text/css" rel="stylesheet" href="http://13.209.161.83:8080/airquayRowing/resources/css/rowingSelect.css?ver=8">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?ver=8">
 
-<script src="http://localhost:8080/airquayRowing/resources/js/rowingCommon.js?ver=2"></script>
-<script src="https://code.jquery.com/jquery-3.0.0.min.js?ver=2"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=2"></script>
+<script src="http://13.209.161.83:8080/airquayRowing/resources/js/rowingCommon.js?ver=8"></script>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js?ver=8"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=8"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -37,6 +37,9 @@ function selectAdmin(){
 function teamInfo(){
 	location.href="teamInfo";
 }
+function raceSchedule(){
+	location.href="raceSchedule";
+}
 </script>
 </head>
 
@@ -45,7 +48,7 @@ function teamInfo(){
 		<div id="titleArea">Rowing Management System</div>
 	</div>
 	<div id="bodyArea" style="display: none;">
-		<img alt="" id="LoginImage" src="http://localhost:8080/airquayRowing/resources/img/main_visual_01.jpg" style="width:100%;">
+		<img alt="" id="LoginImage" src="http://13.209.161.83:8080/airquayRowing/resources/img/main_visual_01.jpg" style="width:100%;">
 		<div id="SelectArea">
 			<div style="float: left; width: 100%; height: 50px; font-size: 30px; text-indent: 30px; font-weight: bold; margin-top: 20px;">Rowing Management System</div>
 			<div style="float: left; width: 100%;">
@@ -55,7 +58,7 @@ function teamInfo(){
 				<div style="float: left;" onclick="javascript:teamInfo();">
 					<div id="SelectBtn">Team Info</div>
 				</div>
-				<div style="float: left;" onclick="javascript:recordView();">
+				<div style="float: left;" onclick="javascript:raceSchedule();">
 					<div id="SelectBtn">Race Schedule</div>
 				</div>
 				<div style="float: left;" onclick="javascript:selectAdmin();">

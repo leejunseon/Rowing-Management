@@ -36,7 +36,7 @@ public class MainController {
 	@Autowired
 	private com.airquay.rowing.service.rowingService rowingService;
 	
-	@RequestMapping(value = "/main", method = RequestMethod.GET)//http://localhost:8080/airquayRowing/main 접속 시 호출
+	@RequestMapping(value = "/main", method = RequestMethod.GET)//http://13.209.161.83:8080/airquayRowing/main 접속 시 호출
 	public String main(Model model, HttpServletRequest request, HttpServletResponse response) {
  		HttpSession session = request.getSession();
  		Boolean loginUser = (Boolean) session.getAttribute("loginUser");
@@ -77,7 +77,22 @@ public class MainController {
 	public String teamInfo(Model model, HttpServletRequest request, HttpServletResponse response) {
 		return "main/teamInfo";
 	}
+	
+	@RequestMapping(value = "/addRaceSchedule", method = RequestMethod.GET)
+	public String addRaceSchedule(Model model, HttpServletRequest request, HttpServletResponse response) {
+		return "main/addRaceSchedule";
+	}
 
+	@RequestMapping(value = "/memberManagement", method = RequestMethod.GET)
+	public String memberManagement(Model model, HttpServletRequest request, HttpServletResponse response) {
+		return "main/memberManagement";
+	}
+	
+	@RequestMapping(value = "/raceSchedule", method = RequestMethod.GET)
+	public String raceSchedule(Model model, HttpServletRequest request, HttpServletResponse response) {
+		return "main/raceSchedule";
+	}
+	
 	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })//로그인정보 확인 후 true/false반환
 	public @ResponseBody List login(Model model, HttpServletRequest request, HttpServletResponse response) {
 		main main = new main();
@@ -199,5 +214,41 @@ public class MainController {
 		String team_num=request.getParameter("team_num");		
 		Vector teamInfo = rowingService.teamInfo(team_num);
 		return teamInfo;
+	}
+	
+	@RequestMapping(value = "/main/addRace", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody void addRace(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		main main=new main();
+		String race_name=request.getParameter("race_name");
+		String year=request.getParameter("year");
+		String month=request.getParameter("month");
+		String day=request.getParameter("day");
+		String race_location=request.getParameter("location");
+		main.setRace_name(race_name);
+		main.setRace_calendar(year+"-"+month+"-"+day);
+		main.setRace_location(race_location);
+		rowingService.addRace(main);
+	}
+	
+	@RequestMapping(value = "/main/getUserList", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody List getUserList(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		List UserList=rowingService.getUserList();
+		return UserList;
+	}
+	
+	@RequestMapping(value = "/main/setUserInfo", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody void setUserInfo(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session,String[] user_num) {
+		rowingService.setUserInfo(user_num);
+	}
+	
+	@RequestMapping(value = "/main/deletelaterSchedule", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody void deletelaterSchedule(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		rowingService.deletelaterSchedule();
+	}
+	
+	@RequestMapping(value = "/main/raceSchedule", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody List raceSchedule(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		List raceSchedule=rowingService.getRaceSchedule();
+		return raceSchedule;
 	}
 }

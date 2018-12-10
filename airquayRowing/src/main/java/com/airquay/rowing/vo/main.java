@@ -49,12 +49,37 @@ public class main {
 	private String user_id;
 	private String user_pw;
 	private String user_name;
+	private Integer adminLevel;
 	
-	//admin_info
-	private Integer admin_key;
-	private String admin_code;
-		
+	//race_schedule
+	private String race_name;
+	private String race_location;
+	private String race_calendar;		
 	
+	public Integer getAdminLevel() {
+		return adminLevel;
+	}
+	public void setAdminLevel(Integer adminLevel) {
+		this.adminLevel = adminLevel;
+	}
+	public String getRace_name() {
+		return race_name;
+	}
+	public void setRace_name(String race_name) {
+		this.race_name = race_name;
+	}
+	public String getRace_location() {
+		return race_location;
+	}
+	public void setRace_location(String race_location) {
+		this.race_location = race_location;
+	}
+	public String getRace_calendar() {
+		return race_calendar;
+	}
+	public void setRace_calendar(String race_calendar) {
+		this.race_calendar = race_calendar;
+	}
 	public String getStart_date() {
 		return start_date;
 	}
@@ -246,17 +271,5 @@ public class main {
 	}
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
-	}
-	public Integer getAdmin_key() {
-		return admin_key;
-	}
-	public void setAdmin_key(Integer admin_key) {
-		this.admin_key = admin_key;
-	}
-	public String getAdmin_code() {
-		return admin_code;
-	}
-	public void setAdmin_code(String admin_code) {
-		this.admin_code = admin_code;
 	}
 }

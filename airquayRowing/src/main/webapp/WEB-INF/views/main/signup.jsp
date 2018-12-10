@@ -5,13 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Airquay rowing management system</title>
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingCommon.css?ver=2">
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/airquayRowing/resources/css/rowingSignup.css?ver=2">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?ver=2">
+<link type="text/css" rel="stylesheet" href="http://13.209.161.83:8080/airquayRowing/resources/css/rowingCommon.css?ver=8">
+<link type="text/css" rel="stylesheet" href="http://13.209.161.83:8080/airquayRowing/resources/css/rowingSignup.css?ver=8">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?ver=8">
 
-<script src="http://localhost:8080/airquayRowing/resources/js/rowingCommon.js?ver=2"></script>
-<script src="https://code.jquery.com/jquery-3.0.0.min.js?ver=2"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=2"></script>
+<script src="http://13.209.161.83:8080/airquayRowing/resources/js/rowingCommon.js?ver=8"></script>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js?ver=8"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=8"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -32,11 +32,8 @@ function adduser(){
 	var json_data = "user_id="+($("#user_id").val());
 		json_data += "&user_pw="+($("#user_pw").val());
 		json_data += "&user_name="+($("#user_name").val());
-		json_data += "&sex="+($("#sex").val());
-		json_data += "&birthday="+($("#birthday").val());
-		json_data += "&nationality="+($("#nationality").val());
-		json_data += "&team_num="+($("#team_num").val());
-	var url = 'http://localhost:8080/airquayRowing/main/addUser';
+		//json_data += "&team_num="+($("#team_num").val());
+	var url = 'http://13.209.161.83:8080/airquayRowing/main/addUser';
 	console.log("addUser")
 	$.ajax({
 		url:url,
@@ -54,16 +51,6 @@ function adduser(){
 	});
 }
 function resultSignup(data){
-	/* var innerHtml = "";
-	if(data==true){
-		innerHtml = "<iframe src='http://localhost:8080/airquayRowing/aftersignup' style='width: 100%; height: 100%; border: none;'></iframe>"
-			$("#bodyArea").empty();
-			$("#bodyArea").append(innerHtml)
-			$("#bodyArea").css("display", "block");
-	}else{
-		alert("Fill in all the contents");
-	} */
-	
 	location.href="main";
 }
 </script>
@@ -74,7 +61,7 @@ function resultSignup(data){
 		<div id="titleArea">Rowing Management System</div>
 	</div>
 	<div id="bodyArea" style="display: none;">
-	<img alt="" id="LoginImage" src="http://localhost:8080/airquayRowing/resources/img/main_visual_01.jpg" style="width:100%;">
+	<img alt="" id="LoginImage" src="http://13.209.161.83:8080/airquayRowing/resources/img/main_visual_01.jpg" style="width:100%;">
 		<div id="SignupArea">
 			<div style="float: left; width: 100%; height: 50px; font-size: 30px; text-indent: 30px; font-weight: bold; margin-top: 20px;">Sign Up</div>
 			<div style="float: left; width: 100%;">
@@ -91,22 +78,10 @@ function resultSignup(data){
 						<div class="loginLabel">Name</div>
 						<div class="inputText"><input id="user_name" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
 					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="loginLabel">sex</div>
-						<div class="inputText"><input id="sex" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="loginLabel">Birthday</div>
-						<div class="inputText"><input id="birthday" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="loginLabel">Nationality</div>
-						<div class="inputText"><input id="nationality" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
+					<!-- <div style="float: left; width: 100%; height: 50px;">
 						<div class="loginLabel">TeamNum</div>
 						<div class="inputText"><input id="team_num" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
+					</div> -->
 				</div>
 				<div style="float: left;" onclick="javascript:adduser();">
 					<div id="SignupBtn">Sign up</div>

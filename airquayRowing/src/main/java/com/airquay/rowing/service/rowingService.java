@@ -66,4 +66,29 @@ public class rowingService {
 		Vector teamInfo=mainDAO.teamInfo(team_num);
 		return teamInfo;
 	}
+	
+	public void addRace(main main) {
+		mainDAO.addRace(main);
+	}
+
+	public List getUserList() {
+		// TODO Auto-generated method stub
+		List UserList=mainDAO.getUserList();
+		return UserList;
+	}
+
+	public void setUserInfo(String[] user_num) {
+		// TODO Auto-generated method stub
+		mainDAO.setUserInfo(user_num);
+	}
+
+	public List getRaceSchedule() {
+		// TODO Auto-generated method stub
+		return mainDAO.getRaceSchedule();
+	}
+
+	public void deletelaterSchedule() {
+		// TODO Auto-generated method stub
+		mainDAO.deletelaterSchedule();
+	}
 }
