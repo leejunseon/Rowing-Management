@@ -5,13 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Airquay rowing management system</title>
-<link type="text/css" rel="stylesheet" href="http://13.209.161.83:8080/airquayRowing/resources/css/rowingCommon.css?ver=8">
-<link type="text/css" rel="stylesheet" href="http://13.209.161.83:8080/airquayRowing/resources/css/rowingAddrace.css?ver=8">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?ver=8">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingCommon.css?awevwe">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingAddrecord.css?awevwe">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?awevwe">
 
-<script src="http://13.209.161.83:8080/airquayRowing/resources/js/rowingCommon.js?ver=8"></script>
-<script src="https://code.jquery.com/jquery-3.0.0.min.js?ver=8"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=8"></script>
+<script src="http://localhost:8080/rowing/resources/js/rowingCommon.js?awevwe"></script>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js?awevwe"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?awevwe"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -49,7 +49,7 @@ function addData(){
 		json_data += "&RankFiveRacetime="+($("#RankFiveRacetime").val());
 		json_data += "&RankSixTeam="+($("#RankSixTeam").val());
 		json_data += "&RankSixRacetime="+($("#RankSixRacetime").val());
-	var url = 'http://13.209.161.83:8080/airquayRowing/main/addData';
+	var url = 'http://localhost:8080/rowing/main/addData';
 	$.ajax({
 		url:url,
 		type : 'GET',
@@ -76,116 +76,117 @@ function resultAddData(data){
 		<div id="titleArea">Rowing Management System</div>
 	</div>
 	<div id="bodyArea" style="display: none;">
-	<img alt="" id="LoginImage" src="http://13.209.161.83:8080/airquayRowing/resources/img/main_visual_01.jpg" style="width:100%;">
-		<div id="addraceArea">
-			<div style="float: left; width: 100%; height: 50px; font-size: 30px; text-indent: 30px; font-weight: bold; margin-top: 20px;">Race info</div>
-			<div style="float: left; width: 100%;">
-				<div style="float: left; width: 27%;">
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel"></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">Event name</div>
-						<div class="inputText"><input id="event_name" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">Year</div>
-						<div class="inputText"><input id="year" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">Month</div>
-						<div class="inputText"><input id="month" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">Day</div>
-						<div class="inputText"><input id="day" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">Race type</div>
-						<div class="inputText"><input id="race_type" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">Round type</div>
-						<div class="inputText"><input id="round_type" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">Progression</div>
-						<div class="inputText"><input id="progression" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-				</div>
-				<div style="float: left; width: 27%;">
-					<div style="margin-left:25%; width: 100%; height: 50px;">
-						<div class="raceLabel">-- Rank 1 --</div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">Team</div>
-						<div class="inputText"><input id="RankOneTeam" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">RaceTime</div>
-						<div class="inputText"><input id="RankOneRacetime" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="margin-left:25%; width: 100%; height: 50px;">
-						<div class="raceLabel">-- Rank 2 --</div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">Team</div>
-						<div class="inputText"><input id="RankTwoTeam" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">RaceTime</div>
-						<div class="inputText"><input id="RankTwoRacetime" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="margin-left:25%; width: 100%; height: 50px;">
-						<div class="raceLabel">-- Rank 3 --</div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">Team</div>
-						<div class="inputText"><input id="RankThreeTeam" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">RaceTime</div>
-						<div class="inputText"><input id="RankThreeRacetime" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-				</div>
-				<div style="float: left; width: 27%;">
-					<div style="margin-left:25%; width: 100%; height: 50px;">
-						<div class="raceLabel">-- Rank 4 --</div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">Team</div>
-						<div class="inputText"><input id="RankFourTeam" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">RaceTime</div>
-						<div class="inputText"><input id="RankFourRacetime" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="margin-left:25%; width: 100%; height: 50px;">
-						<div class="raceLabel">-- Rank 5 --</div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">Team</div>
-						<div class="inputText"><input id="RankFiveTeam" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">RaceTime</div>
-						<div class="inputText"><input id="RankFiveRacetime" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="margin-left:25%; width: 100%; height: 50px;">
-						<div class="raceLabel">-- Rank 6 --</div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">Team</div>
-						<div class="inputText"><input id="RankSixTeam" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="raceLabel">RaceTime</div>
-						<div class="inputText"><input id="RankSixRacetime" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {login();}"/></div>
-					</div>
-				</div>
-				<div style="float: right; margin-right:40px; margin-top:350px;"onclick="javascript:addData();">
-					<div id="SignupBtn">Submit</div>
-				</div>
+		<div id="addrecordArea">
+			<div style="float: left; width: 100%; height: 50px; font-size: 30px; text-indent: 30px; font-weight: bold;">Race info</div>
+			<div style="float: left; width: 30%;">
+				<table>
+					<tr style="height:50px;"></tr>
+					<tr>
+						<td class="raceLabel">Event name</td>	
+						<td class="inputText"><input id="event_name" type="text" style="width: 100%; height: 100%;"/></td>
+					</tr>		
+					<tr>
+						<td class="raceLabel">Year</td>			
+						<td class="inputText"><input id="year" type="text" style="width: 100%; height: 100%;"/></td>
+					</tr>	
+					<tr>
+						<td class="raceLabel">Month</td>
+						<td class="inputText"><input id="month" type="text" style="width: 100%; height: 100%;"/></td>
+					</tr>
+					<tr>
+						<td class="raceLabel">Day</td>
+						<td class="inputText"><input id="day" type="text" style="width: 100%; height: 100%;"/></td>
+					</tr>	
+					<tr>
+						<td class="raceLabel">Race type</td>
+						<td class="inputText"><input id="race_type" type="text" style="width: 100%; height: 100%;"/></td>
+					</tr>
+					<tr>
+						<td class="raceLabel">Round type</td>
+						<td class="inputText"><input id="round_type" type="text" style="width: 100%; height: 100%;"/></td>
+					</tr>
+					<tr>
+						<td class="raceLabel">Progression</td>
+						<td class="inputText"><input id="progression" type="text" style="width: 100%; height: 100%;"/></td>
+					</tr>
+				</table>
+			</div>
+			<div style="float: left; width: 25%;">
+				<table>
+					<tr>
+						<td class="rankLabel"colspan="2">-- Rank 1 --</td>
+					</tr>
+					<tr>
+						<td class="raceLabel">Team</td>
+						<td class="inputInfo"><input id="RankOneTeam" type="text" style="width: 100%; height: 100%;"/></td>
+					</tr>
+					<tr>
+						<td class="raceLabel">RaceTime</td>
+						<td class="inputInfo"><input id="RankOneRacetime" type="text" style="width: 100%; height: 100%;"/></td>
+					</tr>	
+					<tr>
+						<td class="rankLabel"colspan="2">-- Rank 2 --</td>
+					</tr>
+					<tr>
+						<td class="raceLabel">Team</td>
+						<td class="inputInfo"><input id="RankTwoTeam" type="text" style="width: 100%; height: 100%;"/></td> 
+					</tr>
+					<tr>
+						<td class="raceLabel">RaceTime</td>
+						<td class="inputInfo"><input id="RankTwoRacetime" type="text" style="width: 100%; height: 100%;"/></td>
+					</tr>
+					<tr>
+						<td class="rankLabel"colspan="2">-- Rank 3 --</td>
+					</tr>
+					<tr>
+						<td class="raceLabel">Team</td>
+						<td class="inputInfo"><input id="RankThreeTeam" type="text" style="width: 100%; height: 100%;"/></td> 
+					</tr>
+					<tr>
+						<td class="raceLabel">RaceTime</td>
+						<td class="inputInfo"><input id="RankThreeRacetime" type="text" style="width: 100%; height: 100%;"/></td>
+					</tr>
+				</table>
+			</div>
+			<div style="float: left; width: 25%;">
+				<table>
+					<tr>
+						<td class="rankLabel"colspan="2">-- Rank 4 --</td>
+					</tr>
+					<tr>
+						<td class="raceLabel">Team</td>
+						<td class="inputInfo"><input id="RankFourTeam" type="text" style="width: 100%; height: 100%;"/></td>
+					</tr>
+					<tr>
+						<td class="raceLabel">RaceTime</td>
+						<td class="inputInfo"><input id="RankFourRacetime" type="text" style="width: 100%; height: 100%;"/></td>
+					</tr>
+					<tr>
+						<td class="rankLabel"colspan="2">-- Rank 5 --</td>
+					</tr>
+					<tr>
+						<td class="raceLabel">Team</td>
+						<td class="inputInfo"><input id="RankFiveTeam" type="text" style="width: 100%; height: 100%;"/></td>
+					</tr>
+					<tr>
+						<td class="raceLabel">RaceTime</td>
+						<td class="inputInfo"><input id="RankFiveRacetime" type="text" style="width: 100%; height: 100%;"/></td>
+					</tr>
+					<tr>
+						<td class="rankLabel"colspan="2">-- Rank 6 --</td>
+					</tr>
+					<tr>
+						<td class="raceLabel">Team</td>
+						<td class="inputInfo"><input id="RankSixTeam" type="text" style="width: 100%; height: 100%;"/></td>
+					</tr>
+					<tr>
+						<td class="raceLabel">RaceTime</td>
+						<td class="inputInfo"><input id="RankSixRacetime" type="text" style="width: 100%; height: 100%;"/></td>
+					</tr>
+				</table>
+			</div>
+			<div style="float: left; width:20%;margin-top:350px;"onclick="javascript:addData();">
+					<div id="Button">Submit</div>
 			</div>
 		</div>
 	</div>

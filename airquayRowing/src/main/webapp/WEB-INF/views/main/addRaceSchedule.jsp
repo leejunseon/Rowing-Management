@@ -5,13 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Airquay rowing management system</title>
-<link type="text/css" rel="stylesheet" href="http://13.209.161.83:8080/airquayRowing/resources/css/rowingCommon.css?ver=8">
-<link type="text/css" rel="stylesheet" href="http://13.209.161.83:8080/airquayRowing/resources/css/rowingAddRaceSchedule.css?ver=8">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?ver=8">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingCommon.css?awevwe">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingAddRaceSchedule.css?awevwe">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?awevwe">
 
-<script src="http://13.209.161.83:8080/airquayRowing/resources/js/rowingCommon.js?ver=8"></script>
-<script src="https://code.jquery.com/jquery-3.0.0.min.js?ver=8"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=8"></script>
+<script src="http://localhost:8080/rowing/resources/js/rowingCommon.js?awevwe"></script>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js?awevwe"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?awevwe"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -34,7 +34,7 @@ function addrace(){
 		json_data += "&year="+($("#year").val());
 		json_data += "&month="+($("#month").val());
 		json_data += "&day="+($("#day").val());
-	var url = 'http://13.209.161.83:8080/airquayRowing/main/addRace';
+	var url = 'http://localhost:8080/rowing/main/addRace';
 	console.log("addUser")
 	$.ajax({
 		url:url,
@@ -62,7 +62,7 @@ function resultAdd(data){
 		<div id="titleArea">Rowing Management System</div>
 	</div>
 	<div id="bodyArea" style="display: none;">
-	<img alt="" id="LoginImage" src="http://13.209.161.83:8080/airquayRowing/resources/img/main_visual_01.jpg" style="width:100%;">
+	<img alt="" id="LoginImage" src="http://localhost:8080/rowing/resources/img/main_visual_01.jpg" style="width:100%;">
 		<div id="SignupArea">
 			<div style="float: left; width: 100%; height: 50px; font-size: 30px; text-indent: 30px; font-weight: bold; margin-top: 20px;">Add race</div>
 			<div style="float: left; width: 100%;">
@@ -89,7 +89,7 @@ function resultAdd(data){
 					</div>
 				</div>
 				<div style="float: left;" onclick="javascript:addrace();">
-					<div id="SignupBtn">Add</div>
+					<div id="Button">Add</div>
 				</div>
 			</div>
 		</div>

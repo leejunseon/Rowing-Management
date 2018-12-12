@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+#addrecordArea{
+	position: absolute;
+	right: 80px;
+    width: 1200px;
+    height: 560px;
+    top: 10px;
+    background-color: white;
+    box-shadow:5px 5px 10px #cccccc;
+}
+
+.raceLabel{
+	text-align: left;
+	width: 150px;
+	font-size: 20px;
+	text-indent: 30px;
+	font-weight: bold;
+	line-height: 50px;
+}
+
+.rankLabel{
+	text-align: center;
+	width: 150px;
+	font-size: 30px;
+	text-indent: 30px;
+	font-weight: bold;
+	line-height: 50px;
+}
+
+.inputInfo{
+	height: 20px;
+	width:130px;
+	margin-top: 10px;
+	float: left;
+}
+
+
+
+
