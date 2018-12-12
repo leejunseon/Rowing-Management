@@ -138,14 +138,14 @@ var common={
 					records=data;
 					for(var i=0;i<data.length;i++){
 						dataInfo=records[i].pop();
-						innerHtml+=	"<"+dataInfo.race_date+"><br>"+
+						innerHtml+=	"<div style='border: 1px solid white;width:80%;'>"+
+									dataInfo.race_date+" "+
 									dataInfo.event_name+"<br>"+
 									dataInfo.roundtype+" "+
 									dataInfo.racetype+" "+
 									dataInfo.progression+"<br>"+
-									dataInfo.team_name+" "+
 									dataInfo.race_time+" "+
-									dataInfo.rank+"위<br><br>"
+									dataInfo.rank+"위<br><br></div>"
 					}
 					$("#records").empty().append(innerHtml);
 				}else{
