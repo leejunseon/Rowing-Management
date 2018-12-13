@@ -5,13 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Airquay rowing management system</title>
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingCommon.css?asdf">
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingAddrecord.css?asdf">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?asdf">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingCommon.css?asdfasdf">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingAddrecord.css?asdfasdf">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?asdfasdf">
 
-<script src="http://localhost:8080/rowing/resources/js/rowingCommon.js?asdf"></script>
-<script src="https://code.jquery.com/jquery-3.0.0.min.js?asdf"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?asdf"></script>
+<script src="http://localhost:8080/rowing/resources/js/rowingCommon.js?asdfasdf"></script>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js?asdfasdf"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?asdfasdf"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -24,7 +24,6 @@ function doResize(){
 	var headerAreaHeight = $("#headerArea").height();
 	var bottomAreaHeight = $("#bottomArea").height();
 	$("#bodyArea").css("height", windowHeight-headerAreaHeight-bottomAreaHeight);
-	//$("#bodyArea",parent.document).css("height",776)//임시방편
 }
 function dispSignupPage(){
 	$("#bodyArea").css("display", "block");
@@ -77,9 +76,8 @@ function resultAddData(data){
 	</div>
 	<div id="bodyArea" style="display: none;">
 		<div id="addrecordArea">
-			<div style="float: left; width: 100%; height: 50px; font-size: 30px; text-indent: 30px; font-weight: bold;">Race info</div>
-			<div style="float: left; width: 30%;">
-				<table>
+			<div style="float: left; width: 30%; height: 50px; font-size: 30px; text-indent: 30px; font-weight: bold;">Race info
+				<table style="width:100%;">
 					<tr style="height:50px;"></tr>
 					<tr>
 						<td class="raceLabel">Event name</td>	
@@ -112,7 +110,7 @@ function resultAddData(data){
 				</table>
 			</div>
 			<div style="float: left; width: 25%;">
-				<table>
+				<table style="width:100%;margin-top:20px;">
 					<tr>
 						<td class="rankLabel"colspan="2">-- Rank 1 --</td>
 					</tr>
@@ -149,7 +147,7 @@ function resultAddData(data){
 				</table>
 			</div>
 			<div style="float: left; width: 25%;">
-				<table>
+				<table style="width:100%;margin-top:20px;">
 					<tr>
 						<td class="rankLabel"colspan="2">-- Rank 4 --</td>
 					</tr>
@@ -185,8 +183,8 @@ function resultAddData(data){
 					</tr>
 				</table>
 			</div>
-			<div style="float: left; width:20%;margin-top:350px;"onclick="javascript:addData();">
-					<div id="Button">Submit</div>
+			<div style="float: left; width:20%;margin-top:400px;"onclick="javascript:addData();">
+					<div id="Button" style="width:70%;margin:auto;">Submit</div>
 			</div>
 		</div>
 	</div>

@@ -5,13 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Airquay rowing management system</title>
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingCommon.css?asdf">
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingSelect.css?asdf">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?asdf">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingCommon.css?asdfasdf">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingSelect.css?asdfasdf">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?asdfasdf">
 
-<script src="http://localhost:8080/rowing/resources/js/rowingCommon.js?asdf"></script>
-<script src="https://code.jquery.com/jquery-3.0.0.min.js?asdf"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?asdf"></script>
+<script src="http://localhost:8080/rowing/resources/js/rowingCommon.js?asdfasdf"></script>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js?asdfasdf"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?asdfasdf"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {

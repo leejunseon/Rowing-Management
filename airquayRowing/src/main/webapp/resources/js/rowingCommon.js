@@ -42,17 +42,19 @@ var common={
 				recordLength=teamData[0].length;
 				for(var i=0;i<recordLength;i++){
 					record=teamData[0].pop();
-					innerHtml+= record.event_name+" "+
+					innerHtml+= "<div style='border: 1px solid white;width:70%;margin:auto;padding:15px;'>"+
+								record.event_name+" "+
 								record.roundtype+" "+
 								record.racetype+" "+
 								record.progression+" "+
-								record.rank+" 위<br>"
+								record.rank+" 위<br></div>"
 				}
-				innerHtml+="<br>우승 횟수 : "+teamData[1]+" 회<br>"
+				innerHtml+="<div style='border: 1px solid white;width:70%;margin:auto;padding:15px;'>";
+				innerHtml+="우승 횟수 : "+teamData[1]+" 회<br>"
 				innerHtml+="평균 순위 : "+teamData[2]+" 위<br>"
 				innerHtml+="평균 기록 : "+teamData[3]+"<br>"
 				innerHtml+="기권 "+teamData[4]+" 번<br>"
-				innerHtml+="실격 "+teamData[5]+" 번<br>"
+				innerHtml+="실격 "+teamData[5]+" 번<br></div>"
 				
 				$("#teamData").empty().append(innerHtml);
 			},
@@ -138,18 +140,18 @@ var common={
 					records=data;
 					for(var i=0;i<data.length;i++){
 						dataInfo=records[i].pop();
-						innerHtml+=	"<div style='border: 1px solid white;width:80%;'>"+
+						innerHtml+=	"<div style='border: 1px solid white;width:70%;margin:auto;padding:15px;'>"+
 									dataInfo.race_date+" "+
 									dataInfo.event_name+"<br>"+
 									dataInfo.roundtype+" "+
 									dataInfo.racetype+" "+
 									dataInfo.progression+"<br>"+
 									dataInfo.race_time+" "+
-									dataInfo.rank+"위<br><br></div>"
+									dataInfo.rank+"위<br></div>"
 					}
 					$("#records").empty().append(innerHtml);
 				}else{
-					$("#records").empty().append("기록이 없습니다.");
+					$("#records").empty().append("<div style='text-align:center;width:70%;margin:auto;padding:15px;'>기록이 없습니다.</div>");
 				}
 			},
 			error : function(data){
@@ -178,9 +180,10 @@ var common={
 					}else{
 						select="Admin <input type='checkbox' id='user' name='"+userList[i].user_no+"'value='' style='width:20px;height:20px;'>"
 					}
-					innerHtml += "userID: "+userList[i].user_id
-								+" userName: "+userList[i].user_name+" "
-								+select+"<br>"
+					innerHtml += "<div style='border: 1px solid white;width:75%;margin:auto;padding:15px;'>"
+					innerHtml += "<table style='width:60%;margin:auto;text-align:center;'><tr><td>userID: "+userList[i].user_id
+								+"</td><td>userName: "+userList[i].user_name+"</td><td>"
+								+select+"</td></tr></table></div>"
 				}
 				$("#userList").empty().append(innerHtml);
 			},
@@ -238,9 +241,10 @@ var common={
 			success : function(data){
 				raceSchedule=data;
 				for(var i=0;i<raceSchedule.length;i++){
-					innerHtml+=  raceSchedule[i].race_calendar+" "
+					innerHtml+= "<div style='border: 1px solid white;width:75%;margin:auto;padding:15px;text-align:center;'><"
+								+raceSchedule[i].race_calendar+"> "
 								+raceSchedule[i].race_name+" "
-								+raceSchedule[i].race_location+"<br>"
+								+raceSchedule[i].race_location+"<br></div>"
 				}
 				$("#raceSchedule").empty().append(innerHtml);
 			},
