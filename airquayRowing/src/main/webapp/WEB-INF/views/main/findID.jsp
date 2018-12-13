@@ -6,18 +6,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Airquay rowing management system</title>
 <link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingCommon.css?vesv">
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingAddRaceSchedule.css?vesv">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingSignup.css?vesv">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?vesv">
 
 <script src="http://localhost:8080/rowing/resources/js/rowingCommon.js?vesv"></script>
 <script src="https://code.jquery.com/jquery-3.0.0.min.js?vesv"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?vesv"></script>
 <script type="text/javascript">
-var loginCheck;
+
 
 $(document).ready(function() {
-	loginCheck="${loginCheck}"
-	common.Login(loginCheck);
 	doResize();
 	dispSignupPage();
 });
@@ -31,13 +29,10 @@ function doResize(){
 function dispSignupPage(){
 	$("#bodyArea").css("display", "block");
 }
-function addrace(){
-	var json_data = "race_name="+($("#race_name").val());
-		json_data += "&location="+($("#location").val());
-		json_data += "&year="+($("#year").val());
-		json_data += "&month="+($("#month").val());
-		json_data += "&day="+($("#day").val());
-	var url = 'http://localhost:8080/rowing/main/addRace';
+
+function findID(){
+	var json_data = "user_name="+($("#user_name").val());
+	var url = 'http://localhost:8080/rowing/main/findUserID';
 	console.log("addUser")
 	$.ajax({
 		url:url,
@@ -47,19 +42,27 @@ function addrace(){
 		processData: false,
 		data : json_data,
 		success : function(data){		
-			resultAdd(true);
+			length=data.length;
+			var innerHtml="";
+			if(length==0)
+				alert("일치하는 아이디가 없습니다.");
+			else{
+				innerHtml+=($("#user_name").val())+"님의 아이디 : \n"+data[0]
+				for(var i=1;i<length;i++){
+					innerHtml+=" , "+data[i]
+				}
+				alert(innerHtml);
+			}
 		},
 		error : function(data){
-			alert("Fill in all the contents");
+			
 		}
 	});
-}
-function resultAdd(data){	
-	location.href="selectAdmin";
 }
 function main(){
 	location.href="main";
 }
+
 
 </script>
 </head>
@@ -78,32 +81,18 @@ function main(){
 	<div id="bodyArea" style="display: none;">
 	<img alt="" id="LoginImage" src="http://localhost:8080/rowing/resources/img/main_visual_01.jpg" style="width:100%;">
 		<div id="SignupArea">
-			<div style="float: left; width: 100%; height: 50px; font-size: 30px; text-indent: 30px; font-weight: bold; margin-top: 20px;">Add race</div>
+			<div style="float: left; width: 100%; height: 50px; font-size: 30px; text-indent: 30px; font-weight: bold; margin-top: 20px;">Enter your name</div>
 			<div style="float: left; width: 100%;">
 				<div style="float: left; width: 65%;">
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="loginLabel">Race name</div>
-						<div class="inputText"><input id="race_name" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {addrace();}"/></div>
+					<div style="height: 50px;">					
 					</div>
 					<div style="float: left; width: 100%; height: 50px;">
-						<div class="loginLabel">Location</div>
-						<div class="inputText"><input id="location" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {addrace();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="loginLabel">Year</div>
-						<div class="inputText"><input id="year" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {addrace();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="loginLabel">Month</div>
-						<div class="inputText"><input id="month" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {addrace();}"/></div>
-					</div>
-					<div style="float: left; width: 100%; height: 50px;">
-						<div class="loginLabel">Day</div>
-						<div class="inputText"><input id="day" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {addrace();}"/></div>
-					</div>
+						<div class="loginLabel">Name</div>
+						<div class="inputText"><input id="user_name" type="text" style="width: 100%; height: 100%;" onKeyDown="if(event.keyCode==13) {findID();}"/></div>
+					</div>				
 				</div>
-				<div style="float: left;width:35%;" onclick="javascript:addrace();">
-					<div id="Button">Add</div>
+				<div style="float:left;width: 35%;margin-top:50px;" onclick="javascript:findID();">
+					<div id="Button">Submit</div>
 				</div>
 			</div>
 		</div>

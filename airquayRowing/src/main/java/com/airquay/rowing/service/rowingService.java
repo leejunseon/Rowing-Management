@@ -91,4 +91,19 @@ public class rowingService {
 		// TODO Auto-generated method stub
 		mainDAO.deletelaterSchedule();
 	}
+
+	public List findUserID(String user_name) {
+		// TODO Auto-generated method stub
+		return mainDAO.findUserID(user_name);
+	}
+
+	public String findUserPWD(main main) {
+		// TODO Auto-generated method stub
+		return mainDAO.findUserPWD(main);
+	}
+
+	public Boolean checkId(String user_id) {
+		// TODO Auto-generated method stub
+		return mainDAO.checkId(user_id);
+	}
 }

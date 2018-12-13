@@ -35,4 +35,10 @@ public interface mainDAO {
 
 	void deletelaterSchedule();
 
+	List findUserID(String user_name);
+
+	String findUserPWD(main main);
+
+	Boolean checkId(String user_id);
+
 }

@@ -5,20 +5,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Airquay rowing management system</title>
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingCommon.css?asdfasdf">
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingLogin.css?asdfasdf">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?asdfasdf">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingCommon.css?vesv">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingLogin.css?vesv">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?vesv">
 
-<script src="http://localhost:8080/rowing/resources/js/rowingCommon.js?asdfasdf"></script>
-<script src="https://code.jquery.com/jquery-3.0.0.min.js?asdfasdf"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?asdfasdf"></script>
+<script src="http://localhost:8080/rowing/resources/js/rowingCommon.js?vesv"></script>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js?vesv"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?vesv"></script>
 <script type="text/javascript">
 var loginCheck;
+var userName;
 var Height;
 
 $(document).ready(function() {
-	loginCheck = "${loginCheck}";
-	console.log("loginCheck : "+loginCheck)
+	loginCheck = "${loginCheck}"
+	userName="${userName}"
 	doResize();
 	dispLoginPage();
 });
@@ -29,6 +30,7 @@ function doResize(){
 	var bottomAreaHeight = $("#bottomArea").height();
 	$("#bodyArea").css("height",windowHeight-headerAreaHeight-bottomAreaHeight);
 }
+
 function dispLoginPage(){
 	if(loginCheck=="true"){
 		resultLogin(true);
@@ -36,6 +38,7 @@ function dispLoginPage(){
 		$("#bodyArea").css("display", "block");
 	}
 }
+
 function login(){
 	var json_data = "user_id="+($("#user_id").val());
 		json_data += "&user_pw="+($("#user_pw").val());
@@ -50,18 +53,31 @@ function login(){
 		data : json_data,
 		dataType : 'json',
 		success : function(data){
-			resultLogin(data[1]);
-			userInfo=data[0];			
+			resultLogin(data);		
 		},
 		error : function(data){
-		}//data에 controller의 /login의 리턴값 저장됨.
+		}
 	});
 }
+
 function signup(){
 	location.href="signup";
 }
+function findID(){
+	location.href="findID";
+}
+function findPWD(){
+	location.href="findPWD";
+}
+function main(){
+	location.href="main";
+}
+
 function resultLogin(data){
-	if(data==true){
+	if(data[0]==true){
+		alert(data[1]+"님 환영합니다.")
+		location.href="select";
+	}else if(data==true){
 		location.href="select";
 	}else{
 		alert("Please check ID or Password");
@@ -72,7 +88,14 @@ function resultLogin(data){
 
 <body style="margin: 0px; background-color: #3e6699; overflow: auto;">
 	<div id="headerArea">
-		<div id="titleArea">Rowing Management System</div>
+		<div id="titleArea">
+			<table style="width:100%;height:100%;">
+				<tr>
+					<td style="cursor: pointer;"onclick="javascript:main();">Rowing Management System</td>
+					<td><input type="button"value="Logout"onclick="common.Logout();"style="width:40%;height:70%;font-size:20px;"></td>
+				</tr>
+			</table>
+		</div>
 	</div>
 	<div id="bodyArea" style="display: none;">
 		<img alt="" id="LoginImage" src="http://localhost:8080/rowing/resources/img/main_visual_01.jpg" style="width:100%;">
@@ -96,9 +119,9 @@ function resultLogin(data){
 			<div style="float: left; width: 100%;">
 				<div style="float: left; color: #5b87bd; font-size: 13px; margin-left: 100px; cursor: pointer;"onclick="javascript:signup();">Sign Up</div>
 				<div style="float: left; color: #5b87bd; font-size: 13px; margin-left: 15px;">/</div>
-				<div style="float: left; color: #5b87bd; font-size: 13px; margin-left: 15px; cursor: pointer;">Find ID</div>
+				<div style="float: left; color: #5b87bd; font-size: 13px; margin-left: 15px; cursor: pointer;"onclick="javascript:findID();">Find ID</div>
 				<div style="float: left; color: #5b87bd; font-size: 13px; margin-left: 15px;">/</div>
-				<div style="float: left; color: #5b87bd; font-size: 13px; margin-left: 15px; cursor: pointer;">Find PW</div>
+				<div style="float: left; color: #5b87bd; font-size: 13px; margin-left: 15px; cursor: pointer;"onclick="javascript:findPWD();">Find PW</div>
 			</div>
 		</div>
 	</div>

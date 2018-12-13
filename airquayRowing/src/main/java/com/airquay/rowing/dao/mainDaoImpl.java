@@ -168,4 +168,29 @@ public class mainDaoImpl  implements mainDAO{
 		// TODO Auto-generated method stub
 		sqlSession.delete(mapper+"deletelaterSchedule");
 	}
+
+	@Override
+	public List findUserID(String user_name) {
+		// TODO Auto-generated method stub
+		List user_id=sqlSession.selectList(mapper+"findUserID",user_name);
+		return user_id;
+	}
+
+	@Override
+	public String findUserPWD(main main) {
+		// TODO Auto-generated method stub
+		String user_pw=sqlSession.selectOne(mapper+"findUserPWD",main);
+		return user_pw;
+	}
+
+	@Override
+	public Boolean checkId(String user_id) {
+		// TODO Auto-generated method stub
+		int num=sqlSession.selectOne(mapper+"checkId",user_id);
+		
+		if(num>0)
+			return false;
+		else
+			return true;
+	}
 }

@@ -253,5 +253,30 @@ var common={
 			}
 		});
 	},
+	
+	Login:function(loginCheck){
+		if(loginCheck=="false"){
+			alert("로그인이 필요합니다.")
+			location.href="main";
+		}
+	},
+	
+	Logout:function(){
+		$.ajax({
+			url:'http://localhost:8080/rowing/logout',
+			type : 'GET',
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType : 'json',
+			success : function(){
+				alert("로그아웃 되었습니다.")
+				location.href="main";
+			},
+			error : function(){
+			}
+		});
+	}
+	
 					
 }

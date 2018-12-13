@@ -50,6 +50,14 @@ public class MainController {
 	
 	@RequestMapping(value = "/select", method = RequestMethod.GET)
 	public String select(Model model, HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+ 		Boolean loginUser = (Boolean) session.getAttribute("loginUser");
+		if(loginUser==null){
+			model.addAttribute("loginCheck", false);
+		}else{
+			model.addAttribute("loginCheck", true);
+			model.addAttribute("userAdmin",session.getAttribute("userAdmin"));
+		}
 		return "main/select";
 	}
 	
@@ -58,38 +66,98 @@ public class MainController {
 		return "main/signup";
 	}
 	
+	@RequestMapping(value = "/findID", method = RequestMethod.GET)
+	public String findID(Model model, HttpServletRequest request, HttpServletResponse response) {
+		return "main/findID";
+	}
+	
+	@RequestMapping(value = "/findPWD", method = RequestMethod.GET)
+	public String findPWD(Model model, HttpServletRequest request, HttpServletResponse response) {
+		return "main/findPWD";
+	}
+	
 	@RequestMapping(value = "/addRecord", method = RequestMethod.GET)
 	public String addRecord(Model model, HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+ 		Boolean loginUser = (Boolean) session.getAttribute("loginUser");
+		if(loginUser==null){
+			model.addAttribute("loginCheck", false);
+		}else{
+			model.addAttribute("loginCheck", true);
+		}
 		return "main/addRecord";
 	}
 	
 	@RequestMapping(value = "/recordview", method = RequestMethod.GET)
 	public String recordview(Model model, HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+ 		Boolean loginUser = (Boolean) session.getAttribute("loginUser");
+		if(loginUser==null){
+			model.addAttribute("loginCheck", false);
+		}else{
+			model.addAttribute("loginCheck", true);
+		}
 		return "main/recordView";
 	}
 	
 	@RequestMapping(value = "/selectAdmin", method = RequestMethod.GET)
 	public String selectAdmin(Model model, HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+ 		Boolean loginUser = (Boolean) session.getAttribute("loginUser");
+		if(loginUser==null){
+			model.addAttribute("loginCheck", false);
+		}else{
+			model.addAttribute("loginCheck", true);
+			model.addAttribute("userAdmin",session.getAttribute("userAdmin"));
+		}
 		return "main/selectAdmin";
 	}
 	
 	@RequestMapping(value = "/teamInfo", method = RequestMethod.GET)
 	public String teamInfo(Model model, HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+ 		Boolean loginUser = (Boolean) session.getAttribute("loginUser");
+		if(loginUser==null){
+			model.addAttribute("loginCheck", false);
+		}else{
+			model.addAttribute("loginCheck", true);
+		}
 		return "main/teamInfo";
 	}
 	
 	@RequestMapping(value = "/addRaceSchedule", method = RequestMethod.GET)
 	public String addRaceSchedule(Model model, HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+ 		Boolean loginUser = (Boolean) session.getAttribute("loginUser");
+		if(loginUser==null){
+			model.addAttribute("loginCheck", false);
+		}else{
+			model.addAttribute("loginCheck", true);
+		}
 		return "main/addRaceSchedule";
 	}
 
 	@RequestMapping(value = "/memberManagement", method = RequestMethod.GET)
 	public String memberManagement(Model model, HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+ 		Boolean loginUser = (Boolean) session.getAttribute("loginUser");
+		if(loginUser==null){
+			model.addAttribute("loginCheck", false);
+		}else{
+			model.addAttribute("loginCheck", true);
+		}
 		return "main/memberManagement";
 	}
 	
 	@RequestMapping(value = "/raceSchedule", method = RequestMethod.GET)
 	public String raceSchedule(Model model, HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+ 		Boolean loginUser = (Boolean) session.getAttribute("loginUser");
+		if(loginUser==null){
+			model.addAttribute("loginCheck", false);
+		}else{
+			model.addAttribute("loginCheck", true);
+		}
 		return "main/raceSchedule";
 	}
 	
@@ -98,37 +166,49 @@ public class MainController {
 		main main = new main();
 		List<Object> resultList = new ArrayList<Object>();
 		HttpSession session = request.getSession(false);
+		int Admin;
+		String Name;
+		
 		String user_id = request.getParameter("user_id");
 		String user_pw = request.getParameter("user_pw");
 		main.setUser_id(user_id);
 		main.setUser_pw(user_pw);
+		
 		Boolean userCheck = rowingService.checkUser(main);
 		List<List> userInfo = rowingService.userInfo(main);
+		
 		if(userCheck==true){
-			model.addAttribute("userInfo",userInfo);
 			session.setAttribute("loginUser", true);
-			resultList.add(0, userInfo);
-			resultList.add(1, userCheck);
+			main=(main)userInfo.get(0);
+			Admin=main.getAdminLevel();
+			Name=main.getUser_name();
+			session.setAttribute("userAdmin", Admin);
+			resultList.add(userCheck);
+			resultList.add(Name);
 		}
 		else {
-			resultList.add(0, userInfo);
-			resultList.add(1, userCheck);
+			resultList.add(userCheck);
 		}
 		return resultList;
 	}
-  	
+	
+	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody Boolean logout(Model model, HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return true;
+	}
+	
 	@RequestMapping(value = "/main/addUser", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody void addUser(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
   		String user_id=request.getParameter("user_id");
   		String user_pw=request.getParameter("user_pw");
   		String user_name=request.getParameter("user_name");
-  		String team_num=request.getParameter("team_num");
   		
   		main main=new main();
   		main.setUser_id(user_id);
   		main.setUser_pw(user_pw);
   		main.setUser_name(user_name);
-  		main.setTeam_num(Integer.parseInt(team_num));
   		
   		rowingService.addUser(main);
 	}
@@ -250,5 +330,32 @@ public class MainController {
 	public @ResponseBody List raceSchedule(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		List raceSchedule=rowingService.getRaceSchedule();
 		return raceSchedule;
+	}
+	
+	@RequestMapping(value = "/main/findUserID", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody List findUserID(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		String user_name=request.getParameter("user_name");
+		List userID=rowingService.findUserID(user_name);
+		return userID;
+	}
+	
+	@RequestMapping(value = "/main/findUserPWD", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody String findUserPWD(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		main main=new main();	
+		String user_name=request.getParameter("user_name");
+		String user_id=request.getParameter("user_id");
+		main.setUser_name(user_name);
+		main.setUser_id(user_id);
+		
+		String userPWD=rowingService.findUserPWD(main);
+		return userPWD;
+	}
+	
+	@RequestMapping(value = "/main/checkId", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody Boolean checkId(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		String user_id=request.getParameter("user_id");
+		
+		return rowingService.checkId(user_id);
+		
 	}
 }

@@ -17,7 +17,8 @@
 		select
 		user_info.user_no, 
 		user_info.user_id, 
-		user_info.user_name
+		user_info.user_name,
+		user_info.adminLevel
 		
 		from airquay.user_info user_info 
 		
@@ -28,7 +29,7 @@
 
 	<insert id="addUser" parameterType="com.airquay.rowing.vo.main">
 		insert into airquay.user_info
-		values(null,'${user_id}','${user_pw}','${user_name}','${team_num}',null,null);
+		values(null,'${user_id}','${user_pw}','${user_name}',0);
 	</insert>
 	
 	<insert id="addRacetype" parameterType="com.airquay.rowing.vo.main">
@@ -278,4 +279,22 @@
 		order by race_calendar asc
 	</select>
 	
+	<select id="findUserID" resultType="String" parameterType="String">
+		select user_id
+		from user_info
+		where user_name='${value}'
+	</select>
+	
+	<select id="findUserPWD" resultType="String" parameterType="com.airquay.rowing.vo.main">
+		select user_pw
+		from user_info
+		where 	user_name='${user_name}'and
+				user_id='${user_id}'
+	</select>
+	
+	<select id="checkId" resultType="Integer" parameterType="String">
+		select count(*)
+		from user_info
+		where user_id='${value}'
+	</select>
 </mapper>
