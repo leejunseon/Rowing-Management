@@ -269,11 +269,15 @@ var common={
 			contentType: false,
 			processData: false,
 			dataType : 'json',
-			success : function(){
-				alert("로그아웃 되었습니다.")
-				location.href="main";
+			success : function(data){
+				if(data==true){
+					alert("로그아웃 되었습니다.")
+					location.href="main";
+				}else{
+					alert("로그인 상태가 아닙니다.")
+				}
 			},
-			error : function(){
+			error : function(data){
 			}
 		});
 	}

@@ -195,8 +195,13 @@ public class MainController {
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody Boolean logout(Model model, HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		session.invalidate();
-		return true;
+		Boolean loginUser = (Boolean) session.getAttribute("loginUser");
+		if(loginUser==null){
+			return false;
+		}else {
+			session.invalidate();
+			return true;
+		}
 	}
 	
 	@RequestMapping(value = "/main/addUser", method = { RequestMethod.GET, RequestMethod.POST })
