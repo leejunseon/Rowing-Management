@@ -5,11 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Airquay rowing management system</title>
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingCommon.css?sdf">
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingSignup.css?sdf">
+<link type="text/css" rel="stylesheet" href="http://13.209.161.83:8080/rowing/resources/css/rowingCommon.css?sdf">
+<link type="text/css" rel="stylesheet" href="http://13.209.161.83:8080/rowing/resources/css/rowingSignup.css?sdf">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?sdf">
 
-<script src="http://localhost:8080/rowing/resources/js/rowingCommon.js?sdf"></script>
+<script src="http://13.209.161.83:8080/rowing/resources/js/rowingCommon.js?sdf"></script>
 <script src="https://code.jquery.com/jquery-3.0.0.min.js?sdf"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?sdf"></script>
 <script type="text/javascript">
@@ -32,7 +32,7 @@ function dispSignupPage(){
 function findPWD(){
 	var json_data = "user_name="+($("#user_name").val());
 		json_data += "&user_id="+($("#user_id").val());
-	var url = 'http://localhost:8080/rowing/main/findUserPWD';
+	var url = 'http://13.209.161.83:8080/rowing/main/findUserPWD';
 	$.ajax({
 		url:url,
 		type : 'GET',
@@ -74,7 +74,7 @@ function main(){
 		</div>
 	</div>
 	<div id="bodyArea" style="display: none;">
-	<img alt="" id="LoginImage" src="http://localhost:8080/rowing/resources/img/main_visual_01.jpg" style="width:100%;">
+	<img alt="" id="LoginImage" src="http://13.209.161.83:8080/rowing/resources/img/main_visual_01.jpg" style="width:100%;">
 		<div id="SignupArea">
 			<div style="float: left; width: 100%; height: 50px; font-size: 30px; text-indent: 30px; font-weight: bold; margin-top: 20px;">Enter your Name and ID</div>
 			<div style="float: left; width: 100%;">

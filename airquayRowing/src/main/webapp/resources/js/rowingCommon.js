@@ -5,7 +5,7 @@ var common={
 		var json_data = " ";
 		var innerHtml = "<option value='' selected disabled hidden>team</option>";
 		$.ajax({
-			url:'http://localhost:8080/rowing/main/getteamList',
+			url:'http://13.209.161.83:8080/rowing/main/getteamList',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -30,7 +30,7 @@ var common={
 		var json_data = "team_num="+($("#teams").val());
 		var innerHtml ="";
 		$.ajax({
-			url:'http://localhost:8080/rowing/main/teamData',
+			url:'http://13.209.161.83:8080/rowing/main/teamData',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -68,7 +68,7 @@ var common={
 		var json_data = " ";
 		var innerHtml = "<option value='' selected disabled hidden>roundtype</option>";
 		$.ajax({
-			url:'http://localhost:8080/rowing/main/getRoundtypeList',
+			url:'http://13.209.161.83:8080/rowing/main/getRoundtypeList',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -94,7 +94,7 @@ var common={
 		var json_data = " ";
 		var innerHtml = "<option value='' selected disabled hidden>year</option>";
 		$.ajax({
-			url:'http://localhost:8080/rowing/main/getStartYear',
+			url:'http://13.209.161.83:8080/rowing/main/getStartYear',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -128,7 +128,7 @@ var common={
 						"&team_num="+($("#teams").val())+
 						"&roundtype_key="+($("#roundtypes").val());
 		$.ajax({
-			url:'http://localhost:8080/rowing/main/getRecord',
+			url:'http://13.209.161.83:8080/rowing/main/getRecord',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -165,7 +165,7 @@ var common={
 		var json_data = "";
 		var select="";
 		$.ajax({
-			url:'http://localhost:8080/rowing/main/getUserList',
+			url:'http://13.209.161.83:8080/rowing/main/getUserList',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -202,7 +202,7 @@ var common={
 		}
 		jQuery.ajaxSettings.traditional = true;
 		$.ajax({
-			url:'http://localhost:8080/rowing/main/setUserInfo',
+			url:'http://13.209.161.83:8080/rowing/main/setUserInfo',
 			type : 'GET',
 			data :{'user_num' : user_num},
 			dataType : 'json',
@@ -218,7 +218,7 @@ var common={
 	
 	deletelaterSchedule:function(){
 		$.ajax({
-			url:'http://localhost:8080/rowing/main/deletelaterSchedule',
+			url:'http://13.209.161.83:8080/rowing/main/deletelaterSchedule',
 			type : 'GET',
 			success : function(){
 				
@@ -232,7 +232,7 @@ var common={
 	raceSchedule : function(){
 		var innerHtml="";
 		$.ajax({
-			url:'http://localhost:8080/rowing/main/raceSchedule',
+			url:'http://13.209.161.83:8080/rowing/main/raceSchedule',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -263,7 +263,7 @@ var common={
 	
 	Logout:function(){
 		$.ajax({
-			url:'http://localhost:8080/rowing/logout',
+			url:'http://13.209.161.83:8080/rowing/logout',
 			type : 'GET',
 			cache: false,
 			contentType: false,
