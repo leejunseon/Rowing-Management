@@ -5,7 +5,7 @@ var common={
 		var json_data = " ";
 		var innerHtml = "<option value='' selected disabled hidden>team</option>";
 		$.ajax({
-			url:'http://13.209.161.83:8080/rowing/main/getteamList',
+			url:'http://localhost:8080/rowing/main/getteamList',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -30,7 +30,7 @@ var common={
 		var json_data = "team_num="+($("#teams").val());
 		var innerHtml ="";
 		$.ajax({
-			url:'http://13.209.161.83:8080/rowing/main/teamData',
+			url:'http://localhost:8080/rowing/main/teamData',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -46,13 +46,24 @@ var common={
 								record.event_name+" "+
 								record.roundtype+" "+
 								record.racetype+" "+
-								record.progression+" "+
-								record.rank+" 위<br></div>"
+								record.progression+" "
+								if(record.rank==0)
+									innerHtml+=record.race_time+"<br></div>"
+								else
+									innerHtml+=record.rank+" 위<br></div>"
 				}
 				innerHtml+="<div style='border: 1px solid white;width:70%;margin:auto;padding:15px;'>";
 				innerHtml+="우승 횟수 : "+teamData[1]+" 회<br>"
-				innerHtml+="평균 순위 : "+teamData[2]+" 위<br>"
-				innerHtml+="평균 기록 : "+teamData[3]+"<br>"
+				innerHtml+="평균 순위 : "
+					if(teamData[2]==null)
+						innerHtml+="기록 없음<br>"
+					else
+						innerHtml+=teamData[2]+" 위<br>"
+					innerHtml+="평균 기록 : "
+					if(teamData[3]==null)
+						innerHtml+="기록 없음<br>"
+					else
+						innerHtml+=teamData[3]+"<br>"
 				innerHtml+="기권 "+teamData[4]+" 번<br>"
 				innerHtml+="실격 "+teamData[5]+" 번<br></div>"
 				
@@ -68,7 +79,7 @@ var common={
 		var json_data = " ";
 		var innerHtml = "<option value='' selected disabled hidden>roundtype</option>";
 		$.ajax({
-			url:'http://13.209.161.83:8080/rowing/main/getRoundtypeList',
+			url:'http://localhost:8080/rowing/main/getRoundtypeList',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -94,7 +105,7 @@ var common={
 		var json_data = " ";
 		var innerHtml = "<option value='' selected disabled hidden>year</option>";
 		$.ajax({
-			url:'http://13.209.161.83:8080/rowing/main/getStartYear',
+			url:'http://localhost:8080/rowing/main/getStartYear',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -128,7 +139,7 @@ var common={
 						"&team_num="+($("#teams").val())+
 						"&roundtype_key="+($("#roundtypes").val());
 		$.ajax({
-			url:'http://13.209.161.83:8080/rowing/main/getRecord',
+			url:'http://localhost:8080/rowing/main/getRecord',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -140,14 +151,16 @@ var common={
 					records=data;
 					for(var i=0;i<data.length;i++){
 						dataInfo=records[i].pop();
-						innerHtml+=	"<div style='border: 1px solid white;width:70%;margin:auto;padding:15px;'>"+
-									dataInfo.race_date+" "+
-									dataInfo.event_name+"<br>"+
+						innerHtml+=	"<div style='border: 1px solid white;width:70%;margin:auto;padding:15px;'><table><tr><td>경기날짜 : </td><td>"+
+									dataInfo.race_date+"</td></tr><tr><td>경기명 : </td><td>"+
+									dataInfo.event_name+"</td></tr><tr><td>경기내용 : </td><td>"+
 									dataInfo.roundtype+" "+
 									dataInfo.racetype+" "+
-									dataInfo.progression+"<br>"+
-									dataInfo.race_time+" "+
-									dataInfo.rank+"위<br></div>"
+									dataInfo.progression+"</td></tr><tr><td></td><td>"+
+									dataInfo.race_time+" "
+									if(dataInfo.rank!=0)
+										innerHtml+=dataInfo.rank+"위</td></tr></table></div>"
+									innerHtml+="</td></tr></table></div>"
 					}
 					$("#records").empty().append(innerHtml);
 				}else{
@@ -165,7 +178,7 @@ var common={
 		var json_data = "";
 		var select="";
 		$.ajax({
-			url:'http://13.209.161.83:8080/rowing/main/getUserList',
+			url:'http://localhost:8080/rowing/main/getUserList',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -202,7 +215,7 @@ var common={
 		}
 		jQuery.ajaxSettings.traditional = true;
 		$.ajax({
-			url:'http://13.209.161.83:8080/rowing/main/setUserInfo',
+			url:'http://localhost:8080/rowing/main/setUserInfo',
 			type : 'GET',
 			data :{'user_num' : user_num},
 			dataType : 'json',
@@ -218,7 +231,7 @@ var common={
 	
 	deletelaterSchedule:function(){
 		$.ajax({
-			url:'http://13.209.161.83:8080/rowing/main/deletelaterSchedule',
+			url:'http://localhost:8080/rowing/main/deletelaterSchedule',
 			type : 'GET',
 			success : function(){
 				
@@ -232,7 +245,7 @@ var common={
 	raceSchedule : function(){
 		var innerHtml="";
 		$.ajax({
-			url:'http://13.209.161.83:8080/rowing/main/raceSchedule',
+			url:'http://localhost:8080/rowing/main/raceSchedule',
 			type : 'GET',
 			cache: false,
 			contentType: false,
@@ -266,7 +279,7 @@ var common={
 	
 	Logout:function(){
 		$.ajax({
-			url:'http://13.209.161.83:8080/rowing/logout',
+			url:'http://localhost:8080/rowing/logout',
 			type : 'GET',
 			cache: false,
 			contentType: false,

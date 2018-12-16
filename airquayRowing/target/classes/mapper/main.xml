@@ -110,6 +110,31 @@
 		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankSixTeam}'),6,concat('00:','${RankSixRacetime}'))
 	</insert>
 	
+	<insert id="addRecordinfoEx1" parameterType="com.airquay.rowing.vo.main">
+		insert into record_info
+		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankOneTeam}'),0,'${RankOneRacetime}')
+	</insert>
+	<insert id="addRecordinfoEx2" parameterType="com.airquay.rowing.vo.main">
+		insert into record_info
+		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankTwoTeam}'),0,'${RankTwoRacetime}')
+	</insert>
+	<insert id="addRecordinfoEx3" parameterType="com.airquay.rowing.vo.main">
+		insert into record_info
+		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankThreeTeam}'),0,'${RankThreeRacetime}')
+	</insert>
+	<insert id="addRecordinfoEx4" parameterType="com.airquay.rowing.vo.main">
+		insert into record_info
+		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankFourTeam}'),0,'${RankFourRacetime}')
+	</insert>
+	<insert id="addRecordinfoEx5" parameterType="com.airquay.rowing.vo.main">
+		insert into record_info
+		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankFiveTeam}'),0,'${RankFiveRacetime}')
+	</insert>
+	<insert id="addRecordinfoEx6" parameterType="com.airquay.rowing.vo.main">
+		insert into record_info
+		values (null,'${race_num}',	(select team_info.team_num from team_info where team_name='${RankSixTeam}'),0,'${RankSixRacetime}')
+	</insert>
+	
 	<select id="getTeamList" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
 		select team_name,team_num
 		from team_info
@@ -119,6 +144,8 @@
 			from record_info
 			group by team_num
 		)
+		order by team_name
+
 	</select>
 	
 	<select id="getRoundtypeList" parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
@@ -135,6 +162,7 @@
 	<select id="getStartYear" resultType="Integer">
 		select distinct year(race_date)
 		from race_info
+		order by race_date asc
 	</select>
 	
 	<select id="getRecordRacenum" parameterType="com.airquay.rowing.vo.main" resultType="Integer">
@@ -185,7 +213,7 @@
 	</select>
 	
 	<select id="getRecordsInfo" parameterType="Integer" resultType="com.airquay.rowing.vo.main">
-		select event_name,roundtype,racetype,progression,rank
+		select event_name,roundtype,racetype,progression,rank,race_time
 		from race_info
 		join record_info
 		on race_info.race_num=record_info.race_num
@@ -221,13 +249,15 @@
 	<select id="getAvgRank" parameterType="Integer" resultType="Double">
 		select avg(rank)
 		from record_info
-		where team_num=${value}
+		where	team_num=${value} and
+				race_time not in ('실격','기권')
 	</select>
 	
 	<select id="getAvgRaceTime" parameterType="Integer" resultType="String">
 		select  sec_to_time(avg(time_to_sec(race_time)))
 		from record_info
-		where team_num=${value}
+		where	team_num=${value} and
+				race_time not in ('실격','기권')
 	</select>
 	
 	<select id="getAbstention" parameterType="Integer" resultType="Integer">

@@ -50,6 +50,14 @@ public class mainDaoImpl  implements mainDAO{
 		RankTeams[4]=main.getRankFiveTeam();
 		RankTeams[5]=main.getRankSixTeam();
 		
+		String[] RankRacetimes=new String[6];
+		RankRacetimes[0]=main.getRankOneRacetime();
+		RankRacetimes[1]=main.getRankTwoRacetime();
+		RankRacetimes[2]=main.getRankThreeRacetime();
+		RankRacetimes[3]=main.getRankFourRacetime();
+		RankRacetimes[4]=main.getRankFiveRacetime();
+		RankRacetimes[5]=main.getRankSixRacetime();
+		
 		for(int i=0;i<6;i++) {
 			if(RankTeams[i]!="")
 				sqlSession.insert(mapper+"addRankteams",RankTeams[i]);
@@ -70,7 +78,10 @@ public class mainDaoImpl  implements mainDAO{
 		for(int i=1;i<=6;i++) {
 			if(RankTeams[i-1]!="") {
 				String I=Integer.toString(i);
-				sqlSession.insert(mapper+"addRecordinfo"+I,main);	
+				if((RankRacetimes[i-1].equals("실격"))||(RankRacetimes[i-1].equals("기권")))
+					sqlSession.insert(mapper+"addRecordinfoEx"+I,main);	
+				else
+					sqlSession.insert(mapper+"addRecordinfo"+I,main);	
 			}
 		}
 	}
@@ -121,6 +132,7 @@ public class mainDaoImpl  implements mainDAO{
 		Integer ChampionNum=sqlSession.selectOne(mapper+"getChampionNum",Integer.parseInt(team_num));
 		Double AvgRank=sqlSession.selectOne(mapper+"getAvgRank",Integer.parseInt(team_num));
 		String AvgRaceTime=sqlSession.selectOne(mapper+"getAvgRaceTime",Integer.parseInt(team_num));
+		AvgRaceTime=AvgRaceTime.substring(0,11);
 		Integer Abstention=sqlSession.selectOne(mapper+"getAbstention",Integer.parseInt(team_num));
 		Integer Disqualification=sqlSession.selectOne(mapper+"getDisqualification",Integer.parseInt(team_num));
 

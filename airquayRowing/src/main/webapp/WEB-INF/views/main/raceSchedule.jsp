@@ -5,19 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Rowing Airquay</title>
-<<<<<<< Updated upstream
-<link type="text/css" rel="stylesheet" href="http://13.209.161.83:8080/rowing/resources/css/rowingCommon.css?asdf">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingCommon.css?asdf">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?asdf">
-<script src="http://13.209.161.83:8080/rowing/resources/js/rowingCommon.js?asdf"></script>
+
+<script src="http://localhost:8080/rowing/resources/js/rowingCommon.js?asdf"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js?asdf"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?asdf"></script>
-=======
-<link type="text/css" rel="stylesheet" href="http://localhost:8080/rowing/resources/css/rowingCommon.css?xcvwef">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?xcvwef">
-<script src="http://localhost:8080/rowing/resources/js/rowingCommon.js?xcvwef"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js?xcvwef"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?xcvwef"></script>
->>>>>>> Stashed changes
 <script type="text/javascript">
 var teamInfo;
 var Records;
