@@ -2,7 +2,11 @@
 
 #addrecordArea{
     width: 80%;
+<<<<<<< Updated upstream
     height: 90%;
+=======
+    height: 75%;
+>>>>>>> Stashed changes
     background-color: white;
     box-shadow:5px 5px 10px #cccccc;
     margin:auto;

@@ -196,7 +196,7 @@ public class MainController {
 	public @ResponseBody Boolean logout(Model model, HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		Boolean loginUser = (Boolean) session.getAttribute("loginUser");
-		if(loginUser==null){
+		if(loginUser==false){
 			return false;
 		}else {
 			session.invalidate();
