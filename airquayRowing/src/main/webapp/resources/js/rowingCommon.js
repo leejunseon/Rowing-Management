@@ -240,11 +240,14 @@ var common={
 			dataType : 'json',
 			success : function(data){
 				raceSchedule=data;
+				innerHtml=	"<div style='width:100%;margin:auto;padding:15px;text-align:center;'>"+
+							"<table style='width:100%;'><tr><td style='width:18%;'>경기 날짜</td><td style='width:47%;'>경기 이름</td><td style='width:35%;'>경기 장소</td></tr></table></div>"
 				for(var i=0;i<raceSchedule.length;i++){
-					innerHtml+= "<div style='border: 1px solid white;width:75%;margin:auto;padding:15px;text-align:center;'><"
-								+raceSchedule[i].race_calendar+"> "
-								+raceSchedule[i].race_name+" "
-								+raceSchedule[i].race_location+"<br></div>"
+					innerHtml+= "<div style='border: 1px solid white;width:100%;margin:auto;padding:15px;text-align:center;'>" +
+								"<table style='width:100%;'><tr><td style='width:18%;'><"
+								+raceSchedule[i].race_calendar+"></td><td style='width:47%;'>"
+								+raceSchedule[i].race_name+"</td><td style='width:35%;'>"
+								+raceSchedule[i].race_location+"</td></tr></table></div>"
 				}
 				$("#raceSchedule").empty().append(innerHtml);
 			},

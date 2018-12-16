@@ -5,13 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Airquay rowing management system</title>
-<link type="text/css" rel="stylesheet" href="http://13.209.161.83:8080/rowing/resources/css/rowingCommon.css?sdf">
-<link type="text/css" rel="stylesheet" href="http://13.209.161.83:8080/rowing/resources/css/rowingSignup.css?sdf">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?sdf">
+<link type="text/css" rel="stylesheet" href="http://13.209.161.83:8080/rowing/resources/css/rowingCommon.css?asdf">
+<link type="text/css" rel="stylesheet" href="http://13.209.161.83:8080/rowing/resources/css/rowingSignup.css?asdf">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?asdf">
 
-<script src="http://13.209.161.83:8080/rowing/resources/js/rowingCommon.js?sdf"></script>
-<script src="https://code.jquery.com/jquery-3.0.0.min.js?sdf"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?sdf"></script>
+<script src="http://13.209.161.83:8080/rowing/resources/js/rowingCommon.js?asdf"></script>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js?asdf"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?asdf"></script>
 <script type="text/javascript">
 
 
