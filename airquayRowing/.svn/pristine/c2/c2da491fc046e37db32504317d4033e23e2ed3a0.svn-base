@@ -23,7 +23,7 @@
 		order by ${orderType};
 	</select>
 	<select id="getRankList"  parameterType="com.airquay.rowing.vo.main" resultType="com.airquay.rowing.vo.main">
-		select t.raceNum, t.bowNum, bi.countryName, ri.raceDate, concat(t.arriveHour,':', t.arriveMinute,':', t.arriasdfecond,':', t.arriveMiliSecond) as arriveTime from rowing.${tableType} t
+		select t.raceNum, t.bowNum, bi.countryName, ri.raceDate, concat(t.arriveHour,':', t.arriveMinute,':', t.arrivewecond,':', t.arriveMiliSecond) as arriveTime from rowing.${tableType} t
 		left join rowing.raceinfo ri on ri.raceNum = t.raceNum
 		left join rowing.boatinfo bi on t.bowNum = bi.bowNum
 		where t.raceNum = ${raceNum} 

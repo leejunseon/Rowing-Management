@@ -41,7 +41,7 @@ body {
 .container {
         margin:auto;
         width: 90%;
-        height: 120px; 
+        height: 100%; 
         line-height: 35px; 
         font-size: 25px; 
         margin-top: 30px;

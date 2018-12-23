@@ -170,7 +170,8 @@
 		from race_info 
 		where	(race_info.race_date between '${start_date}' and '${end_date}') and
 				(race_info.roundtype_key in (${roundtype_key})) and
-				(race_num in (select race_num from record_info where team_num=${team_num})) 
+				(race_num in (select race_num from record_info where team_num=${team_num})) and
+				(event_name like '%${event_name}%')
 	</select>
 	
 	<select id="getRecord" parameterType="Integer" resultType="com.airquay.rowing.vo.main">

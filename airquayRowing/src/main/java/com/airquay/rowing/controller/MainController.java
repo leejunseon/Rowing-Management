@@ -289,6 +289,7 @@ public class MainController {
 		main.setEnd_date(request.getParameter("endDate"));
 		main.setTeam_num(Integer.parseInt(request.getParameter("team_num")));
 		main.setRoundtype_key(Integer.parseInt(request.getParameter("roundtype_key")));
+		main.setEvent_name(request.getParameter("event_name"));
 		
 		List<List> record_info = rowingService.getRecord(main);
 		return record_info;

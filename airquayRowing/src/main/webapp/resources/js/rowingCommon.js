@@ -137,7 +137,8 @@ var common={
 		var json_data = "startDate="+($("#startYear").val())+"-"+($("#startMonth").val())+"-"+($("#startDay").val())+
 						"&endDate="+($("#endYear").val())+"-"+($("#endMonth").val())+"-"+($("#endDay").val())+
 						"&team_num="+($("#teams").val())+
-						"&roundtype_key="+($("#roundtypes").val());
+						"&roundtype_key="+($("#roundtypes").val())+
+						"&event_name="+($("#eventname").val());
 		$.ajax({
 			url:'http://localhost:8080/rowing/main/getRecord',
 			type : 'GET',

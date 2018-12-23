@@ -103,7 +103,7 @@ pageEncoding="UTF-8"%>
                 rs = pstmt.executeQuery();
                 while(rs.next()){
                     %>
-				id.innerHTML=500+":"+<%=rs.getString("bowNum")%>+":"+<%=rs.getString("arriveHour")%>+":"+<%=rs.getString("arriveMinute")%>+":"+<%=rs.getString("arriasdfecond")%>+":"+<%=rs.getString("arriveMiliSecond")%>;
+				id.innerHTML=500+":"+<%=rs.getString("bowNum")%>+":"+<%=rs.getString("arriveHour")%>+":"+<%=rs.getString("arriveMinute")%>+":"+<%=rs.getString("arrivewecond")%>+":"+<%=rs.getString("arriveMiliSecond")%>;
 			<%
                 }
             }catch(SQLException se){

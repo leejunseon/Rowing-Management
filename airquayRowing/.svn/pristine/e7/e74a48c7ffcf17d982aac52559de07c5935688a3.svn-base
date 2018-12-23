@@ -34,7 +34,7 @@
           rs = pstmt.executeQuery();
           while(rs.next()){
             record500[index++]=rs.getString("bowNum");
-            record500[index++]=rs.getString("arriveHour")+":"+rs.getString("arriveMinute")+":"+rs.getString("arriasdfecond")+"."+rs.getString("arriveMiliSecond");
+            record500[index++]=rs.getString("arriveHour")+":"+rs.getString("arriveMinute")+":"+rs.getString("arrivewecond")+"."+rs.getString("arriveMiliSecond");
           }
           index=0;
 //           JSONObject sObject = new JSONObject();
