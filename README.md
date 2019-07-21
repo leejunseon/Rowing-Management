@@ -1,1 +1,8 @@
-DBP_Rowing Management
+Rowing Management
+
+
+이전에 진행한 '조정경기 기록측정 시스템' 이용하여 
+
+전반적인 경기기록 관리 및 조회 시스템 구현
+
+스프링 
